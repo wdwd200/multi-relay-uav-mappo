@@ -185,7 +185,7 @@ class MappoProtocolTests(unittest.TestCase):
             original, _, _ = write_locked_seed_manifest(path)
             for mutate, message in (
                 (lambda value: value.__setitem__("manifest_hash_scheme", "raw-file-sha256"), "hash scheme"),
-                (lambda value: value["splits"]["validation"]["seeds"].pop(), "20/50"),
+                (lambda value: value["splits"]["validation"]["seeds"].pop(), "locked Stage-4.1 sequence"),
                 (lambda value: value["splits"]["validation"].__setitem__("selection_allowed", False), "allow selection"),
             ):
                 candidate = copy.deepcopy(original)
@@ -193,6 +193,33 @@ class MappoProtocolTests(unittest.TestCase):
                 path.write_text(json.dumps(candidate), encoding="utf-8")
                 with self.assertRaisesRegex(ValueError, message):
                     load_seed_manifest(path)
+
+    def test_locked_seed_manifest_rejects_any_seed_sequence_or_reservation_change(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "seed_manifest.json"
+            original, _, _ = write_locked_seed_manifest(path)
+            mutations = (
+                ("replacement 20/50 seed sequences", lambda value: (
+                    value["splits"]["validation"].__setitem__("seeds", list(range(70_000_000, 70_000_020))),
+                    value["splits"]["test"].__setitem__("seeds", list(range(80_000_000, 80_000_050))))),
+                ("one validation seed replacement", lambda value: value["splits"]["validation"]["seeds"].__setitem__(0, 50_000_099)),
+                ("validation seed order", lambda value: value["splits"]["validation"]["seeds"].reverse()),
+                ("training reservation", lambda value: value["future_formal_training_seed_reservations"][0].__setitem__("start", 10_000_001)),
+                ("read-only contract", lambda value: value.__setitem__("read_only_contract", False)),
+            )
+            for label, mutate in mutations:
+                with self.subTest(mutation=label):
+                    candidate = copy.deepcopy(original)
+                    mutate(candidate)
+                    path.write_text(json.dumps(candidate), encoding="utf-8")
+                    with self.assertRaises(ValueError):
+                        load_seed_manifest(path)
+            path.write_text(json.dumps(original), encoding="utf-8")
+            loaded, _ = load_seed_manifest(path)
+            self.assertEqual(loaded, original)
+        committed, _ = load_seed_manifest(Path("artifacts/stage4-1-protocol-repair/seed_manifest.json"))
+        self.assertEqual(tuple(committed["splits"]["validation"]["seeds"]), VALIDATION_SEEDS)
+        self.assertEqual(tuple(committed["splits"]["test"]["seeds"]), FINAL_TEST_SEEDS)
 
     def test_cuda_action_generator_preserves_full_device_semantics(self) -> None:
         self.assertIn("torch.Generator(device=self.device)", inspect.getsource(MappoTrainer._initialize_protocol_rng_streams))

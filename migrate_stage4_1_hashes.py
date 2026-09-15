@@ -21,7 +21,9 @@ from plain_mappo.experiment_protocol import (CANONICAL_JSON_HASH_SCHEME,
                                               canonical_json_bytes, load_seed_manifest,
                                               sha256_file, sha256_json_file,
                                               sha256_json_payload)
+from plain_mappo.config import MappoConfig
 from plain_mappo.metrics import summarize_episodes
+from plain_mappo.networks import SharedActor
 from reevaluate_checkpoint_grid import assert_episode_completeness
 
 
@@ -150,9 +152,22 @@ def _check_historical_artifacts(*, verify_checkpoint_binaries: bool = True,
             continue
         if sha256_file(checkpoint) != record["sha256"]:
             raise ValueError(f"binary checkpoint hash mismatch: {record['path']}")
-        config = torch.load(checkpoint, map_location="cpu", weights_only=False)["config"]
+        checkpoint_payload = torch.load(checkpoint, map_location="cpu", weights_only=False)
+        config = checkpoint_payload["config"]
         if record.get("config_hash_scheme") != CANONICAL_JSON_HASH_SCHEME or record.get("config_sha256") != sha256_json_payload(config):
             raise ValueError(f"checkpoint config JSON hash mismatch: {record['path']}")
+        # This is Release-only integration verification.  CI's metadata-only
+        # mode intentionally never requires untracked .pt files.
+        checkpoint_config = MappoConfig.from_dict(config)
+        actor = SharedActor(checkpoint_config.local_obs_dim, checkpoint_config.action_dim,
+                            checkpoint_config.actor_hidden_sizes, checkpoint_config.log_std_min,
+                            checkpoint_config.log_std_max, checkpoint_config.actor_log_std_mode,
+                            checkpoint_config.state_independent_log_std_init,
+                            checkpoint_config.actor_variant, checkpoint_config.topology_node_dim,
+                            checkpoint_config.topology_edge_dim, checkpoint_config.graph_hidden_dim)
+        actor.load_state_dict(checkpoint_payload["actor_state"])
+        if actor.uses_topology:
+            raise ValueError(f"historical P0/P1/P2 checkpoint unexpectedly uses topology: {record['path']}")
     validation_hashes = [row["checkpoint_sha256"] for row in validation_rows]
     assert_episode_completeness(validation_episodes, validation_hashes, manifest["splits"]["validation"]["seeds"])
     selected_values = selected["selected"]

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import json
 import tempfile
 import unittest
 from dataclasses import replace
@@ -194,22 +195,40 @@ class MappoTopologyTests(unittest.TestCase):
                 self.assertEqual(restored.config.actor_variant, variant)
                 torch.testing.assert_close(restored.actor.deterministic_actions(local, node_tensor, edge_tensor), expected)
 
-    def test_p0_p1_p2_checkpoint_loading_remains_compatible(self) -> None:
-        checkpoints = (
-            Path("artifacts/stage3-stateindependent-full/checkpoints/actor_final.pt"),
-            Path("artifacts/stage4-role-info-full/checkpoints/actor_final.pt"),
-            Path("artifacts/stage4-role-head-full/checkpoints/actor_final.pt"),
+    def test_historical_p0_p1_p2_configs_support_synthetic_checkpoint_compatibility(self) -> None:
+        """Committed legacy configs must reconstruct non-topology Actor state_dicts.
+
+        Release checkpoint bytes are deliberately not in Git.  Their hash and
+        load verification lives in ``verify_stage4_1_artifacts.py
+        --checkpoint-root``; this unit test proves the corresponding config
+        deserialization and Actor compatibility in every clean checkout.
+        """
+        config_paths = (
+            Path("artifacts/stage3-stateindependent-full/config.json"),
+            Path("artifacts/stage4-role-info-full/config.json"),
+            Path("artifacts/stage4-role-head-full/config.json"),
         )
-        for checkpoint in checkpoints:
-            self.assertTrue(checkpoint.exists(), str(checkpoint))
-            payload = load_checkpoint(checkpoint, "cpu")
-            config = MappoConfig.from_dict(payload["config"])
-            actor = SharedActor(config.local_obs_dim, config.action_dim, config.actor_hidden_sizes,
-                                config.log_std_min, config.log_std_max, config.actor_log_std_mode,
-                                config.state_independent_log_std_init, config.actor_variant,
-                                config.topology_node_dim, config.topology_edge_dim, config.graph_hidden_dim)
-            actor.load_state_dict(payload["actor_state"])
-            self.assertFalse(actor.uses_topology)
+        with tempfile.TemporaryDirectory() as directory:
+            for config_path in config_paths:
+                with self.subTest(config=config_path):
+                    historical_config = json.loads(config_path.read_text(encoding="utf-8"))
+                    config = MappoConfig.from_dict(historical_config)
+                    actor = SharedActor(config.local_obs_dim, config.action_dim, config.actor_hidden_sizes,
+                                        config.log_std_min, config.log_std_max, config.actor_log_std_mode,
+                                        config.state_independent_log_std_init, config.actor_variant,
+                                        config.topology_node_dim, config.topology_edge_dim, config.graph_hidden_dim)
+                    checkpoint = Path(directory) / f"{config_path.parent.name}.pt"
+                    torch.save({"config": historical_config, "actor_state": actor.state_dict()}, checkpoint)
+                    payload = load_checkpoint(checkpoint, "cpu")
+                    restored_config = MappoConfig.from_dict(payload["config"])
+                    restored_actor = SharedActor(restored_config.local_obs_dim, restored_config.action_dim,
+                                                 restored_config.actor_hidden_sizes, restored_config.log_std_min,
+                                                 restored_config.log_std_max, restored_config.actor_log_std_mode,
+                                                 restored_config.state_independent_log_std_init,
+                                                 restored_config.actor_variant, restored_config.topology_node_dim,
+                                                 restored_config.topology_edge_dim, restored_config.graph_hidden_dim)
+                    restored_actor.load_state_dict(payload["actor_state"])
+                    self.assertFalse(restored_actor.uses_topology)
 
     def test_p3_p4_parameter_counts_are_within_ten_percent(self) -> None:
         p3, p4 = _actor("topology_info"), _actor("graph")

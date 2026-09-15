@@ -150,23 +150,35 @@ def load_seed_manifest(path: Path) -> tuple[dict[str, Any], str]:
         raise ValueError("seed manifest protocol version is not Stage 4.1")
     if payload.get("manifest_hash_scheme") != CANONICAL_JSON_HASH_SCHEME:
         raise ValueError(f"seed manifest hash scheme must be {CANONICAL_JSON_HASH_SCHEME}")
+    if payload.get("read_only_contract") is not True:
+        raise ValueError("seed manifest read_only_contract must be true")
     try:
         validation_split, test_split = payload["splits"]["validation"], payload["splits"]["test"]
-        validation = tuple(int(seed) for seed in validation_split["seeds"])
-        test = tuple(int(seed) for seed in test_split["seeds"])
-    except (KeyError, TypeError, ValueError) as exc:
+        validation = validation_split["seeds"]
+        test = test_split["seeds"]
+    except (KeyError, TypeError) as exc:
         raise ValueError("seed manifest split structure is invalid") from exc
-    if (len(validation) != 20 or len(test) != 50 or len(set(validation)) != 20
-            or len(set(test)) != 50 or set(validation).intersection(test)):
-        raise ValueError("seed manifest splits must be disjoint 20/50 episode sets")
+
+    # These are an immutable evaluation contract, not merely disjoint ranges.
+    # Sequence equality deliberately rejects reordering, duplicates, or a
+    # same-length replacement with otherwise-unused seeds.
+    if (not isinstance(validation, list) or any(type(seed) is not int for seed in validation)
+            or tuple(validation) != VALIDATION_SEEDS):
+        raise ValueError("validation seeds must exactly match the locked Stage-4.1 sequence")
+    if (not isinstance(test, list) or any(type(seed) is not int for seed in test)
+            or tuple(test) != FINAL_TEST_SEEDS):
+        raise ValueError("test seeds must exactly match the locked Stage-4.1 sequence")
     if validation_split.get("episodes") != 20 or validation_split.get("selection_allowed") is not True:
         raise ValueError("validation split must contain exactly 20 seeds and allow selection")
     if test_split.get("episodes") != 50 or test_split.get("selection_allowed") is not False:
         raise ValueError("test split must contain exactly 50 seeds and forbid selection")
-    for reservation in payload["future_formal_training_seed_reservations"]:
-        start, stop = int(reservation["start"]), int(reservation["stop_exclusive"])
-        if any(start <= seed < stop for seed in validation + test):
-            raise ValueError("training seed reservation overlaps validation/test")
+    expected_reservations = [
+        {"run_seed": run_seed, "start": train_env_seed_base_for(run_seed),
+         "stop_exclusive": train_env_seed_base_for(run_seed) + 2_000_000}
+        for run_seed in FORMAL_RUN_SEEDS
+    ]
+    if payload.get("future_formal_training_seed_reservations") != expected_reservations:
+        raise ValueError("future training seed reservations must exactly match the locked Stage-4.1 ranges")
     return payload, sha256_json_payload(payload)
 
 
