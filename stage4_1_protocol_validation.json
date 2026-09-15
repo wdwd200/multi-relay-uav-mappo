@@ -1,0 +1,264 @@
+{
+  "protocol_version": "stage4.1-v1",
+  "stage": "finalized",
+  "started_at_utc": "2026-09-15T09:46:35.923780+00:00",
+  "completed_at_utc": "2026-09-15T09:59:16.999114+00:00",
+  "seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
+  "checkpoint_manifest_sha256": "c7dcbb98493230c890758dbcb76295ce0b34f99a0d651e2b06aa0601f787a435",
+  "selected_checkpoints_sha256": "ff21a6534bbe646fa356a9d255695b8c2742faa290c9dad31f6dfaf37cd1df31",
+  "validation_rows": 60,
+  "validation_episode_rows": 1200,
+  "final_rows": 3,
+  "final_episode_rows": 150,
+  "provenance": {
+    "python": "3.14.0",
+    "numpy": "2.3.4",
+    "torch": "2.12.0+cpu",
+    "device": "cpu",
+    "git": {
+      "repository": false,
+      "commit": null,
+      "dirty": null,
+      "detail": "fatal: not a git repository (or any of the parent directories): .git"
+    }
+  },
+  "source_document_conflicts": {
+    "missing_required_documents": [
+      "20_Stage4_Role收口与Graph启动交接.md",
+      "00_论文当前总体方案与决策记录_阶段3收口版.md"
+    ],
+    "resolution": "current source code and extant artifacts take precedence"
+  },
+  "evaluation_execution": {
+    "invocation_log": "artifacts\\stage4-1-protocol-repair\\evaluation_invocations.jsonl",
+    "completed_bounded_invocations": 13,
+    "note": "P0 initial all-grid invocation reached the host 30-second limit after writing rows. Its two subsequently repeated P0 summaries/raw Episodes were mechanically deduplicated by checkpoint SHA-256 and seed; final integrity checks require exactly 60×20 unique validation rows."
+  },
+  "critic_grad_diagnostics": {
+    "P0": {
+      "train_csv": "artifacts\\stage3-stateindependent-full\\train.csv",
+      "updates": 1000,
+      "critic_grad_norm_min_mean_max": [
+        14.33582364320755,
+        50.13077547752261,
+        159.75885405540467
+      ],
+      "new_value_diagnostics_available": false
+    },
+    "P1": {
+      "train_csv": "artifacts\\stage4-role-info-full\\train.csv",
+      "updates": 1000,
+      "critic_grad_norm_min_mean_max": [
+        8.742286843061446,
+        31.312344004261494,
+        123.7742088317871
+      ],
+      "new_value_diagnostics_available": false
+    },
+    "P2": {
+      "train_csv": "artifacts\\stage4-role-head-full\\train.csv",
+      "updates": 1000,
+      "critic_grad_norm_min_mean_max": [
+        12.762234264612198,
+        34.609305619722605,
+        194.51047458648682
+      ],
+      "new_value_diagnostics_available": false
+    },
+    "diagnostic_smoke": {
+      "train_csv": "artifacts\\stage4-1-protocol-repair\\diagnostics-smoke\\train.csv",
+      "updates": 10,
+      "final": {
+        "value_target_mean": 24.978790283203125,
+        "value_target_std": 12.849007606506348,
+        "value_prediction_mean_pre": 14.383151054382324,
+        "value_prediction_std_pre": 6.567276954650879,
+        "explained_variance_pre": 0.46721198071575964,
+        "actor_grad_norm": 0.5211095601320267,
+        "actor_grad_norm_max": 0.8293231725692749,
+        "actor_grad_clip_fraction": 0.6,
+        "critic_grad_norm": 101.26954765319825,
+        "critic_grad_norm_max": 162.8737335205078,
+        "critic_grad_clip_fraction": 1.0,
+        "finite": 1.0
+      }
+    }
+  },
+  "critic_recommendation": "PRE-EXPERIMENT REQUIRED",
+  "gamma_horizon_analysis": {
+    "dt_seconds": 0.2,
+    "episode_horizon_steps": 500,
+    "episode_horizon_seconds": 100.0,
+    "gae_lambda": 0.95,
+    "table": [
+      {
+        "gamma": 0.99,
+        "step_half_life": 68.96756393652842,
+        "seconds_half_life": 13.793512787305685,
+        "terminal_weight_at_100_seconds": 0.006570483042414603,
+        "gae_trace_half_life_steps": 11.29941573128618,
+        "gae_trace_half_life_seconds": 2.259883146257236
+      },
+      {
+        "gamma": 0.995,
+        "step_half_life": 138.28257298606084,
+        "seconds_half_life": 27.65651459721217,
+        "terminal_weight_at_100_seconds": 0.08157186144027832,
+        "gae_trace_half_life_steps": 12.310396704904326,
+        "gae_trace_half_life_seconds": 2.462079340980865
+      },
+      {
+        "gamma": 0.997,
+        "step_half_life": 230.70231304914802,
+        "seconds_half_life": 46.1404626098296,
+        "terminal_weight_at_100_seconds": 0.22262767757661092,
+        "gae_trace_half_life_steps": 12.765657854581711,
+        "gae_trace_half_life_seconds": 2.5531315709163422
+      },
+      {
+        "gamma": 0.999,
+        "step_half_life": 692.8005491785002,
+        "seconds_half_life": 138.56010983570005,
+        "terminal_weight_at_100_seconds": 0.6063789448611847,
+        "gae_trace_half_life_steps": 13.254864831597608,
+        "gae_trace_half_life_seconds": 2.650972966319521
+      }
+    ],
+    "selected_validation_episode_timing": {
+      "plain": {
+        "episodes": 20,
+        "episode_length_min_mean_max": [
+          128,
+          213.6,
+          313
+        ],
+        "first_outage_step_min_mean_max": [
+          104,
+          189.6,
+          289
+        ],
+        "boundary_termination_steps": [],
+        "terminal_penalty_steps": [
+          128,
+          241,
+          243,
+          151,
+          210,
+          195,
+          289,
+          191,
+          213,
+          140,
+          229,
+          236,
+          199,
+          313,
+          265,
+          181,
+          183,
+          237,
+          254,
+          174
+        ]
+      },
+      "role_info": {
+        "episodes": 20,
+        "episode_length_min_mean_max": [
+          69,
+          113.85,
+          140
+        ],
+        "first_outage_step_min_mean_max": [
+          65,
+          93.0,
+          126
+        ],
+        "boundary_termination_steps": [
+          69,
+          128,
+          86,
+          90,
+          131,
+          129,
+          132,
+          128,
+          120,
+          118,
+          126
+        ],
+        "terminal_penalty_steps": [
+          89,
+          69,
+          128,
+          111,
+          86,
+          90,
+          131,
+          129,
+          102,
+          107,
+          132,
+          128,
+          133,
+          120,
+          140,
+          118,
+          111,
+          126,
+          106,
+          121
+        ]
+      },
+      "role_head": {
+        "episodes": 20,
+        "episode_length_min_mean_max": [
+          114,
+          146.75,
+          205
+        ],
+        "first_outage_step_min_mean_max": [
+          93,
+          123.22222222222223,
+          166
+        ],
+        "boundary_termination_steps": [
+          182,
+          132,
+          205,
+          116,
+          114
+        ],
+        "terminal_penalty_steps": [
+          132,
+          118,
+          152,
+          159,
+          163,
+          158,
+          170,
+          182,
+          132,
+          125,
+          205,
+          151,
+          158,
+          145,
+          169,
+          116,
+          117,
+          114,
+          127,
+          142
+        ]
+      }
+    },
+    "recommendation": "PRE-EXPERIMENT REQUIRED",
+    "rationale": "gamma=0.99 gives a 100-s terminal reward weight of 0.00657048 and a 13.79-s half-life; observed terminal/outage timing must be tested under a separately authorized symmetric protocol before changing gamma."
+  },
+  "resume_semantics": {
+    "resume_mode": "fresh_episode_at_update_boundary",
+    "exact_environment_resume": false,
+    "statement": "weights, optimizers, normalizer, RNG and unused environment seed progress resume at a PPO update boundary; environment internals/current observations/partial episodes are not restored."
+  },
+  "formal_training_executed": false
+}

@@ -1,0 +1,252 @@
+{
+  "stage": "Stage 4 P3/P4 topology/graph implementation validation",
+  "topology_contract": {
+    "node_dim": 6,
+    "edge_dim": 7,
+    "graph_hidden_dim": 32,
+    "shapes": {
+      "K3": {
+        "nodes": [
+          5,
+          6
+        ],
+        "edges": [
+          4,
+          7
+        ]
+      },
+      "K4": {
+        "nodes": [
+          6,
+          6
+        ],
+        "edges": [
+          5,
+          7
+        ]
+      },
+      "K5": {
+        "nodes": [
+          7,
+          6
+        ],
+        "edges": [
+          6,
+          7
+        ]
+      }
+    },
+    "k4_nodes_shape": [
+      6,
+      6
+    ],
+    "k4_edges_shape": [
+      5,
+      7
+    ],
+    "exact_h_node_normalization": true,
+    "all_features_finite": true,
+    "prohibited_fields_excluded": [
+      "waypoint",
+      "cruise_speed",
+      "step",
+      "sim_time",
+      "consecutive_outage_steps",
+      "Role",
+      "Agent ID",
+      "chain index"
+    ],
+    "pass": true
+  },
+  "parameter_report": {
+    "plain": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 26,
+      "actor_parameter_count": 20358
+    },
+    "role_info": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 29,
+      "actor_parameter_count": 20742
+    },
+    "role_head": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 26,
+      "actor_parameter_count": 21132
+    },
+    "topology_info": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 97,
+      "actor_parameter_count": 29446
+    },
+    "graph": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 58,
+      "actor_parameter_count": 29094
+    },
+    "comparison": {
+      "p3_p4_relative_difference": 0.011954085444542552,
+      "within_ten_percent": true
+    }
+  },
+  "smokes": {
+    "topology_info": {
+      "variant": "topology_info",
+      "directory": "artifacts\\stage4-topology-info-smoke",
+      "updates": 10,
+      "team_time_samples": 1024,
+      "total_samples": 10240,
+      "configuration_contract_pass": true,
+      "finite_logs": true,
+      "checkpoint_files_present": true,
+      "final_train": {
+        "actor_policy_loss": -0.0040544966701418165,
+        "critic_loss": 76.40289239883423,
+        "entropy": -0.23792129158973693,
+        "approx_kl": 0.0064541305706370625,
+        "clip_fraction": 0.038134765625,
+        "actor_grad_norm": 0.5528275221586227,
+        "critic_grad_norm": 100.60097236633301,
+        "raw_log_std_min": 0.25031280517578125,
+        "raw_log_std_mean": 0.2565051317214966,
+        "raw_log_std_max": 0.26360705494880676,
+        "clamped_log_std_min": -1.5095746517181396,
+        "clamped_log_std_mean": -1.4979819059371948,
+        "clamped_log_std_max": -1.4846675395965576,
+        "action_saturation_ratio": 0.0
+      },
+      "final_evaluation": {
+        "mean_return": 215.5162062971023,
+        "mean_e2e_rate_mbps": 6.8572221208304125,
+        "rate_satisfaction_ratio": 0.9327404479578393,
+        "outage_step_ratio": 0.04841897233201581,
+        "mean_acceleration_mps2": 0.27201267023959774,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 884.2308278539671,
+        "episodes": 5,
+        "total_steps": 1014,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 3,
+        "persistent_outage_count": 2,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -7.197894547919236,
+        "min_separation_m": 35.77706697985692,
+        "max_xy_speed_mps": 15.930983778019247,
+        "max_abs_z_speed_mps": 4.8311149291694155,
+        "max_xy_accel_mps2": 0.33796252801778665,
+        "max_abs_z_accel_mps2": 0.3422134518623343
+      },
+      "actor_final_reload_evaluation": {
+        "mean_return": 215.5162062971023,
+        "mean_e2e_rate_mbps": 6.8572221208304125,
+        "rate_satisfaction_ratio": 0.9327404479578393,
+        "outage_step_ratio": 0.04841897233201581,
+        "mean_acceleration_mps2": 0.27201267023959774,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 884.2308278539671,
+        "episodes": 5,
+        "total_steps": 1014,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 3,
+        "persistent_outage_count": 2,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -7.197894547919236,
+        "min_separation_m": 35.77706697985692,
+        "max_xy_speed_mps": 15.930983778019247,
+        "max_abs_z_speed_mps": 4.8311149291694155,
+        "max_xy_accel_mps2": 0.33796252801778665,
+        "max_abs_z_accel_mps2": 0.3422134518623343
+      },
+      "actor_final_reload_matches_logged_evaluation": true,
+      "pass": true
+    },
+    "graph": {
+      "variant": "graph",
+      "directory": "artifacts\\stage4-graph-smoke",
+      "updates": 10,
+      "team_time_samples": 1024,
+      "total_samples": 10240,
+      "configuration_contract_pass": true,
+      "finite_logs": true,
+      "checkpoint_files_present": true,
+      "final_train": {
+        "actor_policy_loss": -0.0032136889290995895,
+        "critic_loss": 109.66027526855468,
+        "entropy": -0.2565608128905296,
+        "approx_kl": 0.003320520558918361,
+        "clip_fraction": 0.02158203125,
+        "actor_grad_norm": 0.44119224064052104,
+        "critic_grad_norm": 124.54830474853516,
+        "raw_log_std_min": 0.25085535645484924,
+        "raw_log_std_mean": 0.25309285521507263,
+        "raw_log_std_max": 0.2573978304862976,
+        "clamped_log_std_min": -1.5085549354553223,
+        "clamped_log_std_mean": -1.5043481588363647,
+        "clamped_log_std_max": -1.4962799549102783,
+        "action_saturation_ratio": 0.0
+      },
+      "final_evaluation": {
+        "mean_return": 280.2277923453679,
+        "mean_e2e_rate_mbps": 7.460868882818383,
+        "rate_satisfaction_ratio": 1.0,
+        "outage_step_ratio": 0.0,
+        "mean_acceleration_mps2": 0.12565277780016731,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 515.6204778689198,
+        "episodes": 5,
+        "total_steps": 1154,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 5,
+        "persistent_outage_count": 0,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": 0.9985303416946865,
+        "min_separation_m": 45.792454536537164,
+        "max_xy_speed_mps": 8.39139174363167,
+        "max_abs_z_speed_mps": 5.800572773814199,
+        "max_xy_accel_mps2": 0.31399005308257305,
+        "max_abs_z_accel_mps2": 0.15396212041377977
+      },
+      "actor_final_reload_evaluation": {
+        "mean_return": 280.2277923453679,
+        "mean_e2e_rate_mbps": 7.460868882818383,
+        "rate_satisfaction_ratio": 1.0,
+        "outage_step_ratio": 0.0,
+        "mean_acceleration_mps2": 0.12565277780016731,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 515.6204778689198,
+        "episodes": 5,
+        "total_steps": 1154,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 5,
+        "persistent_outage_count": 0,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": 0.9985303416946865,
+        "min_separation_m": 45.792454536537164,
+        "max_xy_speed_mps": 8.39139174363167,
+        "max_abs_z_speed_mps": 5.800572773814199,
+        "max_xy_accel_mps2": 0.31399005308257305,
+        "max_abs_z_accel_mps2": 0.15396212041377977
+      },
+      "actor_final_reload_matches_logged_evaluation": true,
+      "pass": true
+    }
+  },
+  "automated_tests": {
+    "command": "C:\\Python314\\python.exe -m unittest discover -s selfcheck -p test_mappo*.py",
+    "return_code": 0,
+    "tests_run": 51,
+    "pass": true,
+    "output_tail": [
+      "...................................................",
+      "----------------------------------------------------------------------",
+      "Ran 51 tests in 4.053s",
+      "",
+      "OK"
+    ]
+  },
+  "overall_pass": true
+}

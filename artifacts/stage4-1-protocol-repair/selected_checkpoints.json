@@ -1,0 +1,91 @@
+{
+  "protocol_version": "stage4.1-v1",
+  "split_used_for_selection": "validation",
+  "validation_seeds": [
+    50000000,
+    50000001,
+    50000002,
+    50000003,
+    50000004,
+    50000005,
+    50000006,
+    50000007,
+    50000008,
+    50000009,
+    50000010,
+    50000011,
+    50000012,
+    50000013,
+    50000014,
+    50000015,
+    50000016,
+    50000017,
+    50000018,
+    50000019
+  ],
+  "selected": {
+    "P0": {
+      "variant": "plain",
+      "run_seed": 2026,
+      "selected_update": 1000,
+      "checkpoint_path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_1000.pt",
+      "checkpoint_sha256": "4f42c320fe424e261a049e9a068d7ed44dccb3e055f548b21573209011bf497f",
+      "checkpoint_size_bytes": 86138,
+      "validation_score": [
+        0.0,
+        -0.0,
+        0.0,
+        20.0,
+        0.12326727291145845,
+        -0.8163723501380936,
+        -6.298344236649277
+      ],
+      "selection_rule": "safety_priority_key; exact tie selects earlier update",
+      "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
+      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
+      "selected_at_utc": "2026-09-15T09:52:45.636069+00:00"
+    },
+    "P1": {
+      "variant": "role_info",
+      "run_seed": 2026,
+      "selected_update": 800,
+      "checkpoint_path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0800.pt",
+      "checkpoint_sha256": "fd689fdd214e9cd78aadbd600b5e49dee40c908adbb93bb96fc6cb2d969e51e4",
+      "checkpoint_size_bytes": 87674,
+      "validation_score": [
+        0.0,
+        -0.0,
+        11.0,
+        9.0,
+        0.10212658530594407,
+        -0.8784648995853495,
+        -6.630984683654401
+      ],
+      "selection_rule": "safety_priority_key; exact tie selects earlier update",
+      "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
+      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
+      "selected_at_utc": "2026-09-15T09:52:45.636162+00:00"
+    },
+    "P2": {
+      "variant": "role_head",
+      "run_seed": 2026,
+      "selected_update": 650,
+      "checkpoint_path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0650.pt",
+      "checkpoint_sha256": "31e08acb7501a6f15e3e6eaa4735e7f50cedf2729007ce69a3a821509a0d65b6",
+      "checkpoint_size_bytes": 90463,
+      "validation_score": [
+        0.0,
+        -0.0,
+        5.0,
+        15.0,
+        0.14521564917170432,
+        -0.8252635142121043,
+        -6.222161383668572
+      ],
+      "selection_rule": "safety_priority_key; exact tie selects earlier update",
+      "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
+      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
+      "selected_at_utc": "2026-09-15T09:52:45.636229+00:00"
+    }
+  }
+}

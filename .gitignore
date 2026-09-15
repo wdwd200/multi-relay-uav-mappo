@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# Model checkpoints
+*.pt
+*.pth
+artifacts/**/checkpoints/
+artifacts/**/eval_checkpoints/
+
+# Large generated trajectories
+artifacts/**/stage2_relay_height_trajectories.csv
+
+# Temporary files
+*.log
+*.tmp
+*.zip
+.DS_Store
+Thumbs.db

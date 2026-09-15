@@ -1,0 +1,34 @@
+{
+  "checkpoint": "artifacts\\stage4-1-protocol-repair\\diagnostics-smoke\\checkpoints\\actor_final.pt",
+  "score": [
+    0.0,
+    -0.0,
+    5.0,
+    0.0,
+    0.011428571428571429,
+    -0.9885714285714287,
+    -7.189555626052792
+  ],
+  "summary": {
+    "mean_return": 204.26941995914467,
+    "mean_e2e_rate_mbps": 7.189555626052792,
+    "rate_satisfaction_ratio": 0.9885714285714287,
+    "outage_step_ratio": 0.011428571428571429,
+    "mean_acceleration_mps2": 0.2290660265374876,
+    "action_saturation_ratio": 0.0,
+    "movement_distance_m": 502.5527914455464,
+    "episodes": 5,
+    "total_steps": 876,
+    "normal_completion_count": 0,
+    "collision_count": 0,
+    "boundary_count": 5,
+    "persistent_outage_count": 0,
+    "speed_accel_violations": 0,
+    "min_link_margin_db": -0.32975505872680966,
+    "min_separation_m": 78.75611989969578,
+    "max_xy_speed_mps": 10.865093543318974,
+    "max_abs_z_speed_mps": 6.0,
+    "max_xy_accel_mps2": 0.41231309788924886,
+    "max_abs_z_accel_mps2": 0.5022965073585528
+  }
+}

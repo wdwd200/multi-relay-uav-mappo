@@ -1,0 +1,3766 @@
+{
+  "best": {
+    "purpose": "Read-only deterministic replay for Stage 3 first-run diagnosis",
+    "checkpoint": "artifacts/stage3-stateindependent-full/checkpoints/best.pt",
+    "checkpoint_update": 650,
+    "checkpoint_total_env_steps": 665600,
+    "checkpoint_best_score": [
+      0.0,
+      -0.0,
+      0.0,
+      5.0,
+      0.12682430034190584,
+      -0.8554541806707524,
+      -6.312957149287169
+    ],
+    "seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019
+    ],
+    "summary": {
+      "mean_return": 167.10437842083033,
+      "mean_e2e_rate_mbps": 6.103710197871623,
+      "rate_satisfaction_ratio": 0.7755665264627875,
+      "outage_step_ratio": 0.12916135752581973,
+      "mean_acceleration_mps2": 0.5674525025145424,
+      "action_saturation_ratio": 0.0,
+      "movement_distance_m": 1489.9727816672746,
+      "episodes": 20,
+      "total_steps": 3842,
+      "normal_completion_count": 0,
+      "collision_count": 0,
+      "boundary_count": 1,
+      "persistent_outage_count": 19,
+      "speed_accel_violations": 0,
+      "min_link_margin_db": -2.127137000855446,
+      "min_separation_m": 29.80121548231724,
+      "max_xy_speed_mps": 20.000000000000004,
+      "max_abs_z_speed_mps": 3.5061376672238125,
+      "max_xy_accel_mps2": 1.4582432649941544,
+      "max_abs_z_accel_mps2": 0.8781951665878296
+    },
+    "outage_timing": {
+      "outage_step_time_bins": {
+        "middle_167_333": 270,
+        "early_1_166": 205
+      },
+      "outage_event_count": 19,
+      "persistent_terminal_event_count": 19,
+      "outage_event_length": {
+        "count": 19,
+        "mean": 25.0,
+        "min": 25.0,
+        "max": 25.0
+      },
+      "persistent_event_start_step": {
+        "count": 19,
+        "mean": 166.31578947368422,
+        "min": 104.0,
+        "max": 248.0
+      },
+      "persistent_event_terminal_step": {
+        "count": 19,
+        "mean": 190.31578947368422,
+        "min": 128.0,
+        "max": 272.0
+      }
+    },
+    "outage_bottlenecks": {
+      "outage_link_step_counts": {
+        "R2->R3": 38,
+        "R1->R2": 150,
+        "H->R1": 144,
+        "R4->L": 173,
+        "R3->R4": 36
+      },
+      "outage_onset_link_event_counts": {
+        "R2->R3": 1,
+        "R1->R2": 6,
+        "H->R1": 5,
+        "R4->L": 6,
+        "R3->R4": 1
+      },
+      "simultaneously_outaged_link_count_steps": {
+        "1": 409,
+        "2": 66
+      },
+      "onset_link_physics": {
+        "R2->R3": {
+          "snr_linear": {
+            "count": 1,
+            "mean": 3.160371179755932,
+            "min": 3.160371179755932,
+            "max": 3.160371179755932
+          },
+          "horizontal_distance_m": {
+            "count": 1,
+            "mean": 500.8365318543584,
+            "min": 500.8365318543584,
+            "max": 500.8365318543584
+          },
+          "height_difference_abs_m": {
+            "count": 1,
+            "mean": 15.853834472793295,
+            "min": 15.853834472793295,
+            "max": 15.853834472793295
+          },
+          "snr_margin_db": {
+            "count": 1,
+            "mean": -0.0026190730152455544,
+            "min": -0.0026190730152455544,
+            "max": -0.0026190730152455544
+          },
+          "capacity_mbps": {
+            "count": 1,
+            "mean": 20.567122483914595,
+            "min": 20.567122483914595,
+            "max": 20.567122483914595
+          }
+        },
+        "R1->R2": {
+          "snr_linear": {
+            "count": 6,
+            "mean": 3.1485048084273877,
+            "min": 3.1375340956493685,
+            "max": 3.155102013995109
+          },
+          "horizontal_distance_m": {
+            "count": 6,
+            "mean": 497.0529602441052,
+            "min": 493.7466660086921,
+            "max": 501.8185378860586
+          },
+          "height_difference_abs_m": {
+            "count": 6,
+            "mean": 47.61194669978786,
+            "min": 13.920478617053732,
+            "max": 64.38450612465132
+          },
+          "snr_margin_db": {
+            "count": 6,
+            "mean": -0.018964162796076895,
+            "min": -0.034115459979427776,
+            "max": -0.009865941381029586
+          },
+          "capacity_mbps": {
+            "count": 6,
+            "mean": 20.525899715968713,
+            "min": 20.487712006018086,
+            "max": 20.548838977605165
+          }
+        },
+        "H->R1": {
+          "snr_linear": {
+            "count": 5,
+            "mean": 3.137126473091004,
+            "min": 3.1097240645171773,
+            "max": 3.1595960820476763
+          },
+          "horizontal_distance_m": {
+            "count": 5,
+            "mean": 500.91709036215315,
+            "min": 498.2911757814712,
+            "max": 504.0849308379967
+          },
+          "height_difference_abs_m": {
+            "count": 5,
+            "mean": 29.3893458745565,
+            "min": 0.3199604853657263,
+            "max": 50.43774899488588
+          },
+          "snr_margin_db": {
+            "count": 5,
+            "mean": -0.03475456764185072,
+            "min": -0.07278145562924632,
+            "max": -0.0036843337844070234
+          },
+          "capacity_mbps": {
+            "count": 5,
+            "mean": 20.486147680712357,
+            "min": 20.3904153159146,
+            "max": 20.56443442135869
+          }
+        },
+        "R4->L": {
+          "snr_linear": {
+            "count": 6,
+            "mean": 3.144778801420929,
+            "min": 3.1179116040937926,
+            "max": 3.161008155382261
+          },
+          "horizontal_distance_m": {
+            "count": 6,
+            "mean": 491.3694148636775,
+            "min": 464.8760037932351,
+            "max": 501.4639687036221
+          },
+          "height_difference_abs_m": {
+            "count": 6,
+            "mean": 62.3938383981483,
+            "min": 5.482475179491843,
+            "max": 130.10380745932045
+          },
+          "snr_margin_db": {
+            "count": 6,
+            "mean": -0.024143743927907153,
+            "min": -0.061362016547072074,
+            "max": -0.0017438368179174546
+          },
+          "capacity_mbps": {
+            "count": 6,
+            "mean": 20.51286551873761,
+            "min": 20.419128611250276,
+            "max": 20.569331160005557
+          }
+        },
+        "R3->R4": {
+          "snr_linear": {
+            "count": 1,
+            "mean": 3.133498276398086,
+            "min": 3.133498276398086,
+            "max": 3.133498276398086
+          },
+          "horizontal_distance_m": {
+            "count": 1,
+            "mean": 499.27734747358795,
+            "min": 499.27734747358795,
+            "max": 499.27734747358795
+          },
+          "height_difference_abs_m": {
+            "count": 1,
+            "mean": 45.82632992241986,
+            "min": 45.82632992241986,
+            "max": 45.82632992241986
+          },
+          "snr_margin_db": {
+            "count": 1,
+            "mean": -0.03970539850560684,
+            "min": -0.03970539850560684,
+            "max": -0.03970539850560684
+          },
+          "capacity_mbps": {
+            "count": 1,
+            "mean": 20.47363285212306,
+            "min": 20.47363285212306,
+            "max": 20.47363285212306
+          }
+        }
+      }
+    },
+    "controls": {
+      "all_action_abs": {
+        "count": 46104,
+        "mean": 0.15238692528894188,
+        "min": 1.9073486328125e-06,
+        "max": 0.7034628987312317
+      },
+      "outage_action_abs": {
+        "count": 5700,
+        "mean": 0.17268376420054937,
+        "min": 1.9073486328125e-06,
+        "max": 0.7034628987312317
+      },
+      "nonoutage_action_abs": {
+        "count": 40404,
+        "mean": 0.14952354587610744,
+        "min": 1.0609626770019531e-05,
+        "max": 0.7031483054161072
+      },
+      "outage_onset_action_abs": {
+        "count": 228,
+        "mean": 0.17049863982295696,
+        "min": 8.446350693702698e-05,
+        "max": 0.7032148838043213
+      },
+      "all_action_saturation_ratio": 0.0,
+      "outage_action_saturation_ratio": 0.0,
+      "nonoutage_action_saturation_ratio": 0.0,
+      "outage_onset_action_saturation_ratio": 0.0
+    },
+    "actor_log_std_on_deterministic_eval_states": {
+      "mode": "state_independent_tanh",
+      "raw": {
+        "count": 46104,
+        "mean": 0.01637045821795861,
+        "min": -0.011031624861061573,
+        "max": 0.0349501371383667
+      },
+      "clamped": {
+        "count": 46104,
+        "mean": -1.9672718048095703,
+        "min": -2.022062301635742,
+        "max": -1.9301282167434692
+      },
+      "effective": {
+        "count": 46104,
+        "mean": -1.9672718048095703,
+        "min": -2.022062301635742,
+        "max": -1.9301282167434692
+      },
+      "raw_gt_log_std_max_ratio": 0.0,
+      "raw_lt_log_std_min_ratio": 0.0,
+      "log_std_min": -4.0,
+      "log_std_max": 0.0
+    },
+    "physical_state": {
+      "xy_speed_mps": {
+        "count": 15368,
+        "mean": 9.6376455454848,
+        "min": 0.0034199271831126007,
+        "max": 20.000000000000004
+      },
+      "outage_xy_speed_mps": {
+        "count": 1900,
+        "mean": 15.941742633627898,
+        "min": 5.123369777121889,
+        "max": 20.000000000000004
+      },
+      "xy_speed_cap_mps": 20.0,
+      "xy_speed_at_or_above_95pct_cap_ratio": 0.17861790733992713,
+      "z_speed_abs_mps": {
+        "count": 15368,
+        "mean": 1.0553834157754254,
+        "min": 7.999411318443481e-05,
+        "max": 3.5061376672238125
+      },
+      "outage_z_speed_abs_mps": {
+        "count": 1900,
+        "mean": 1.3775957469511104,
+        "min": 0.0006718739052308572,
+        "max": 3.5061376672238125
+      },
+      "z_speed_cap_mps": 6.0,
+      "acceleration_norm_mps2": {
+        "count": 15368,
+        "mean": 0.5584728863781536,
+        "min": 0.016433120768604044,
+        "max": 1.4583578605104575
+      },
+      "outage_acceleration_norm_mps2": {
+        "count": 1900,
+        "mean": 0.4762844683701277,
+        "min": 0.016433120768604044,
+        "max": 1.2602604276827418
+      },
+      "relay_altitude_m": {
+        "count": 15368,
+        "mean": 199.5381468924433,
+        "min": 104.98169536297873,
+        "max": 271.5755705564116
+      },
+      "outage_relay_altitude_m": {
+        "count": 1900,
+        "mean": 192.82662486109388,
+        "min": 104.98169536297873,
+        "max": 270.5953929901866
+      }
+    },
+    "rates_mbps": {
+      "outage": {
+        "count": 475,
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "nonoutage": {
+        "count": 3367,
+        "mean": 6.985603032521426,
+        "min": 4.726612725181433,
+        "max": 8.692831045346246
+      }
+    },
+    "episodes": [
+      {
+        "return": 211.94139437161402,
+        "length": 237,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.125098591686428,
+        "rate_satisfaction_ratio": 0.8059071729957806,
+        "outage_step_ratio": 0.10548523206751055,
+        "min_link_margin_db": -0.9072380425153703,
+        "min_separation_m": 206.17204846015318,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.5560312792658797,
+        "max_xy_accel_mps2": 0.9624931377486804,
+        "max_abs_z_accel_mps2": 0.5327346920967102,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.45627579658562045,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1830.0942082419695,
+        "seed": 10000,
+        "outage_events": [
+          {
+            "seed": 10000,
+            "start_step": 213,
+            "end_step": 237,
+            "length": 25,
+            "links_at_onset": [
+              "R2->R3"
+            ],
+            "link_step_counts": {
+              "R2->R3": 25
+            },
+            "trigger_action_abs_mean": 0.13525447249412537,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R2->R3": {
+                "horizontal_distance_m": 500.8365318543584,
+                "height_difference_abs_m": 15.853834472793295,
+                "snr_linear": 3.160371179755932,
+                "snr_margin_db": -0.0026190730152455544,
+                "capacity_mbps": 20.567122483914595
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.3179456293582916,
+                  0.2355915755033493,
+                  -0.022443659603595734
+                ],
+                "velocity_mps": [
+                  -19.20783203998881,
+                  5.5730770965041625,
+                  -2.079467566695529
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 2.079467566695529
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.013116437941789627,
+                  -0.2119615375995636,
+                  0.016218096017837524
+                ],
+                "velocity_mps": [
+                  1.2389905808959139,
+                  -12.185744121670716,
+                  0.8114123179693705
+                ],
+                "xy_speed_mps": 12.24856960866783,
+                "abs_z_speed_mps": 0.8114123179693705
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 149.05164085926978,
+        "length": 174,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.174194512388612,
+        "rate_satisfaction_ratio": 0.8563218390804598,
+        "outage_step_ratio": 0.14367816091954022,
+        "min_link_margin_db": -1.5852888691892533,
+        "min_separation_m": 91.0954012926488,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.125006373878569,
+        "max_xy_accel_mps2": 0.943658776887,
+        "max_abs_z_accel_mps2": 0.8084223866462709,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.576791996020233,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1496.5532208221712,
+        "seed": 10001,
+        "outage_events": [
+          {
+            "seed": 10001,
+            "start_step": 150,
+            "end_step": 174,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25,
+              "R2->R3": 13
+            },
+            "trigger_action_abs_mean": 0.09927672147750854,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 494.35489359123613,
+                "height_difference_abs_m": 60.85219547685443,
+                "snr_linear": 3.1539879548595353,
+                "snr_margin_db": -0.011399695829011236,
+                "capacity_mbps": 20.544970328677774
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.2807469367980957,
+                  0.04770159348845482,
+                  -0.06017312407493591
+                ],
+                "velocity_mps": [
+                  -13.570089727640136,
+                  -4.4764650496654195,
+                  -0.22217830549925546
+                ],
+                "xy_speed_mps": 14.289369284789318,
+                "abs_z_speed_mps": 0.22217830549925546
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.05520224943757057,
+                  -0.1779409945011139,
+                  -0.003417724510654807
+                ],
+                "velocity_mps": [
+                  13.007435692846805,
+                  -10.46814108490944,
+                  0.9159924269421035
+                ],
+                "xy_speed_mps": 16.69656734413137,
+                "abs_z_speed_mps": 0.9159924269421035
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 151.69175340953169,
+        "length": 178,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.124441126163994,
+        "rate_satisfaction_ratio": 0.8595505617977528,
+        "outage_step_ratio": 0.1404494382022472,
+        "min_link_margin_db": -1.0146150947330939,
+        "min_separation_m": 156.38078524600212,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.1118962549488063,
+        "max_xy_accel_mps2": 1.2823556898021773,
+        "max_abs_z_accel_mps2": 0.7580768465995789,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.7200324339038867,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1682.9376263144281,
+        "seed": 10002,
+        "outage_events": [
+          {
+            "seed": 10002,
+            "start_step": 154,
+            "end_step": 178,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25
+            },
+            "trigger_action_abs_mean": 0.23302006721496582,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 493.7466660086921,
+                "height_difference_abs_m": 64.38450612465132,
+                "snr_linear": 3.150258671580578,
+                "snr_margin_db": -0.016537842968212146,
+                "capacity_mbps": 20.532012575623632
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.3228703737258911,
+                  -0.3694829046726227,
+                  -0.01809781603515148
+                ],
+                "velocity_mps": [
+                  -6.720011808979653,
+                  -18.837235500125114,
+                  -1.3548249122919516
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 1.3548249122919516
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.26166585087776184,
+                  -0.36289796233177185,
+                  -0.03242156282067299
+                ],
+                "velocity_mps": [
+                  -5.838421020541994,
+                  -19.12884837063887,
+                  1.7808140199282205
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.7808140199282205
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 270.18797377843225,
+        "length": 250,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 7.204511370682378,
+        "rate_satisfaction_ratio": 0.9,
+        "outage_step_ratio": 0.1,
+        "min_link_margin_db": -1.0263389775097287,
+        "min_separation_m": 103.90372160481077,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.17273888979107,
+        "max_xy_accel_mps2": 1.3898263147654961,
+        "max_abs_z_accel_mps2": 0.5857396721839905,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5798111268012436,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2613.584050106925,
+        "seed": 10003,
+        "outage_events": [
+          {
+            "seed": 10003,
+            "start_step": 226,
+            "end_step": 250,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.18939906358718872,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 498.2911757814712,
+                "height_difference_abs_m": 50.43774899488588,
+                "snr_linear": 3.134581152175534,
+                "snr_margin_db": -0.03820482090517974,
+                "capacity_mbps": 20.47741186643092
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.4054662883281708,
+                  -0.2259969264268875,
+                  0.03508196771144867
+                ],
+                "velocity_mps": [
+                  -13.867560847533607,
+                  -14.411480012127589,
+                  -0.2885863255476586
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.2885863255476586
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.2385380119085312,
+                  -0.08723478019237518,
+                  -0.020227788016200066
+                ],
+                "velocity_mps": [
+                  -15.16305646372395,
+                  -13.041538202141624,
+                  -1.4077065607649273
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.4077065607649273
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 141.17024086233275,
+        "length": 173,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.936540145514432,
+        "rate_satisfaction_ratio": 0.8554913294797688,
+        "outage_step_ratio": 0.14450867052023122,
+        "min_link_margin_db": -1.9220828298089305,
+        "min_separation_m": 99.8517639628383,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.4768163837492474,
+        "max_xy_accel_mps2": 1.0520102866435501,
+        "max_abs_z_accel_mps2": 0.34831827878952004,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5057342927133452,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 970.1561595969524,
+        "seed": 10004,
+        "outage_events": [
+          {
+            "seed": 10004,
+            "start_step": 149,
+            "end_step": 173,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.17989547550678253,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 504.0849308379967,
+                "height_difference_abs_m": 25.790625226665554,
+                "snr_linear": 3.1097240645171773,
+                "snr_margin_db": -0.07278145562924632,
+                "capacity_mbps": 20.3904153159146
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.5018221139907837,
+                  0.11394816637039185,
+                  -0.0555005818605423
+                ],
+                "velocity_mps": [
+                  -19.61059832138369,
+                  -3.9273952535163934,
+                  -1.9220019381493327
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 1.9220019381493327
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.05681668221950531,
+                  -0.2608191668987274,
+                  0.03382807970046997
+                ],
+                "velocity_mps": [
+                  -1.3309925397974438,
+                  -6.7858396734111,
+                  1.2662200399674475
+                ],
+                "xy_speed_mps": 6.915139999612193,
+                "abs_z_speed_mps": 1.2662200399674475
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 180.48217698144637,
+        "length": 182,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.938972867520206,
+        "rate_satisfaction_ratio": 0.8626373626373627,
+        "outage_step_ratio": 0.13736263736263737,
+        "min_link_margin_db": -1.5222407248949654,
+        "min_separation_m": 130.26150865033088,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.147428651899098,
+        "max_xy_accel_mps2": 1.3773051294036422,
+        "max_abs_z_accel_mps2": 0.4230740964412689,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.629046600468287,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1579.4795136307366,
+        "seed": 10005,
+        "outage_events": [
+          {
+            "seed": 10005,
+            "start_step": 158,
+            "end_step": 182,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.1920696347951889,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 493.93409578665694,
+                "height_difference_abs_m": 64.23746038029645,
+                "snr_linear": 3.148428160941525,
+                "snr_margin_db": -0.019062117354683217,
+                "capacity_mbps": 20.525648029720447
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.14055615663528442,
+                  -0.27124032378196716,
+                  0.014722010120749474
+                ],
+                "velocity_mps": [
+                  -3.4854897165671024,
+                  -9.744631814956664,
+                  -0.6043368731741794
+                ],
+                "xy_speed_mps": 10.349226433572735,
+                "abs_z_speed_mps": 0.6043368731741794
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.2597784996032715,
+                  0.11801500618457794,
+                  -0.08916431665420532
+                ],
+                "velocity_mps": [
+                  -16.322289636325486,
+                  -11.557805199426989,
+                  -1.6487924753339036
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 1.6487924753339036
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 133.8821354673912,
+        "length": 190,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.1752253305492,
+        "rate_satisfaction_ratio": 0.41578947368421054,
+        "outage_step_ratio": 0.13157894736842105,
+        "min_link_margin_db": -0.7939480383317541,
+        "min_separation_m": 94.77105061697505,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.2124525028280915,
+        "max_xy_accel_mps2": 1.0168905815302234,
+        "max_abs_z_accel_mps2": 0.44012966752052307,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.38866276820370166,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1010.0019106067742,
+        "seed": 10006,
+        "outage_events": [
+          {
+            "seed": 10006,
+            "start_step": 166,
+            "end_step": 190,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25
+            },
+            "trigger_action_abs_mean": 0.12863214313983917,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 501.8185378860586,
+                "height_difference_abs_m": 13.920478617053732,
+                "snr_linear": 3.149477185148299,
+                "snr_margin_db": -0.017615333373145248,
+                "capacity_mbps": 20.52929575035795
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.5008719563484192,
+                  -0.31605902314186096,
+                  0.008386553265154362
+                ],
+                "velocity_mps": [
+                  -16.986404197733073,
+                  -10.557559965789263,
+                  0.7633816584013401
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.7633816584013401
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.052495792508125305,
+                  -0.06177239865064621,
+                  -0.03593335673213005
+                ],
+                "velocity_mps": [
+                  7.635065141320234,
+                  -2.8004951803013687,
+                  -0.2222727219806983
+                ],
+                "xy_speed_mps": 8.132465368330477,
+                "abs_z_speed_mps": 0.2222727219806983
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 123.56186063921794,
+        "length": 153,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.022033750557564,
+        "rate_satisfaction_ratio": 0.8300653594771242,
+        "outage_step_ratio": 0.16339869281045752,
+        "min_link_margin_db": -1.72769981291344,
+        "min_separation_m": 68.34471796571793,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.9284704588237216,
+        "max_xy_accel_mps2": 1.2684559001725293,
+        "max_abs_z_accel_mps2": 0.5328782796859741,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.6977412124477784,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1134.5501845310075,
+        "seed": 10007,
+        "outage_events": [
+          {
+            "seed": 10007,
+            "start_step": 129,
+            "end_step": 153,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25,
+              "H->R1": 16
+            },
+            "trigger_action_abs_mean": 0.2031448930501938,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 490.67434489148377,
+                "height_difference_abs_m": 83.07750207390313,
+                "snr_linear": 3.1179116040937926,
+                "snr_margin_db": -0.061362016547072074,
+                "capacity_mbps": 20.419128611250276
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.6351107358932495,
+                  -0.07982775568962097,
+                  -0.08719491958618164
+                ],
+                "velocity_mps": [
+                  -14.623336769495994,
+                  -13.643973824583016,
+                  -2.2167569931130857
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 2.2167569931130857
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.1342647522687912,
+                  -0.36612847447395325,
+                  0.04934263601899147
+                ],
+                "velocity_mps": [
+                  3.2463534959591946,
+                  -13.177150082588195,
+                  2.4998297609272417
+                ],
+                "xy_speed_mps": 13.571149373571147,
+                "abs_z_speed_mps": 2.4998297609272417
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 161.67221193295512,
+        "length": 176,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.534279952259836,
+        "rate_satisfaction_ratio": 0.8295454545454546,
+        "outage_step_ratio": 0.14204545454545456,
+        "min_link_margin_db": -1.50981769651694,
+        "min_separation_m": 71.40829823329423,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.493051738571377,
+        "max_xy_accel_mps2": 1.246301118300519,
+        "max_abs_z_accel_mps2": 0.6408911347389221,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.6175607763098782,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1438.0519718503263,
+        "seed": 10008,
+        "outage_events": [
+          {
+            "seed": 10008,
+            "start_step": 152,
+            "end_step": 176,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25,
+              "R4->L": 4
+            },
+            "trigger_action_abs_mean": 0.19956755638122559,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 496.01836776848614,
+                "height_difference_abs_m": 59.51628338503133,
+                "snr_linear": 3.1375340956493685,
+                "snr_margin_db": -0.034115459979427776,
+                "capacity_mbps": 20.487712006018086
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.3133072853088379,
+                  -0.5428578853607178,
+                  -0.050057847052812576
+                ],
+                "velocity_mps": [
+                  -7.722824029156615,
+                  -18.448793700800096,
+                  1.389226891170256
+                ],
+                "xy_speed_mps": 20.000000000000004,
+                "abs_z_speed_mps": 1.389226891170256
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.054144568741321564,
+                  -0.14806343615055084,
+                  -0.01769099570810795
+                ],
+                "velocity_mps": [
+                  -1.5214618063997487,
+                  -10.991670462489134,
+                  1.242159361403901
+                ],
+                "xy_speed_mps": 11.09647086168793,
+                "abs_z_speed_mps": 1.242159361403901
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 198.24832221108483,
+        "length": 239,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.7300834027887415,
+        "rate_satisfaction_ratio": 0.7740585774058577,
+        "outage_step_ratio": 0.10460251046025104,
+        "min_link_margin_db": -0.29211593270474534,
+        "min_separation_m": 187.7313144525284,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.4583091629901883,
+        "max_xy_accel_mps2": 1.1902963846382115,
+        "max_abs_z_accel_mps2": 0.47267794609069824,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.45712106788106766,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1466.2791576250247,
+        "seed": 10009,
+        "outage_events": [
+          {
+            "seed": 10009,
+            "start_step": 215,
+            "end_step": 239,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25,
+              "R3->R4": 1
+            },
+            "trigger_action_abs_mean": 0.19099245965480804,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 464.8760037932351,
+                "height_difference_abs_m": 130.10380745932045,
+                "snr_linear": 3.161008155382261,
+                "snr_margin_db": -0.0017438368179174546,
+                "capacity_mbps": 20.569331160005557
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.19537203013896942,
+                  0.05971551313996315,
+                  -0.07393573969602585
+                ],
+                "velocity_mps": [
+                  1.8901755295693845,
+                  -9.952695409115405,
+                  -0.9837424111552546
+                ],
+                "xy_speed_mps": 10.130592748660355,
+                "abs_z_speed_mps": 0.9837424111552546
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.3231435716152191,
+                  0.20931226015090942,
+                  0.03463706746697426
+                ],
+                "velocity_mps": [
+                  6.661233680171427,
+                  1.520118029438892,
+                  -2.34480789657682
+                ],
+                "xy_speed_mps": 6.83248073288724,
+                "abs_z_speed_mps": 2.34480789657682
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 115.87891405554069,
+        "length": 143,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.120793596735975,
+        "rate_satisfaction_ratio": 0.8251748251748252,
+        "outage_step_ratio": 0.17482517482517482,
+        "min_link_margin_db": -0.9887553847377566,
+        "min_separation_m": 146.7474419841995,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.9515602107159795,
+        "max_xy_accel_mps2": 1.090957371764264,
+        "max_abs_z_accel_mps2": 0.6315793991088867,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.6336029307508318,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 908.0927944128556,
+        "seed": 10010,
+        "outage_events": [
+          {
+            "seed": 10010,
+            "start_step": 119,
+            "end_step": 143,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.19376946985721588,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 498.6078393979994,
+                "height_difference_abs_m": 37.311233630962874,
+                "snr_linear": 3.1595960820476763,
+                "snr_margin_db": -0.0036843337844070234,
+                "capacity_mbps": 20.56443442135869
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.28525570034980774,
+                  -0.07571811974048615,
+                  -0.20252038538455963
+                ],
+                "velocity_mps": [
+                  -5.034551818668844,
+                  -11.976756739616397,
+                  0.43063193655107185
+                ],
+                "xy_speed_mps": 12.991898014332184,
+                "abs_z_speed_mps": 0.43063193655107185
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.46889612078666687,
+                  -0.16986456513404846,
+                  -0.027723440900444984
+                ],
+                "velocity_mps": [
+                  -12.836442424729471,
+                  -13.588718861341485,
+                  -0.9101721016690137
+                ],
+                "xy_speed_mps": 18.692980886310576,
+                "abs_z_speed_mps": 0.9101721016690137
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 229.61989533210755,
+        "length": 272,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.726909455855309,
+        "rate_satisfaction_ratio": 0.6323529411764706,
+        "outage_step_ratio": 0.09191176470588236,
+        "min_link_margin_db": -1.0302706069059093,
+        "min_separation_m": 243.0269771749803,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.0690542152849964,
+        "max_xy_accel_mps2": 1.1972367282575866,
+        "max_abs_z_accel_mps2": 0.7366076111793518,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.4529832491086194,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2233.930934528648,
+        "seed": 10011,
+        "outage_events": [
+          {
+            "seed": 10011,
+            "start_step": 248,
+            "end_step": 272,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25,
+              "H->R1": 3
+            },
+            "trigger_action_abs_mean": 0.1840142160654068,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 499.12319704099855,
+                "height_difference_abs_m": 44.686713254989655,
+                "snr_linear": 3.137978044299771,
+                "snr_margin_db": -0.033500993956129044,
+                "capacity_mbps": 20.48925990421733
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.590528130531311,
+                  -0.0938703790307045,
+                  -0.009564354084432125
+                ],
+                "velocity_mps": [
+                  17.022397548938162,
+                  5.092229429073629,
+                  1.0795386673882605
+                ],
+                "xy_speed_mps": 17.767746589604982,
+                "abs_z_speed_mps": 1.0795386673882605
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.4282943308353424,
+                  -0.11205574125051498,
+                  0.032668229192495346
+                ],
+                "velocity_mps": [
+                  -19.11506245623137,
+                  -5.883399297546774,
+                  -1.807264026638587
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.807264026638587
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 147.46756098897833,
+        "length": 176,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.050030488260628,
+        "rate_satisfaction_ratio": 0.8579545454545454,
+        "outage_step_ratio": 0.14204545454545456,
+        "min_link_margin_db": -0.9170676950208545,
+        "min_separation_m": 94.75345922857667,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.506276721251197,
+        "max_xy_accel_mps2": 1.32479499885723,
+        "max_abs_z_accel_mps2": 0.23747119307518008,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.581922703669172,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1606.0618604194372,
+        "seed": 10012,
+        "outage_events": [
+          {
+            "seed": 10012,
+            "start_step": 152,
+            "end_step": 176,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.15218321979045868,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 499.5661938452517,
+                "height_difference_abs_m": 33.087161034902465,
+                "snr_linear": 3.1550921948449364,
+                "snr_margin_db": -0.009879457297008898,
+                "capacity_mbps": 20.548804884444635
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.06959504634141922,
+                  0.03904666751623154,
+                  -0.007114923559129238
+                ],
+                "velocity_mps": [
+                  -11.059886553883556,
+                  -3.687372141284863,
+                  -1.7806243018945682
+                ],
+                "xy_speed_mps": 11.658379128039112,
+                "abs_z_speed_mps": 1.7806243018945682
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.29886144399642944,
+                  -0.0016747474437579513,
+                  0.02620379813015461
+                ],
+                "velocity_mps": [
+                  -19.939250908742324,
+                  -1.5576498959068075,
+                  -0.09470737866358886
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.09470737866358886
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 136.88215132302804,
+        "length": 182,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.501609384275651,
+        "rate_satisfaction_ratio": 0.5934065934065934,
+        "outage_step_ratio": 0.13736263736263737,
+        "min_link_margin_db": -2.127137000855446,
+        "min_separation_m": 169.44876783780575,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.1717839746735987,
+        "max_xy_accel_mps2": 1.287630278711373,
+        "max_abs_z_accel_mps2": 0.7115757465362549,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.600039766969187,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1134.7297184529875,
+        "seed": 10013,
+        "outage_events": [
+          {
+            "seed": 10013,
+            "start_step": 158,
+            "end_step": 182,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.19467951357364655,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 504.03531194804674,
+                "height_difference_abs_m": 0.3199604853657263,
+                "snr_linear": 3.126638871869697,
+                "snr_margin_db": -0.049222770593411624,
+                "capacity_mbps": 20.44967191541293
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.6672899127006531,
+                  0.08734814822673798,
+                  -0.10889150947332382
+                ],
+                "velocity_mps": [
+                  -17.11662123723911,
+                  -10.3451088646227,
+                  -2.2419840871356422
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 2.2419840871356422
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.35729265213012695,
+                  0.20396575331687927,
+                  0.015606547705829144
+                ],
+                "velocity_mps": [
+                  3.6824361019302154,
+                  6.972661040397359,
+                  -0.2741204918595031
+                ],
+                "xy_speed_mps": 7.885324193023022,
+                "abs_z_speed_mps": 0.2741204918595031
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 146.7139394423585,
+        "length": 167,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.349003812300302,
+        "rate_satisfaction_ratio": 0.8502994011976048,
+        "outage_step_ratio": 0.1497005988023952,
+        "min_link_margin_db": -1.1771595542026962,
+        "min_separation_m": 212.98297766778117,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.363336967770011,
+        "max_xy_accel_mps2": 1.0613720951081456,
+        "max_abs_z_accel_mps2": 0.35165709257125854,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.45782608393219887,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 950.350153312141,
+        "seed": 10014,
+        "outage_events": [
+          {
+            "seed": 10014,
+            "start_step": 143,
+            "end_step": 167,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.10659711807966232,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 498.1448789660687,
+                "height_difference_abs_m": 46.77507204088826,
+                "snr_linear": 3.1453134533042095,
+                "snr_margin_db": -0.023360674661194736,
+                "capacity_mbps": 20.514811971202036
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.5139299631118774,
+                  -0.07827349007129669,
+                  -0.0716431736946106
+                ],
+                "velocity_mps": [
+                  -15.783149355649948,
+                  -9.667842179536814,
+                  -0.5226537968264885
+                ],
+                "xy_speed_mps": 18.508781050927816,
+                "abs_z_speed_mps": 0.5226537968264885
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.03484150394797325,
+                  -0.10237788408994675,
+                  0.01067802682518959
+                ],
+                "velocity_mps": [
+                  -4.07263107658364,
+                  -5.782950007915498,
+                  -0.5775628360453994
+                ],
+                "xy_speed_mps": 7.073106437768676,
+                "abs_z_speed_mps": 0.5775628360453994
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 140.1328675259284,
+        "length": 182,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.608775852503132,
+        "rate_satisfaction_ratio": 0.7307692307692307,
+        "outage_step_ratio": 0.13736263736263737,
+        "min_link_margin_db": -1.230240790038427,
+        "min_separation_m": 104.28076759447659,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.4687315149232747,
+        "max_xy_accel_mps2": 1.2584819581151803,
+        "max_abs_z_accel_mps2": 0.45523542165756226,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.49234237903302136,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1098.4983241316752,
+        "seed": 10015,
+        "outage_events": [
+          {
+            "seed": 10015,
+            "start_step": 158,
+            "end_step": 182,
+            "length": 25,
+            "links_at_onset": [
+              "R3->R4"
+            ],
+            "link_step_counts": {
+              "R3->R4": 25,
+              "R4->L": 19
+            },
+            "trigger_action_abs_mean": 0.17563921213150024,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R3->R4": {
+                "horizontal_distance_m": 499.27734747358795,
+                "height_difference_abs_m": 45.82632992241986,
+                "snr_linear": 3.133498276398086,
+                "snr_margin_db": -0.03970539850560684,
+                "capacity_mbps": 20.47363285212306
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.5524652004241943,
+                  -0.23641738295555115,
+                  -0.09484107792377472
+                ],
+                "velocity_mps": [
+                  -6.513892287993802,
+                  -14.577983099967257,
+                  0.12401462979614675
+                ],
+                "xy_speed_mps": 15.967103181307374,
+                "abs_z_speed_mps": 0.12401462979614675
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.10187296569347382,
+                  -0.04621569439768791,
+                  0.002897250698879361
+                ],
+                "velocity_mps": [
+                  2.7488703264389187,
+                  -9.529731003940102,
+                  -1.2182902123662638
+                ],
+                "xy_speed_mps": 9.918269056596197,
+                "abs_z_speed_mps": 1.2182902123662638
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 253.6210157993017,
+        "length": 226,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "boundary_violation",
+        "mean_e2e_rate_mbps": 6.866044667238097,
+        "rate_satisfaction_ratio": 0.7168141592920354,
+        "outage_step_ratio": 0.0,
+        "min_link_margin_db": 0.33704401602381306,
+        "min_separation_m": 114.67302833335162,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.070419460826088,
+        "max_xy_accel_mps2": 1.4582432649941544,
+        "max_abs_z_accel_mps2": 0.33541950583457936,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5959443631644936,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2273.1823666442474,
+        "seed": 10016,
+        "outage_events": []
+      },
+      {
+        "return": 183.19220078192174,
+        "length": 210,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.091205736626332,
+        "rate_satisfaction_ratio": 0.8095238095238095,
+        "outage_step_ratio": 0.11904761904761904,
+        "min_link_margin_db": -1.1592375535385187,
+        "min_separation_m": 213.08258199387708,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.5061376672238125,
+        "max_xy_accel_mps2": 1.1238180942516864,
+        "max_abs_z_accel_mps2": 0.4877424836158753,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.6025700496791194,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1819.3410457166224,
+        "seed": 10017,
+        "outage_events": [
+          {
+            "seed": 10017,
+            "start_step": 186,
+            "end_step": 210,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25
+            },
+            "trigger_action_abs_mean": 0.16147519648075104,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 499.44084301868725,
+                "height_difference_abs_m": 34.010305811122265,
+                "snr_linear": 3.155102013995109,
+                "snr_margin_db": -0.009865941381029586,
+                "capacity_mbps": 20.548838977605165
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.21257640421390533,
+                  -0.18828777968883514,
+                  0.014834894798696041
+                ],
+                "velocity_mps": [
+                  5.580119366897268,
+                  -3.037694686313625,
+                  -1.0567012480576514
+                ],
+                "xy_speed_mps": 6.353370849878039,
+                "abs_z_speed_mps": 1.0567012480576514
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.30990704894065857,
+                  -0.12204829603433609,
+                  -0.0021258038468658924
+                ],
+                "velocity_mps": [
+                  -15.750382524521987,
+                  -12.32580424683243,
+                  -1.3135726031265231
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.3135726031265231
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 87.12123689382075,
+        "length": 128,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.6306829793978475,
+        "rate_satisfaction_ratio": 0.8046875,
+        "outage_step_ratio": 0.1953125,
+        "min_link_margin_db": -1.0705440814337077,
+        "min_separation_m": 29.80121548231724,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.668694566935302,
+        "max_xy_accel_mps2": 1.0754541925711776,
+        "max_abs_z_accel_mps2": 0.8781951665878296,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.7241490519552636,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 951.2888726244103,
+        "seed": 10018,
+        "outage_events": [
+          {
+            "seed": 10018,
+            "start_step": 104,
+            "end_step": 128,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.16244281828403473,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 501.4639687036221,
+                "height_difference_abs_m": 5.482475179491843,
+                "snr_linear": 3.158033390504016,
+                "snr_margin_db": -0.005832824230446398,
+                "capacity_mbps": 20.559013436030014
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.4920348823070526,
+                  -0.14018814265727997,
+                  -0.036590199917554855
+                ],
+                "velocity_mps": [
+                  -15.240335154533392,
+                  -7.857774031162264,
+                  -0.3973581406287852
+                ],
+                "xy_speed_mps": 17.146790613619636,
+                "abs_z_speed_mps": 0.3973581406287852
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.198402538895607,
+                  0.006557035259902477,
+                  -0.05847318470478058
+                ],
+                "velocity_mps": [
+                  9.859087407588959,
+                  -6.903621660708445,
+                  1.4621529140509668
+                ],
+                "xy_speed_mps": 12.035846316096015,
+                "abs_z_speed_mps": 1.4621529140509668
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 179.5680757603451,
+        "length": 204,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.163766934127795,
+        "rate_satisfaction_ratio": 0.7009803921568627,
+        "outage_step_ratio": 0.12254901960784313,
+        "min_link_margin_db": -0.9002264412142882,
+        "min_separation_m": 153.9532796221102,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.2069689912605095,
+        "max_xy_accel_mps2": 1.0902096474512197,
+        "max_abs_z_accel_mps2": 0.519580364227295,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5788914006938961,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1602.2915597761605,
+        "seed": 10019,
+        "outage_events": [
+          {
+            "seed": 10019,
+            "start_step": 180,
+            "end_step": 204,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25,
+              "R3->R4": 10
+            },
+            "trigger_action_abs_mean": 0.157420814037323,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 496.9384531914709,
+                "height_difference_abs_m": 52.987910784014076,
+                "snr_linear": 3.144668929331438,
+                "snr_margin_db": -0.024250703245635385,
+                "capacity_mbps": 20.512568657529684
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.30618590116500854,
+                  0.3683612644672394,
+                  -0.07075199484825134
+                ],
+                "velocity_mps": [
+                  -19.81916173266007,
+                  2.6834358972523686,
+                  -2.6622506825136956
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 2.6622506825136956
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.30649733543395996,
+                  -0.09958044439554214,
+                  0.03352689743041992
+                ],
+                "velocity_mps": [
+                  11.740979394316673,
+                  -4.125133345276113,
+                  -0.1522702585905792
+                ],
+                "xy_speed_mps": 12.444569990725979,
+                "abs_z_speed_mps": 0.1522702585905792
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      }
+    ]
+  },
+  "latest": {
+    "purpose": "Read-only deterministic replay for Stage 3 first-run diagnosis",
+    "checkpoint": "artifacts/stage3-stateindependent-full/checkpoints/latest.pt",
+    "checkpoint_update": 1000,
+    "checkpoint_total_env_steps": 1024000,
+    "checkpoint_best_score": [
+      0.0,
+      -0.0,
+      0.0,
+      5.0,
+      0.12682430034190584,
+      -0.8554541806707524,
+      -6.312957149287169
+    ],
+    "seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019
+    ],
+    "summary": {
+      "mean_return": 212.22392240310882,
+      "mean_e2e_rate_mbps": 6.17650260713973,
+      "rate_satisfaction_ratio": 0.7697633198124925,
+      "outage_step_ratio": 0.10515364139631889,
+      "mean_acceleration_mps2": 0.4461425799616053,
+      "action_saturation_ratio": 0.0,
+      "movement_distance_m": 1647.0601866761954,
+      "episodes": 20,
+      "total_steps": 4676,
+      "normal_completion_count": 0,
+      "collision_count": 0,
+      "boundary_count": 1,
+      "persistent_outage_count": 19,
+      "speed_accel_violations": 0,
+      "min_link_margin_db": -10.879918956816569,
+      "min_separation_m": 35.36252622290149,
+      "max_xy_speed_mps": 20.000000000000007,
+      "max_abs_z_speed_mps": 3.954632111452521,
+      "max_xy_accel_mps2": 1.5974485285922035,
+      "max_abs_z_accel_mps2": 1.2131125926971436
+    },
+    "outage_timing": {
+      "outage_step_time_bins": {
+        "middle_167_333": 425,
+        "late_334_500": 9,
+        "early_1_166": 41
+      },
+      "outage_event_count": 19,
+      "persistent_terminal_event_count": 19,
+      "outage_event_length": {
+        "count": 19,
+        "mean": 25.0,
+        "min": 25.0,
+        "max": 25.0
+      },
+      "persistent_event_start_step": {
+        "count": 19,
+        "mean": 209.68421052631578,
+        "min": 139.0,
+        "max": 318.0
+      },
+      "persistent_event_terminal_step": {
+        "count": 19,
+        "mean": 233.68421052631578,
+        "min": 163.0,
+        "max": 342.0
+      }
+    },
+    "outage_bottlenecks": {
+      "outage_link_step_counts": {
+        "R2->R3": 50,
+        "R4->L": 196,
+        "H->R1": 179,
+        "R1->R2": 63,
+        "R3->R4": 50
+      },
+      "outage_onset_link_event_counts": {
+        "R2->R3": 2,
+        "R4->L": 7,
+        "H->R1": 6,
+        "R1->R2": 2,
+        "R3->R4": 2
+      },
+      "simultaneously_outaged_link_count_steps": {
+        "1": 412,
+        "2": 63
+      },
+      "onset_link_physics": {
+        "R2->R3": {
+          "snr_linear": {
+            "count": 2,
+            "mean": 3.1515227787961733,
+            "min": 3.151148189262175,
+            "max": 3.151897368330171
+          },
+          "horizontal_distance_m": {
+            "count": 2,
+            "mean": 498.5086957899324,
+            "min": 497.0534142260912,
+            "max": 499.96397735377366
+          },
+          "height_difference_abs_m": {
+            "count": 2,
+            "mean": 41.05273464741016,
+            "min": 32.460671613579166,
+            "max": 49.64479768124116
+          },
+          "snr_margin_db": {
+            "count": 2,
+            "mean": -0.014795525708550805,
+            "min": -0.015311727493461547,
+            "max": -0.014279323923640064
+          },
+          "capacity_mbps": {
+            "count": 2,
+            "mean": 20.536406082870176,
+            "min": 20.535104347354487,
+            "max": 20.537707818385865
+          }
+        },
+        "R4->L": {
+          "snr_linear": {
+            "count": 7,
+            "mean": 3.141364413304737,
+            "min": 3.1320584739023642,
+            "max": 3.1492760002435447
+          },
+          "horizontal_distance_m": {
+            "count": 7,
+            "mean": 435.56732039946377,
+            "min": 44.76337005661762,
+            "max": 503.2738780472715
+          },
+          "height_difference_abs_m": {
+            "count": 7,
+            "mean": 44.50605539570459,
+            "min": 12.796407653506094,
+            "max": 143.20057148085337
+          },
+          "snr_margin_db": {
+            "count": 7,
+            "mean": -0.028826242727547097,
+            "min": -0.04170138486356034,
+            "max": -0.01789276445016963
+          },
+          "capacity_mbps": {
+            "count": 7,
+            "mean": 20.501043523473303,
+            "min": 20.46860670323993,
+            "max": 20.528596251389935
+          }
+        },
+        "H->R1": {
+          "snr_linear": {
+            "count": 6,
+            "mean": 3.133669260954728,
+            "min": 3.0966757966609246,
+            "max": 3.157363681822046
+          },
+          "horizontal_distance_m": {
+            "count": 6,
+            "mean": 494.50755685643134,
+            "min": 473.98297125836257,
+            "max": 503.96178228114724
+          },
+          "height_difference_abs_m": {
+            "count": 6,
+            "mean": 55.89117850547388,
+            "min": 15.448510877928612,
+            "max": 114.36408775017412
+          },
+          "snr_margin_db": {
+            "count": 6,
+            "mean": -0.039577962990190375,
+            "min": -0.09104260284595256,
+            "max": -0.006753908947120912
+          },
+          "capacity_mbps": {
+            "count": 6,
+            "mean": 20.47402059956477,
+            "min": 20.344537251207424,
+            "max": 20.556689589344153
+          }
+        },
+        "R1->R2": {
+          "snr_linear": {
+            "count": 2,
+            "mean": 3.151734418655362,
+            "min": 3.1501885151769677,
+            "max": 3.1532803221337566
+          },
+          "horizontal_distance_m": {
+            "count": 2,
+            "mean": 487.16790462150453,
+            "min": 482.5285726567422,
+            "max": 491.80723658626687
+          },
+          "height_difference_abs_m": {
+            "count": 2,
+            "mean": 83.87887053592098,
+            "min": 70.45959547146033,
+            "max": 97.29814560038162
+          },
+          "snr_margin_db": {
+            "count": 2,
+            "mean": -0.01450437768379409,
+            "min": -0.01663456162343202,
+            "max": -0.012374193744156159
+          },
+          "capacity_mbps": {
+            "count": 2,
+            "mean": 20.537140592084384,
+            "min": 20.53176869889434,
+            "max": 20.54251248527443
+          }
+        },
+        "R3->R4": {
+          "snr_linear": {
+            "count": 2,
+            "mean": 3.1496902955831954,
+            "min": 3.137645415254802,
+            "max": 3.1617351759115886
+          },
+          "horizontal_distance_m": {
+            "count": 2,
+            "mean": 499.4323865311916,
+            "min": 496.63760142028224,
+            "max": 502.22717164210087
+          },
+          "height_difference_abs_m": {
+            "count": 2,
+            "mean": 34.64740133894786,
+            "min": 21.536336224445876,
+            "max": 47.75846645344984
+          },
+          "snr_margin_db": {
+            "count": 2,
+            "mean": -0.017353232561617027,
+            "min": -0.03396137517503739,
+            "max": -0.0007450899481966644
+          },
+          "capacity_mbps": {
+            "count": 2,
+            "mean": 20.529975901861505,
+            "min": 20.488100155284243,
+            "max": 20.571851648438763
+          }
+        }
+      }
+    },
+    "controls": {
+      "all_action_abs": {
+        "count": 56112,
+        "mean": 0.13617075619763522,
+        "min": 2.7641654014587402e-06,
+        "max": 0.7331228256225586
+      },
+      "outage_action_abs": {
+        "count": 5700,
+        "mean": 0.16718081792083309,
+        "min": 2.7641654014587402e-06,
+        "max": 0.7331228256225586
+      },
+      "nonoutage_action_abs": {
+        "count": 50412,
+        "mean": 0.13266450070643812,
+        "min": 3.941357135772705e-06,
+        "max": 0.7123679518699646
+      },
+      "outage_onset_action_abs": {
+        "count": 228,
+        "mean": 0.16470872687243268,
+        "min": 0.00012316927313804626,
+        "max": 0.6882064938545227
+      },
+      "all_action_saturation_ratio": 0.0,
+      "outage_action_saturation_ratio": 0.0,
+      "nonoutage_action_saturation_ratio": 0.0,
+      "outage_onset_action_saturation_ratio": 0.0
+    },
+    "actor_log_std_on_deterministic_eval_states": {
+      "mode": "state_independent_tanh",
+      "raw": {
+        "count": 56112,
+        "mean": -0.1255027229587237,
+        "min": -0.16419799625873566,
+        "max": -0.08467236906290054
+      },
+      "clamped": {
+        "count": 56112,
+        "mean": -2.2494386037190757,
+        "min": -2.3254761695861816,
+        "max": -2.1689412593841553
+      },
+      "effective": {
+        "count": 56112,
+        "mean": -2.2494386037190757,
+        "min": -2.3254761695861816,
+        "max": -2.1689412593841553
+      },
+      "raw_gt_log_std_max_ratio": 0.0,
+      "raw_lt_log_std_min_ratio": 0.0,
+      "log_std_min": -4.0,
+      "log_std_max": 0.0
+    },
+    "physical_state": {
+      "xy_speed_mps": {
+        "count": 18704,
+        "mean": 8.751969004217678,
+        "min": 0.004967235343148825,
+        "max": 20.000000000000007
+      },
+      "outage_xy_speed_mps": {
+        "count": 1900,
+        "mean": 14.312153266675013,
+        "min": 0.5733608531261509,
+        "max": 20.000000000000007
+      },
+      "xy_speed_cap_mps": 20.0,
+      "xy_speed_at_or_above_95pct_cap_ratio": 0.17258340461933278,
+      "z_speed_abs_mps": {
+        "count": 18704,
+        "mean": 0.8117984084642517,
+        "min": 4.2008515446542716e-05,
+        "max": 3.954632111452521
+      },
+      "outage_z_speed_abs_mps": {
+        "count": 1900,
+        "mean": 0.9450326017276874,
+        "min": 4.2008515446542716e-05,
+        "max": 3.2517808004282425
+      },
+      "z_speed_cap_mps": 6.0,
+      "acceleration_norm_mps2": {
+        "count": 18704,
+        "mean": 0.4434302117307517,
+        "min": 0.007710127654776284,
+        "max": 1.8199461638773626
+      },
+      "outage_acceleration_norm_mps2": {
+        "count": 1900,
+        "mean": 0.369989438400373,
+        "min": 0.012830807412831102,
+        "max": 1.4687908896458528
+      },
+      "relay_altitude_m": {
+        "count": 18704,
+        "mean": 210.5635577915418,
+        "min": 106.93061883857018,
+        "max": 300.0910487437425
+      },
+      "outage_relay_altitude_m": {
+        "count": 1900,
+        "mean": 213.41046899776802,
+        "min": 106.93061883857018,
+        "max": 293.2803323569096
+      }
+    },
+    "rates_mbps": {
+      "outage": {
+        "count": 475,
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "nonoutage": {
+        "count": 4201,
+        "mean": 6.907038964144977,
+        "min": 4.924503454885617,
+        "max": 8.617763042730989
+      }
+    },
+    "episodes": [
+      {
+        "return": 194.06051950590182,
+        "length": 219,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.138644370024706,
+        "rate_satisfaction_ratio": 0.8858447488584474,
+        "outage_step_ratio": 0.1141552511415525,
+        "min_link_margin_db": -0.5775185599328587,
+        "min_separation_m": 152.9849268182695,
+        "max_xy_speed_mps": 13.61850654413748,
+        "max_abs_z_speed_mps": 1.8202261167578404,
+        "max_xy_accel_mps2": 0.8594958867241178,
+        "max_abs_z_accel_mps2": 0.7715694308280946,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.3055802709083447,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 930.1658239231739,
+        "seed": 10000,
+        "outage_events": [
+          {
+            "seed": 10000,
+            "start_step": 195,
+            "end_step": 219,
+            "length": 25,
+            "links_at_onset": [
+              "R2->R3"
+            ],
+            "link_step_counts": {
+              "R2->R3": 25
+            },
+            "trigger_action_abs_mean": 0.07775086909532547,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R2->R3": {
+                "horizontal_distance_m": 497.0534142260912,
+                "height_difference_abs_m": 49.64479768124116,
+                "snr_linear": 3.151897368330171,
+                "snr_margin_db": -0.014279323923640064,
+                "capacity_mbps": 20.537707818385865
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.18501436710357666,
+                  0.21523430943489075,
+                  -0.05626329034566879
+                ],
+                "velocity_mps": [
+                  -10.830872588395135,
+                  0.36488067575264854,
+                  -0.5932779864175248
+                ],
+                "xy_speed_mps": 10.837017068067524,
+                "abs_z_speed_mps": 0.5932779864175248
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.06617061793804169,
+                  -0.05264291167259216,
+                  0.010348095558583736
+                ],
+                "velocity_mps": [
+                  -3.1207944471505438,
+                  -4.861245603975838,
+                  1.7846382588846614
+                ],
+                "xy_speed_mps": 5.776769582001698,
+                "abs_z_speed_mps": 1.7846382588846614
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 246.1579961709968,
+        "length": 274,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.130467069437883,
+        "rate_satisfaction_ratio": 0.7335766423357665,
+        "outage_step_ratio": 0.09124087591240876,
+        "min_link_margin_db": -10.879918956816569,
+        "min_separation_m": 54.476561788720254,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.954632111452521,
+        "max_xy_accel_mps2": 1.1564100942584872,
+        "max_abs_z_accel_mps2": 0.9826770424842834,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.48608288962786594,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2646.2427737488792,
+        "seed": 10001,
+        "outage_events": [
+          {
+            "seed": 10001,
+            "start_step": 250,
+            "end_step": 274,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25,
+              "H->R1": 20
+            },
+            "trigger_action_abs_mean": 0.21567457914352417,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 44.76337005661762,
+                "height_difference_abs_m": 143.20057148085337,
+                "snr_linear": 3.1411470810331257,
+                "snr_margin_db": -0.02911727725793245,
+                "capacity_mbps": 20.50030443786957
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.3762948215007782,
+                  0.47457945346832275,
+                  0.03736502304673195
+                ],
+                "velocity_mps": [
+                  12.353981310404967,
+                  15.728291254365958,
+                  -1.600899842474609
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 1.600899842474609
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.22469422221183777,
+                  0.2162398099899292,
+                  -0.06334184855222702
+                ],
+                "velocity_mps": [
+                  15.525034229457358,
+                  -2.218340474506839,
+                  3.2517808004282425
+                ],
+                "xy_speed_mps": 15.68272050017655,
+                "abs_z_speed_mps": 3.2517808004282425
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 235.2970099899021,
+        "length": 259,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.224641158067227,
+        "rate_satisfaction_ratio": 0.7606177606177607,
+        "outage_step_ratio": 0.09652509652509653,
+        "min_link_margin_db": -1.6909959323563664,
+        "min_separation_m": 48.3204871756489,
+        "max_xy_speed_mps": 20.000000000000007,
+        "max_abs_z_speed_mps": 1.6790860344888643,
+        "max_xy_accel_mps2": 1.2777532396807934,
+        "max_abs_z_accel_mps2": 0.7819356918334961,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5468688372875037,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2993.297235696508,
+        "seed": 10002,
+        "outage_events": [
+          {
+            "seed": 10002,
+            "start_step": 235,
+            "end_step": 259,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25,
+              "R4->L": 21
+            },
+            "trigger_action_abs_mean": 0.2808833122253418,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 503.96178228114724,
+                "height_difference_abs_m": 15.448510877928612,
+                "snr_linear": 3.1216843338155296,
+                "snr_margin_db": -0.05611015115117368,
+                "capacity_mbps": 20.4323401786173
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.38464266061782837,
+                  -0.35219910740852356,
+                  -0.051495011895895004
+                ],
+                "velocity_mps": [
+                  -13.3163317201297,
+                  -14.922309121562506,
+                  -0.05704425962176049
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.05704425962176049
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.32645273208618164,
+                  -0.09042438864707947,
+                  -0.01887490227818489
+                ],
+                "velocity_mps": [
+                  -17.05392472354496,
+                  -10.448141055884632,
+                  -0.6335305262356995
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.6335305262356995
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 369.7615503294249,
+        "length": 342,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 7.0133605320951755,
+        "rate_satisfaction_ratio": 0.8508771929824561,
+        "outage_step_ratio": 0.07309941520467836,
+        "min_link_margin_db": -1.0051638444062814,
+        "min_separation_m": 84.53044830125322,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.8330857030116021,
+        "max_xy_accel_mps2": 1.2136410207674444,
+        "max_abs_z_accel_mps2": 0.5281001329421997,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.44028137343029633,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 3111.074724233642,
+        "seed": 10003,
+        "outage_events": [
+          {
+            "seed": 10003,
+            "start_step": 318,
+            "end_step": 342,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.24729321897029877,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 501.9292624434622,
+                "height_difference_abs_m": 13.769348362609094,
+                "snr_linear": 3.148194443669899,
+                "snr_margin_db": -0.019384519149464374,
+                "capacity_mbps": 20.52483521042059
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.5328974723815918,
+                  -0.31165793538093567,
+                  -0.02614528313279152
+                ],
+                "velocity_mps": [
+                  -15.802850567815378,
+                  -12.258462951418386,
+                  -0.6562579994089912
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.6562579994089912
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.1633768230676651,
+                  0.04589041322469711,
+                  -0.02966069057583809
+                ],
+                "velocity_mps": [
+                  -18.956137083938316,
+                  -6.376901038509111,
+                  -1.2835255348822092
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.2835255348822092
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 268.6112140286265,
+        "length": 236,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "boundary_violation",
+        "mean_e2e_rate_mbps": 6.956217305812537,
+        "rate_satisfaction_ratio": 1.0,
+        "outage_step_ratio": 0.0,
+        "min_link_margin_db": 0.6636576994290984,
+        "min_separation_m": 79.30588616258333,
+        "max_xy_speed_mps": 16.36755104962128,
+        "max_abs_z_speed_mps": 2.1604293302632867,
+        "max_xy_accel_mps2": 1.0418119877174874,
+        "max_abs_z_accel_mps2": 0.5237542986869812,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.31141424641519844,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 760.5205918231632,
+        "seed": 10004,
+        "outage_events": []
+      },
+      {
+        "return": 180.56015040005832,
+        "length": 188,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 7.020004800001857,
+        "rate_satisfaction_ratio": 0.8670212765957447,
+        "outage_step_ratio": 0.13297872340425532,
+        "min_link_margin_db": -1.421381652447403,
+        "min_separation_m": 35.36252622290149,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.154309961874969,
+        "max_xy_accel_mps2": 1.315824996952124,
+        "max_abs_z_accel_mps2": 0.856553316116333,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5952682041697118,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1667.4094279937613,
+        "seed": 10005,
+        "outage_events": [
+          {
+            "seed": 10005,
+            "start_step": 164,
+            "end_step": 188,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.2021646946668625,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 501.8964365590654,
+                "height_difference_abs_m": 22.47308789712534,
+                "snr_linear": 3.1407405857166277,
+                "snr_margin_db": -0.029679333386555484,
+                "capacity_mbps": 20.498888217796747
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.1642039716243744,
+                  -0.19037272036075592,
+                  0.023331571370363235
+                ],
+                "velocity_mps": [
+                  -9.66085809469222,
+                  -6.494105283194216,
+                  -0.4646149790612986
+                ],
+                "xy_speed_mps": 11.640686515622315,
+                "abs_z_speed_mps": 0.4646149790612986
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.1930021196603775,
+                  0.10103163868188858,
+                  -0.09684517234563828
+                ],
+                "velocity_mps": [
+                  -17.78865481938784,
+                  -9.14132155197867,
+                  -0.6787711516022684
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.6787711516022684
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 149.14006794942813,
+        "length": 209,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.142777070318515,
+        "rate_satisfaction_ratio": 0.3588516746411483,
+        "outage_step_ratio": 0.11961722488038277,
+        "min_link_margin_db": -1.0352832720370682,
+        "min_separation_m": 286.2601369026572,
+        "max_xy_speed_mps": 18.30954623743644,
+        "max_abs_z_speed_mps": 1.9353736403165391,
+        "max_xy_accel_mps2": 1.016354428767089,
+        "max_abs_z_accel_mps2": 0.37537434697151184,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.4069607977502014,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1121.8348864699299,
+        "seed": 10006,
+        "outage_events": [
+          {
+            "seed": 10006,
+            "start_step": 185,
+            "end_step": 209,
+            "length": 25,
+            "links_at_onset": [
+              "R2->R3"
+            ],
+            "link_step_counts": {
+              "R2->R3": 25,
+              "R1->R2": 13
+            },
+            "trigger_action_abs_mean": 0.11294969916343689,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R2->R3": {
+                "horizontal_distance_m": 499.96397735377366,
+                "height_difference_abs_m": 32.460671613579166,
+                "snr_linear": 3.151148189262175,
+                "snr_margin_db": -0.015311727493461547,
+                "capacity_mbps": 20.535104347354487
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.03223442658782005,
+                  -0.17326103150844574,
+                  -0.01879962719976902
+                ],
+                "velocity_mps": [
+                  -8.959044199483468,
+                  -4.016632728546395,
+                  1.9200660808710388
+                ],
+                "xy_speed_mps": 9.8182387139613,
+                "abs_z_speed_mps": 1.9200660808710388
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.13896425068378448,
+                  -0.018999703228473663,
+                  0.05084913223981857
+                ],
+                "velocity_mps": [
+                  13.441356483101838,
+                  2.837952142371796,
+                  1.2844818859128284
+                ],
+                "xy_speed_mps": 13.737686721869023,
+                "abs_z_speed_mps": 1.2844818859128284
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 172.11718359228854,
+        "length": 198,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.124763139160258,
+        "rate_satisfaction_ratio": 0.7676767676767676,
+        "outage_step_ratio": 0.12626262626262627,
+        "min_link_margin_db": -1.7162110200739473,
+        "min_separation_m": 226.5748951367054,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.1923505945247594,
+        "max_xy_accel_mps2": 1.0897782104808937,
+        "max_abs_z_accel_mps2": 0.9119104146957397,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5369761355442821,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1197.0726898683538,
+        "seed": 10007,
+        "outage_events": [
+          {
+            "seed": 10007,
+            "start_step": 174,
+            "end_step": 198,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.15677709877490997,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 503.7161359411012,
+                "height_difference_abs_m": 19.487893365452265,
+                "snr_linear": 3.1212543367176675,
+                "snr_margin_db": -0.05670841224898826,
+                "capacity_mbps": 20.430835000170532
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.33227548003196716,
+                  -0.17103612422943115,
+                  -0.024742726236581802
+                ],
+                "velocity_mps": [
+                  -12.149983093460374,
+                  -15.886406479397001,
+                  1.1095140093588258
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.1095140093588258
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.08062796294689178,
+                  0.0012097799917683005,
+                  0.0057298061437904835
+                ],
+                "velocity_mps": [
+                  -1.861334568238819,
+                  1.2211538351606606,
+                  -0.27931764257373276
+                ],
+                "xy_speed_mps": 2.2261588137525994,
+                "abs_z_speed_mps": 0.27931764257373276
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 272.228075847732,
+        "length": 263,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.8949370915832375,
+        "rate_satisfaction_ratio": 0.844106463878327,
+        "outage_step_ratio": 0.09505703422053231,
+        "min_link_margin_db": -1.9599443822302614,
+        "min_separation_m": 127.08391053277148,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.3449791897321104,
+        "max_xy_accel_mps2": 1.30145606673641,
+        "max_abs_z_accel_mps2": 0.9878108501434326,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.43318974823842965,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1809.3241907849042,
+        "seed": 10008,
+        "outage_events": [
+          {
+            "seed": 10008,
+            "start_step": 239,
+            "end_step": 263,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.18121318519115448,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 503.24928612402846,
+                "height_difference_abs_m": 40.247802069416764,
+                "snr_linear": 3.0966757966609246,
+                "snr_margin_db": -0.09104260284595256,
+                "capacity_mbps": 20.344537251207424
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.28189200162887573,
+                  -0.11818564683198929,
+                  -0.041213493794202805
+                ],
+                "velocity_mps": [
+                  -15.778530217445962,
+                  -12.289751184509184,
+                  0.5335166465258241
+                ],
+                "xy_speed_mps": 20.000000000000004,
+                "abs_z_speed_mps": 0.5335166465258241
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.04473491013050079,
+                  -0.06853246688842773,
+                  0.10472743213176727
+                ],
+                "velocity_mps": [
+                  1.8843977836775605,
+                  3.529684347379957,
+                  -1.0446153743891051
+                ],
+                "xy_speed_mps": 4.001203143964072,
+                "abs_z_speed_mps": 1.0446153743891051
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 224.98659656300185,
+        "length": 278,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.503307839489245,
+        "rate_satisfaction_ratio": 0.5071942446043165,
+        "outage_step_ratio": 0.08992805755395683,
+        "min_link_margin_db": -0.3814163684150742,
+        "min_separation_m": 240.37198826636916,
+        "max_xy_speed_mps": 10.524647938733272,
+        "max_abs_z_speed_mps": 1.241070432215929,
+        "max_xy_accel_mps2": 1.3770638788380285,
+        "max_abs_z_accel_mps2": 0.5251097679138184,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.33165227619570553,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1141.2580390544722,
+        "seed": 10009,
+        "outage_events": [
+          {
+            "seed": 10009,
+            "start_step": 254,
+            "end_step": 278,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25,
+              "H->R1": 9
+            },
+            "trigger_action_abs_mean": 0.09075479954481125,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 491.80723658626687,
+                "height_difference_abs_m": 70.45959547146033,
+                "snr_linear": 3.1532803221337566,
+                "snr_margin_db": -0.012374193744156159,
+                "capacity_mbps": 20.54251248527443
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.14109423756599426,
+                  0.04860570281744003,
+                  -0.00012316927313804626
+                ],
+                "velocity_mps": [
+                  7.715532244415955,
+                  4.604842658201237,
+                  -1.2299809569492937
+                ],
+                "xy_speed_mps": 8.985210833442482,
+                "abs_z_speed_mps": 1.2299809569492937
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.05969681218266487,
+                  -0.011545945890247822,
+                  -0.00681982422247529
+                ],
+                "velocity_mps": [
+                  7.400976729998372,
+                  -3.0777412932482484,
+                  -0.1488656343193727
+                ],
+                "xy_speed_mps": 8.015419391781244,
+                "abs_z_speed_mps": 0.1488656343193727
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 242.87074146679709,
+        "length": 262,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.248948277865579,
+        "rate_satisfaction_ratio": 0.8435114503816794,
+        "outage_step_ratio": 0.09541984732824428,
+        "min_link_margin_db": -1.3134991333368689,
+        "min_separation_m": 191.03821857087217,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.2106457704678175,
+        "max_xy_accel_mps2": 1.5974485285922035,
+        "max_abs_z_accel_mps2": 0.8719875216484074,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.48461424123138513,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2663.956919969206,
+        "seed": 10010,
+        "outage_events": [
+          {
+            "seed": 10010,
+            "start_step": 238,
+            "end_step": 262,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.2243417650461197,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 503.2738780472715,
+                "height_difference_abs_m": 12.796407653506094,
+                "snr_linear": 3.1320584739023642,
+                "snr_margin_db": -0.04170138486356034,
+                "capacity_mbps": 20.46860670323993
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.43332162499427795,
+                  -0.2272932231426239,
+                  -0.0031230682507157326
+                ],
+                "velocity_mps": [
+                  -18.11091345529904,
+                  -8.48497576983389,
+                  -2.007052300847134
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 2.007052300847134
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.1762230545282364,
+                  -0.024960290640592575,
+                  -0.03132733702659607
+                ],
+                "velocity_mps": [
+                  -17.51589747318741,
+                  -9.653669546280662,
+                  -1.5224428519606588
+                ],
+                "xy_speed_mps": 19.999999999999996,
+                "abs_z_speed_mps": 1.5224428519606588
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 208.27273018006312,
+        "length": 245,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.835250535021955,
+        "rate_satisfaction_ratio": 0.7551020408163265,
+        "outage_step_ratio": 0.10204081632653061,
+        "min_link_margin_db": -0.511323979943163,
+        "min_separation_m": 206.95282206433197,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.7246087911073125,
+        "max_xy_accel_mps2": 1.0665323795828998,
+        "max_abs_z_accel_mps2": 0.5706933736801147,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.4584787533888703,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1879.2415921419954,
+        "seed": 10011,
+        "outage_events": [
+          {
+            "seed": 10011,
+            "start_step": 221,
+            "end_step": 245,
+            "length": 25,
+            "links_at_onset": [
+              "R3->R4"
+            ],
+            "link_step_counts": {
+              "R3->R4": 25
+            },
+            "trigger_action_abs_mean": 0.11484082788228989,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R3->R4": {
+                "horizontal_distance_m": 496.63760142028224,
+                "height_difference_abs_m": 47.75846645344984,
+                "snr_linear": 3.1617351759115886,
+                "snr_margin_db": -0.0007450899481966644,
+                "capacity_mbps": 20.571851648438763
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.36183789372444153,
+                  0.0243530236184597,
+                  -0.014026083052158356
+                ],
+                "velocity_mps": [
+                  1.639661178598176,
+                  7.9918652772903505,
+                  -1.3322386129992079
+                ],
+                "xy_speed_mps": 8.158333125765406,
+                "abs_z_speed_mps": 1.3322386129992079
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.44750115275382996,
+                  -0.05877441540360451,
+                  -0.06734327226877213
+                ],
+                "velocity_mps": [
+                  -18.11385333324562,
+                  -8.478697861208797,
+                  -0.7124288014601913
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.7124288014601913
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 132.22925953125286,
+        "length": 163,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.971629185199492,
+        "rate_satisfaction_ratio": 0.8466257668711656,
+        "outage_step_ratio": 0.15337423312883436,
+        "min_link_margin_db": -0.962544519380871,
+        "min_separation_m": 100.63795798388223,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.7765405679936521,
+        "max_xy_accel_mps2": 1.2021159002982862,
+        "max_abs_z_accel_mps2": 0.9394713640213015,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5465372657177293,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 974.4549240919295,
+        "seed": 10012,
+        "outage_events": [
+          {
+            "seed": 10012,
+            "start_step": 139,
+            "end_step": 163,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.16780753433704376,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 473.98297125836257,
+                "height_difference_abs_m": 114.36408775017412,
+                "snr_linear": 3.157363681822046,
+                "snr_margin_db": -0.006753908947120912,
+                "capacity_mbps": 20.556689589344153
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.14337821304798126,
+                  0.08938595652580261,
+                  -0.04234848916530609
+                ],
+                "velocity_mps": [
+                  -8.626602303981786,
+                  -5.829261536756529,
+                  1.408747320517432
+                ],
+                "xy_speed_mps": 10.41146278747482,
+                "abs_z_speed_mps": 1.408747320517432
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.35927706956863403,
+                  -0.07327710092067719,
+                  -0.02849518321454525
+                ],
+                "velocity_mps": [
+                  -16.696404957771307,
+                  -1.1189440295798705,
+                  -0.8624739054474041
+                ],
+                "xy_speed_mps": 16.733857124262258,
+                "abs_z_speed_mps": 0.8624739054474041
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 141.32700298099422,
+        "length": 178,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.7750675162132925,
+        "rate_satisfaction_ratio": 0.7696629213483146,
+        "outage_step_ratio": 0.1404494382022472,
+        "min_link_margin_db": -1.1811453411658168,
+        "min_separation_m": 109.72079000422728,
+        "max_xy_speed_mps": 18.197784023762367,
+        "max_abs_z_speed_mps": 3.279002138716169,
+        "max_xy_accel_mps2": 0.9633207579888378,
+        "max_abs_z_accel_mps2": 1.0620765686035156,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.44140928159966925,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 934.6833719528963,
+        "seed": 10013,
+        "outage_events": [
+          {
+            "seed": 10013,
+            "start_step": 154,
+            "end_step": 178,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.11996690183877945,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 502.64937842603865,
+                "height_difference_abs_m": 21.683790335520683,
+                "snr_linear": 3.132238199922914,
+                "snr_margin_db": -0.04145218204618217,
+                "capacity_mbps": 20.469234197263543
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.10404016077518463,
+                  0.066176638007164,
+                  -0.04524018615484238
+                ],
+                "velocity_mps": [
+                  1.990997186861933,
+                  -9.264829712919884,
+                  2.9343897697748607
+                ],
+                "xy_speed_mps": 9.47634631107872,
+                "abs_z_speed_mps": 2.9343897697748607
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.3758641481399536,
+                  0.17491422593593597,
+                  0.004265151917934418
+                ],
+                "velocity_mps": [
+                  11.196491225808858,
+                  8.315655237820467,
+                  0.25144320102408535
+                ],
+                "xy_speed_mps": 13.946739325157896,
+                "abs_z_speed_mps": 0.25144320102408535
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 184.61419892575503,
+        "length": 211,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.102773429168386,
+        "rate_satisfaction_ratio": 0.6966824644549763,
+        "outage_step_ratio": 0.11848341232227488,
+        "min_link_margin_db": -0.916481166875009,
+        "min_separation_m": 217.61919090487166,
+        "max_xy_speed_mps": 15.989909888756959,
+        "max_abs_z_speed_mps": 1.563035716861486,
+        "max_xy_accel_mps2": 0.819854063824546,
+        "max_abs_z_accel_mps2": 0.47712004184722906,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.27957660096352055,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 772.7648809538165,
+        "seed": 10014,
+        "outage_events": [
+          {
+            "seed": 10014,
+            "start_step": 187,
+            "end_step": 211,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.12965615093708038,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 489.03469685782903,
+                "height_difference_abs_m": 78.58824906821232,
+                "snr_linear": 3.1562712526539896,
+                "snr_margin_db": -0.008256802190761192,
+                "capacity_mbps": 20.552898125887385
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.17373844981193542,
+                  -0.10370445996522903,
+                  0.020682532340288162
+                ],
+                "velocity_mps": [
+                  -14.471305960416789,
+                  -1.208096105116421,
+                  -1.3304530757479363
+                ],
+                "xy_speed_mps": 14.521645650517435,
+                "abs_z_speed_mps": 1.3304530757479363
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.13271364569664001,
+                  -0.1111382469534874,
+                  0.08492083847522736
+                ],
+                "velocity_mps": [
+                  4.96490824287757,
+                  -0.28545305962907136,
+                  1.1996482120477596
+                ],
+                "xy_speed_mps": 4.973107409803777,
+                "abs_z_speed_mps": 1.1996482120477596
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 170.21554547285794,
+        "length": 209,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.747814702570079,
+        "rate_satisfaction_ratio": 0.7799043062200957,
+        "outage_step_ratio": 0.11961722488038277,
+        "min_link_margin_db": -0.5610584712875157,
+        "min_separation_m": 112.37144989415614,
+        "max_xy_speed_mps": 15.037290603950638,
+        "max_abs_z_speed_mps": 0.7616650209296496,
+        "max_xy_accel_mps2": 0.7241308138884711,
+        "max_abs_z_accel_mps2": 0.5033784508705139,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.3442064070661414,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 750.4468472997191,
+        "seed": 10015,
+        "outage_events": [
+          {
+            "seed": 10015,
+            "start_step": 185,
+            "end_step": 209,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.13066346943378448,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 494.8524465838015,
+                "height_difference_abs_m": 61.47913849952997,
+                "snr_linear": 3.1458961086446853,
+                "snr_margin_db": -0.022556237938965218,
+                "capacity_mbps": 20.516839646332798
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.160038024187088,
+                  -0.1885989010334015,
+                  0.024232683703303337
+                ],
+                "velocity_mps": [
+                  0.2330240153241906,
+                  -0.5238725762814265,
+                  0.02018655444262476
+                ],
+                "xy_speed_mps": 0.5733608531261509,
+                "abs_z_speed_mps": 0.02018655444262476
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.22167734801769257,
+                  -0.15993930399417877,
+                  0.011232268996536732
+                ],
+                "velocity_mps": [
+                  -1.460290635609999,
+                  -5.347567233443258,
+                  -0.19944550993386642
+                ],
+                "xy_speed_mps": 5.5433675736546855,
+                "abs_z_speed_mps": 0.19944550993386642
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 187.6095955560296,
+        "length": 204,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.400282222236162,
+        "rate_satisfaction_ratio": 0.803921568627451,
+        "outage_step_ratio": 0.12254901960784313,
+        "min_link_margin_db": -0.6554290065882924,
+        "min_separation_m": 142.48136559634364,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 1.7167777976021161,
+        "max_xy_accel_mps2": 1.425700515475355,
+        "max_abs_z_accel_mps2": 0.4250114858150482,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.5502297278710513,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2176.5005872758907,
+        "seed": 10016,
+        "outage_events": [
+          {
+            "seed": 10016,
+            "start_step": 180,
+            "end_step": 204,
+            "length": 25,
+            "links_at_onset": [
+              "H->R1"
+            ],
+            "link_step_counts": {
+              "H->R1": 25
+            },
+            "trigger_action_abs_mean": 0.20326876640319824,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "H->R1": {
+                "horizontal_distance_m": 493.1004686761195,
+                "height_difference_abs_m": 67.21052790165919,
+                "snr_linear": 3.1487661640582107,
+                "snr_margin_db": -0.01859590055714566,
+                "capacity_mbps": 20.526823452161857
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.08227833360433578,
+                  0.07882340997457504,
+                  0.10511989891529083
+                ],
+                "velocity_mps": [
+                  -16.288115105079488,
+                  0.5789972342550741,
+                  -0.8746075941482548
+                ],
+                "xy_speed_mps": 16.298402727678365,
+                "abs_z_speed_mps": 0.8746075941482548
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.4884803593158722,
+                  -0.25447437167167664,
+                  -0.03038865514099598
+                ],
+                "velocity_mps": [
+                  -16.626917336127015,
+                  -11.115107732163414,
+                  0.04859270965680397
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.04859270965680397
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 227.81361613718127,
+        "length": 252,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.13841943183765,
+        "rate_satisfaction_ratio": 0.7896825396825397,
+        "outage_step_ratio": 0.0992063492063492,
+        "min_link_margin_db": -0.8083897037644494,
+        "min_separation_m": 177.11045517205628,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.0456724983290777,
+        "max_xy_accel_mps2": 1.4143607346554663,
+        "max_abs_z_accel_mps2": 0.6218975782394409,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.49551790021521236,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 2886.3745279066834,
+        "seed": 10017,
+        "outage_events": [
+          {
+            "seed": 10017,
+            "start_step": 228,
+            "end_step": 252,
+            "length": 25,
+            "links_at_onset": [
+              "R4->L"
+            ],
+            "link_step_counts": {
+              "R4->L": 25
+            },
+            "trigger_action_abs_mean": 0.1931217461824417,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R4->L": {
+                "horizontal_distance_m": 499.6064706799893,
+                "height_difference_abs_m": 36.14004354078759,
+                "snr_linear": 3.1492760002435447,
+                "snr_margin_db": -0.01789276445016963,
+                "capacity_mbps": 20.528596251389935
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.033032163977622986,
+                  -0.18386463820934296,
+                  0.11201252043247223
+                ],
+                "velocity_mps": [
+                  -13.418794542551046,
+                  -8.860090750455855,
+                  0.7227725839708004
+                ],
+                "xy_speed_mps": 16.07996439926131,
+                "abs_z_speed_mps": 0.7227725839708004
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.3722684979438782,
+                  -0.17152221500873566,
+                  -0.04516606405377388
+                ],
+                "velocity_mps": [
+                  -17.075545724369164,
+                  -10.412768038085643,
+                  -1.2254311629454606
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 1.2254311629454606
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 161.6429613280625,
+        "length": 198,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 5.807362464486742,
+        "rate_satisfaction_ratio": 0.7323232323232324,
+        "outage_step_ratio": 0.12626262626262627,
+        "min_link_margin_db": -1.4471187698327022,
+        "min_separation_m": 73.39627459304394,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.549005802709143,
+        "max_xy_accel_mps2": 0.7567736030589882,
+        "max_abs_z_accel_mps2": 1.2131125926971436,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.48909582780892874,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1314.3359689365523,
+        "seed": 10018,
+        "outage_events": [
+          {
+            "seed": 10018,
+            "start_step": 174,
+            "end_step": 198,
+            "length": 25,
+            "links_at_onset": [
+              "R3->R4"
+            ],
+            "link_step_counts": {
+              "R3->R4": 25
+            },
+            "trigger_action_abs_mean": 0.1262984424829483,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R3->R4": {
+                "horizontal_distance_m": 502.22717164210087,
+                "height_difference_abs_m": 21.536336224445876,
+                "snr_linear": 3.137645415254802,
+                "snr_margin_db": -0.03396137517503739,
+                "capacity_mbps": 20.488100155284243
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  -0.3666895627975464,
+                  -0.07737226784229279,
+                  -0.031246205791831017
+                ],
+                "velocity_mps": [
+                  -17.97207843731089,
+                  -8.775214905809708,
+                  0.8829618681222204
+                ],
+                "xy_speed_mps": 20.0,
+                "abs_z_speed_mps": 0.8829618681222204
+              },
+              "R4": {
+                "deterministic_action": [
+                  0.17883163690567017,
+                  0.15476742386817932,
+                  -0.056981779634952545
+                ],
+                "velocity_mps": [
+                  9.423213988542553,
+                  4.303032229281963,
+                  -0.7800492666778156
+                ],
+                "xy_speed_mps": 10.359201139089025,
+                "abs_z_speed_mps": 0.7800492666778156
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      },
+      {
+        "return": 274.96243210582134,
+        "length": 288,
+        "terminated": true,
+        "truncated": false,
+        "termination_reason": "persistent_outage",
+        "mean_e2e_rate_mbps": 6.353384002204611,
+        "rate_satisfaction_ratio": 0.8020833333333334,
+        "outage_step_ratio": 0.08680555555555555,
+        "min_link_margin_db": -0.8723111508560963,
+        "min_separation_m": 171.72863666155268,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 3.107739752903581,
+        "max_xy_accel_mps2": 1.1958988545480447,
+        "max_abs_z_accel_mps2": 1.112111926078796,
+        "speed_accel_violations": 0,
+        "mean_acceleration_mps2": 0.4389108138020586,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1210.2437293984326,
+        "seed": 10019,
+        "outage_events": [
+          {
+            "seed": 10019,
+            "start_step": 264,
+            "end_step": 288,
+            "length": 25,
+            "links_at_onset": [
+              "R1->R2"
+            ],
+            "link_step_counts": {
+              "R1->R2": 25
+            },
+            "trigger_action_abs_mean": 0.1540387123823166,
+            "trigger_action_saturation_ratio": 0.0,
+            "link_physics_at_onset": {
+              "R1->R2": {
+                "horizontal_distance_m": 482.5285726567422,
+                "height_difference_abs_m": 97.29814560038162,
+                "snr_linear": 3.1501885151769677,
+                "snr_margin_db": -0.01663456162343202,
+                "capacity_mbps": 20.53176869889434
+              }
+            },
+            "relay_controls_at_onset": {
+              "R1": {
+                "deterministic_action": [
+                  0.258009135723114,
+                  0.28819045424461365,
+                  -0.07052228599786758
+                ],
+                "velocity_mps": [
+                  6.368616269517213,
+                  18.387324941903366,
+                  -2.821947159711272
+                ],
+                "xy_speed_mps": 19.459007983643488,
+                "abs_z_speed_mps": 2.821947159711272
+              },
+              "R4": {
+                "deterministic_action": [
+                  -0.2215047925710678,
+                  -0.17226538062095642,
+                  0.014230843633413315
+                ],
+                "velocity_mps": [
+                  -2.3360866457223888,
+                  -3.273983125598167,
+                  0.21177060818299653
+                ],
+                "xy_speed_mps": 4.0219729391213,
+                "abs_z_speed_mps": 0.21177060818299653
+              }
+            },
+            "ended_by": "persistent_outage"
+          }
+        ]
+      }
+    ]
+  }
+}

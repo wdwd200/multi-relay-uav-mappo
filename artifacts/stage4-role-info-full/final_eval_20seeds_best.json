@@ -1,0 +1,34 @@
+{
+  "checkpoint": "artifacts\\stage4-role-info-full\\checkpoints\\best.pt",
+  "score": [
+    0.0,
+    -0.0,
+    17.0,
+    3.0,
+    0.06875702463236104,
+    -0.9191416994505734,
+    -6.739270852314729
+  ],
+  "summary": {
+    "mean_return": 102.95394924916816,
+    "mean_e2e_rate_mbps": 6.739270852314729,
+    "rate_satisfaction_ratio": 0.9191416994505734,
+    "outage_step_ratio": 0.06875702463236104,
+    "mean_acceleration_mps2": 0.7564367348549579,
+    "action_saturation_ratio": 0.0,
+    "movement_distance_m": 665.0241372858526,
+    "episodes": 20,
+    "total_steps": 2100,
+    "normal_completion_count": 0,
+    "collision_count": 0,
+    "boundary_count": 17,
+    "persistent_outage_count": 3,
+    "speed_accel_violations": 0,
+    "min_link_margin_db": -1.9527636586800305,
+    "min_separation_m": 40.62386194166391,
+    "max_xy_speed_mps": 20.000000000000004,
+    "max_abs_z_speed_mps": 5.0,
+    "max_xy_accel_mps2": 1.3005677595846858,
+    "max_abs_z_accel_mps2": 1.3357300758361834
+  }
+}

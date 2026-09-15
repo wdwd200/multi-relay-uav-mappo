@@ -1,0 +1,115 @@
+{
+  "unit_tests": {
+    "passed": true,
+    "detail": "ran=5, failures=0, errors=0"
+  },
+  "stage1_regression": {
+    "passed": true,
+    "output_tail": "{\"A_reset_legality\": true, \"B_zero_action\": true, \"C_max_acceleration\": true, \"D_speed_limit\": true, \"E_communication_monotonicity\": true, \"F_tdma\": true, \"G_hard_outage\": true, \"H_safety\": true, \"I_boundary\": true, \"J_k_scaling\": true, \"K_reproducibility_random_episodes\": true, \"L_frozen_spec_alignment\": true, \"M_episode_hl_distance_constraint\": true}"
+  },
+  "hard_checks": {
+    "gamma_min_is_5db_linear": true,
+    "initial_hl_distance_in_range": true,
+    "actual_hl_distance_within_dmax": true,
+    "hl_xy_speed_capped": true,
+    "hl_z_speed_capped": true,
+    "hl_xy_acceleration_capped": true,
+    "hl_z_acceleration_capped": true,
+    "d_warn_is_60m": true,
+    "d_safe_is_20m": true,
+    "persistent_outage_is_25": true,
+    "outage_masks_effective_rate": true,
+    "recovery_resets_counter": true,
+    "no_nan_or_inf": true,
+    "seed_reproducibility": true,
+    "k_smoke": true,
+    "termination_truncation_semantics": true,
+    "dmax_preventive_acceleration_stress": true
+  },
+  "typical_links": [
+    {
+      "horizontal_distance_m": 300.0,
+      "abs_height_difference_m": 0.0,
+      "distance_3d_m": 300.0,
+      "elevation_angle_deg": 0.0,
+      "antenna_gain_linear": 1.0,
+      "antenna_gain_db": 0.0,
+      "old_snr_db": 9.457574905606755,
+      "new_snr_db": 9.457574905606755,
+      "new_capacity_mbps": 32.96585045319744,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 400.0,
+      "abs_height_difference_m": 0.0,
+      "distance_3d_m": 400.0,
+      "elevation_angle_deg": 0.0,
+      "antenna_gain_linear": 1.0,
+      "antenna_gain_db": 0.0,
+      "old_snr_db": 6.958800173440757,
+      "new_snr_db": 6.958800173440757,
+      "new_capacity_mbps": 25.76413651646186,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 500.0,
+      "abs_height_difference_m": 0.0,
+      "distance_3d_m": 500.0,
+      "elevation_angle_deg": 0.0,
+      "antenna_gain_linear": 1.0,
+      "antenna_gain_db": 0.0,
+      "old_snr_db": 5.020599913279629,
+      "new_snr_db": 5.020599913279629,
+      "new_capacity_mbps": 20.625752254934444,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 400.0,
+      "abs_height_difference_m": 200.0,
+      "distance_3d_m": 447.21359549995793,
+      "elevation_angle_deg": 26.56505117707799,
+      "antenna_gain_linear": 0.7999999999999999,
+      "antenna_gain_db": -0.9691001300805645,
+      "old_snr_db": 5.989700043360193,
+      "new_snr_db": 5.020599913279629,
+      "new_capacity_mbps": 20.625752254934444,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 300.0,
+      "abs_height_difference_m": 200.0,
+      "distance_3d_m": 360.5551275463989,
+      "elevation_angle_deg": 33.690067525979785,
+      "antenna_gain_linear": 0.6923076923076924,
+      "antenna_gain_db": -1.5970084286751183,
+      "old_snr_db": 7.860566476931636,
+      "new_snr_db": 6.263558048256517,
+      "new_capacity_mbps": 23.868524233410383,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 200.0,
+      "abs_height_difference_m": 150.0,
+      "distance_3d_m": 250.0,
+      "elevation_angle_deg": 36.86989764584402,
+      "antenna_gain_linear": 0.6400000000000001,
+      "antenna_gain_db": -1.9382002601611275,
+      "old_snr_db": 11.041199826559252,
+      "new_snr_db": 9.102999566398125,
+      "new_capacity_mbps": 31.91234331306354,
+      "below_5db_outage": false
+    },
+    {
+      "horizontal_distance_m": 200.0,
+      "abs_height_difference_m": 200.0,
+      "distance_3d_m": 282.842712474619,
+      "elevation_angle_deg": 45.0,
+      "antenna_gain_linear": 0.5000000000000001,
+      "antenna_gain_db": -3.0102999566398108,
+      "old_snr_db": 9.969100130080568,
+      "new_snr_db": 6.958800173440757,
+      "new_capacity_mbps": 25.76413651646186,
+      "below_5db_outage": false
+    }
+  ]
+}

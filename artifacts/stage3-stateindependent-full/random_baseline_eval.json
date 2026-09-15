@@ -1,0 +1,27 @@
+{
+  "policy": "uniform_random_actions",
+  "action_seed_offset": 50000,
+  "score": [0.0, -0.0, 12.0, 8.0, 0.07343175449023395, -0.9001853698538174, -6.596516935429274],
+  "summary": {
+    "mean_return": 164.28513071718444,
+    "mean_e2e_rate_mbps": 6.596516935429274,
+    "rate_satisfaction_ratio": 0.9001853698538174,
+    "outage_step_ratio": 0.07343175449023395,
+    "mean_acceleration_mps2": 1.8656885462431592,
+    "action_saturation_ratio": 0.04905795666080497,
+    "movement_distance_m": 390.8362841890108,
+    "episodes": 20,
+    "total_steps": 3275,
+    "normal_completion_count": 0,
+    "collision_count": 0,
+    "boundary_count": 12,
+    "persistent_outage_count": 8,
+    "speed_accel_violations": 0,
+    "min_link_margin_db": -1.0640845540620973,
+    "min_separation_m": 77.08621747627309,
+    "max_xy_speed_mps": 9.343003020995203,
+    "max_abs_z_speed_mps": 6.0,
+    "max_xy_accel_mps2": 2.000000000000005,
+    "max_abs_z_accel_mps2": 1.9999705553054814
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "stage": "Stage 3 Plain MAPPO",
+  "date": "2026-09-09",
+  "status": "complete_weak_baseline",
+  "final_decision": "Stage 3 Plain MAPPO baseline = COMPLETE",
+  "classification": {
+    "engineering_correctness": "pass",
+    "ppo_numerical_stability": "pass",
+    "task_performance_acceptance": "fail",
+    "baseline_status": "valid_weak_baseline"
+  },
+  "environment_v1_1": {
+    "physical_model_frozen": true,
+    "unchanged": ["dynamics", "reward", "local_observation_26", "communication", "antenna", "outage_and_persistent_outage", "safety", "termination_and_truncation"]
+  },
+  "critic_global_state": {
+    "formula": "23 + 6*K",
+    "K4_dimension": 47,
+    "replaced_incorrect_design_dimension": 60,
+    "actor_uses_global_state": false
+  },
+  "fifth_formal_run": {
+    "run_dir": "artifacts/stage3-stateindependent-full",
+    "completed": true,
+    "updates": 1000,
+    "team_time_samples": 1024000,
+    "train_log_rows": 1000,
+    "all_train_rows_finite": true,
+    "periodic_evaluations": 20,
+    "periodic_actor_checkpoints": 20,
+    "best_checkpoint_update": 650,
+    "actor_distribution": "state_independent_tanh",
+    "effective_log_std_bounds": [-4.0, 0.0],
+    "effective_log_std_initial": -1.5,
+    "entropy_coef": 0.0,
+    "actor_lr": 0.0001,
+    "critic_lr": 0.0003,
+    "actor_final_path": "artifacts/stage3-stateindependent-full/checkpoints/actor_final.pt",
+    "best_path": "artifacts/stage3-stateindependent-full/checkpoints/best.pt",
+    "latest_path": "artifacts/stage3-stateindependent-full/checkpoints/latest.pt"
+  },
+  "fifth_numerical_result": {
+    "state_dependent_log_std_saturation": false,
+    "action_saturation_ratio_final_evaluation": 0.0,
+    "tail_200_updates": {
+      "entropy": -2.2293201758116483,
+      "approx_kl": 0.0060251378506436595,
+      "clip_fraction": 0.06676916503906251,
+      "rollout_action_saturation_ratio": 0.0
+    },
+    "no_nan_or_inf": true
+  },
+  "final_evaluation": {
+    "checkpoint": "artifacts/stage3-stateindependent-full/checkpoints/best.pt",
+    "deterministic": true,
+    "seeds": [10000, 10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10009, 10010, 10011, 10012, 10013, 10014, 10015, 10016, 10017, 10018, 10019],
+    "score": [0.0, 0.0, 1.0, 19.0, 0.12916135752581973, -0.7755665264627875, -6.103710197871623],
+    "summary": {
+      "normal_completion_count": 0,
+      "persistent_outage_count": 19,
+      "collision_count": 0,
+      "boundary_count": 1,
+      "speed_accel_violations": 0,
+      "mean_e2e_rate_mbps": 6.103710197871623,
+      "outage_step_ratio": 0.12916135752581973,
+      "rate_satisfaction_ratio": 0.7755665264627875,
+      "min_separation_m": 29.80121548231724,
+      "max_xy_speed_mps": 20.000000000000004,
+      "max_abs_z_speed_mps": 3.5061376672238125,
+      "max_xy_accel_mps2": 1.4582432649941544,
+      "max_abs_z_accel_mps2": 0.8781951665878296,
+      "action_saturation_ratio": 0.0,
+      "mean_acceleration_mps2": 0.5674525025145424,
+      "movement_distance_m": 1489.9727816672746
+    }
+  },
+  "random_baseline": {
+    "executed": true,
+    "policy": "uniform_random_actions",
+    "same_seeds": true,
+    "score": [0.0, 0.0, 12.0, 8.0, 0.07343175449023395, -0.9001853698538174, -6.596516935429274]
+  },
+  "acceptance_criteria": {
+    "hard_speed_accel_violations_zero": true,
+    "normal_500_step_completions_at_least_16_of_20": false,
+    "collision_plus_boundary_at_most_2_of_20": true,
+    "mean_e2e_rate_at_least_6_mbps": true,
+    "completion_first_safety_priority_better_than_random": true
+  },
+  "tests_and_regressions": {
+    "stage3_mappo_tests": "28/28 PASS",
+    "stage1_selfcheck": "13/13 PASS",
+    "stage2_hard_checks": "17/17 PASS",
+    "stage2_5_antenna_tests": "5/5 PASS",
+    "stage2_5_hard_checks": "17/17 PASS",
+    "checkpoint_resume_and_seed_progress": "PASS"
+  },
+  "five_round_summary": [
+    {"round": "A", "distribution": "state_dependent_clamp", "entropy_coef": 0.01, "actor_lr": 0.0003, "best_update": 900, "normal": 6, "persistent_outage": 13, "mean_e2e_rate_mbps": 6.694105951788129},
+    {"round": "B", "distribution": "state_dependent_clamp", "entropy_coef": 0.0, "actor_lr": 0.0003, "best_update": 200, "normal": 0, "persistent_outage": 20, "mean_e2e_rate_mbps": 5.908689223435497},
+    {"round": "C", "distribution": "state_dependent_clamp", "entropy_coef": 0.001, "actor_lr": 0.0003, "best_update": 700, "normal": 0, "persistent_outage": 19, "mean_e2e_rate_mbps": 6.134737259885715},
+    {"round": "D", "distribution": "state_dependent_clamp", "entropy_coef": 0.0, "actor_lr": 0.0001, "best_update": 150, "normal": 0, "persistent_outage": 19, "mean_e2e_rate_mbps": 6.086493244784447},
+    {"round": "E", "distribution": "state_independent_tanh", "entropy_coef": 0.0, "actor_lr": 0.0001, "best_update": 650, "normal": 0, "persistent_outage": 19, "mean_e2e_rate_mbps": 6.103710197871623}
+  ],
+  "structural_diagnosis": {
+    "selected_conclusion": "B",
+    "actor_local_observation_noninjective_over_global_state": true,
+    "strictly_proven_different_optimal_action_for_every_alias": false,
+    "evidence": [
+      "Actor omits H/L waypoint and cruise_speed, remote node states, and consecutive_outage_steps.",
+      "Actor input has ordered upstream/downstream local slots but no neighbor identity, role, or chain index.",
+      "Centralized Critic observes global state only during training and cannot provide deployment-time messages.",
+      "Fifth-run persistent-outage onsets cover all five hops while action saturation is zero.",
+      "Five controlled runs did not meet normal-completion acceptance after distribution and PPO-stability corrections."
+    ],
+    "next_step": "Enter separately authorized Role/Graph structural experiment design; do not start another Plain MAPPO hyperparameter run automatically."
+  },
+  "result_documents": ["15_阶段3_Plain_MAPPO_stateindependent正式训练结果.md", "16_阶段3_Plain_MAPPO结构能力诊断与最终收口.md"]
+}

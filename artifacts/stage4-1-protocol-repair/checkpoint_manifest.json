@@ -1,0 +1,567 @@
+{
+  "protocol_version": "stage4.1-v1",
+  "generated_at_utc": "2026-09-15T09:46:35.922873+00:00",
+  "runs": {
+    "P0": {
+      "variant": "plain",
+      "historical_run_seed": 2026,
+      "directory": "artifacts\\stage3-stateindependent-full",
+      "checkpoints": [
+        {
+          "update": 50,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0050.pt",
+          "sha256": "a1ce7c3d65a843497cbf8438c3fbc01095470c8657a36672a085cfaf3a4ccc31",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 100,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0100.pt",
+          "sha256": "dbdf7a1536e60dc104ec2c02a05d9d480aba15c5cdb3f7648497ccc11572016d",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 150,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0150.pt",
+          "sha256": "f260bdc422ab0c264d55bc07031c7cdd868be424644c47a6655f2045d5877d0e",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 200,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0200.pt",
+          "sha256": "67de66064ba39bd641f21a56120ad73ec0fc5282823f975333b01b889a20ea04",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 250,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0250.pt",
+          "sha256": "346637e0dd04cc876d8db9b2b1de041c4b3d40011eccadbda39b2a62428eea35",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 300,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0300.pt",
+          "sha256": "d1f4d6475f3a0938ceb0b95fd72d428343e6df5d833c7f14744d47e34493a1cb",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 350,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0350.pt",
+          "sha256": "fed2df5f9d6239afa73c9026746955a2b48ae7f64f4fb726e0229077e52abfdd",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 400,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0400.pt",
+          "sha256": "d80102f808e74695e04e16bc134e0adeff6f646250791d0adcd78d655cfea88b",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 450,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0450.pt",
+          "sha256": "4ea83e60aa3ab4f857a6b753c8ff982bb468e0530517b4e3e5d51a75c8482e38",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 500,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0500.pt",
+          "sha256": "2f1441a86a567f8fadb082e18c53951832f3751e0ed4a58ba0b9335f8ee55cf9",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 550,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0550.pt",
+          "sha256": "b7d4f632ecb75aa2e9d55b5d53860e9199a5c719757fd268c3d0f62c2c080421",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 600,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0600.pt",
+          "sha256": "5db74d0fb053c12c02396f27ebbbe68814a386fa9e15de3fe04e47517d36ef14",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 650,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0650.pt",
+          "sha256": "fe413df84835660b6255d66cbc9c72670ceae1aa12e04f505707b2c6bce02582",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 700,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0700.pt",
+          "sha256": "3217c505ab3bb629dd49709946fcc93834d15c5d21e72a42b1ce9649358af9f1",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 750,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0750.pt",
+          "sha256": "7b49b9b422f5b7e4ea1d44f1790bf66db33ef2a8e8004eef44ed40c06e0c0a40",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 800,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0800.pt",
+          "sha256": "8fd853ab9983dbe6b395b014ccc9d9478bdf70bf994aa77bbff28f4c22ac2fe8",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 850,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0850.pt",
+          "sha256": "69ec95112403221f497ee73f8824ad693b06c5ba407e64d02f3180327d58981f",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 900,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0900.pt",
+          "sha256": "352cd193fffc51fd0b63a6432d54cf7a52c992aee221046239ed6997bfe9a032",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 950,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_0950.pt",
+          "sha256": "a3e892e4062b6ebf5dc37a001d92009be5f0026de144d54cec4d1a3d6fca0f87",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        },
+        {
+          "update": 1000,
+          "path": "artifacts\\stage3-stateindependent-full\\eval_checkpoints\\actor_update_1000.pt",
+          "sha256": "4f42c320fe424e261a049e9a068d7ed44dccb3e055f548b21573209011bf497f",
+          "size_bytes": 86138,
+          "actor_variant": "plain",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+        }
+      ]
+    },
+    "P1": {
+      "variant": "role_info",
+      "historical_run_seed": 2026,
+      "directory": "artifacts\\stage4-role-info-full",
+      "checkpoints": [
+        {
+          "update": 50,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0050.pt",
+          "sha256": "c768e134754993281d8b31c9dee73b26c7f4ce41dc74ea4ba252bf57dfcf1f06",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 100,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0100.pt",
+          "sha256": "6fbc617d1e2dbc4567ced6ee8366b7ccd8b7803a11b3fe7e2c2fca04fbf3c02a",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 150,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0150.pt",
+          "sha256": "60e53d0357e277cf2aa2eb4627563dcc55b5497927235cfdb90504d8f7dbea43",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 200,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0200.pt",
+          "sha256": "d842b8113724fc5437e11f38e2b870abe2b2f68a6279d59d34bcf1e04e2a9050",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 250,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0250.pt",
+          "sha256": "c085e2109edca7ede50d5fd3c5d7b08dc2749d8131d6287d80eead430bfce01f",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 300,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0300.pt",
+          "sha256": "fc0b91f2aed36eefe658cd5c7a64e17a1fb68894e4f73f50caaed4ada4dcb2f3",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 350,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0350.pt",
+          "sha256": "741970f563631ce283cc8c630dcf05c340cfb4146a3b1923c632133d6250d54b",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 400,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0400.pt",
+          "sha256": "0eb27b1be2961cd27e45787209748d0cf0b614ee3fc0a326907913bacf2f8e64",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 450,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0450.pt",
+          "sha256": "dc67005d879a5969927e4746498a6e788939097f744bdaa79a26d100f2e82016",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 500,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0500.pt",
+          "sha256": "9bb61481d271aea93699322e004710add3df4747dcad850cbd35cd0363d26ba1",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 550,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0550.pt",
+          "sha256": "1297d58b12452de5927adaead17b0698d6a640bf1e7752bef432d2e768723993",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 600,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0600.pt",
+          "sha256": "274b1e6870b3f07ce662a4198e214a40b28aea6df7c45a89c15848c720d9b84b",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 650,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0650.pt",
+          "sha256": "564c74d9e4f88bee25027f292e10ed6d3c9d9209356c9301a9c19de0a50a5a9e",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 700,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0700.pt",
+          "sha256": "a5ccf4cfca1f0b01325f615a10455a7fa094b911496dd2fdc30139075592d488",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 750,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0750.pt",
+          "sha256": "60c28baa26f0fce1662d9dd32d00692ce400e0b80faf85fd78bc16b7ec72bd8f",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 800,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0800.pt",
+          "sha256": "fd689fdd214e9cd78aadbd600b5e49dee40c908adbb93bb96fc6cb2d969e51e4",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 850,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0850.pt",
+          "sha256": "af9c7a3b34f3448a295f30448090975c0af743cb72b2bfa76ae17a5ab44ac4fd",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 900,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0900.pt",
+          "sha256": "92f44170b69399f3ee8837a03cc2d44136e2bb0e79fd868c565741dd64725ca7",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 950,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_0950.pt",
+          "sha256": "93d0b6e1524cc72cf5ddfc07ff5ed667ba7e5c9b55225bc75a3fcdbd4fcf0a20",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        },
+        {
+          "update": 1000,
+          "path": "artifacts\\stage4-role-info-full\\eval_checkpoints\\actor_update_1000.pt",
+          "sha256": "6940b105121fb371429161ea59acb8f7b21c8e588859dc6d50aa9276067e2f46",
+          "size_bytes": 87674,
+          "actor_variant": "role_info",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+        }
+      ]
+    },
+    "P2": {
+      "variant": "role_head",
+      "historical_run_seed": 2026,
+      "directory": "artifacts\\stage4-role-head-full",
+      "checkpoints": [
+        {
+          "update": 50,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0050.pt",
+          "sha256": "c0b15177dfe3cd6f41d262e024978f9460ba24abe27e875952a3fc0c1a9f7c7b",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 100,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0100.pt",
+          "sha256": "cc4b8903a76427bb909d1ca909024ea88cebf99a12fffd076f68f84d20b16049",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 150,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0150.pt",
+          "sha256": "0ea9633a70aae1d14befbcb40297109aa283ae3893dd9fe41a54d96c3dbeaf3f",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 200,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0200.pt",
+          "sha256": "8ed593df1584afe69f36ebe0ef56b087e270657b933d27f13ba86f19b3941e5f",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 250,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0250.pt",
+          "sha256": "c08b502dfe0b7e27668947597546c7be2aaa1b8bfb211e86b9f3ce4019849b2e",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 300,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0300.pt",
+          "sha256": "a955f2bf6f2ca5b05efec61950e926435605533756a8345855768fe6aeba5bf8",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 350,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0350.pt",
+          "sha256": "ccd4a53f748bbad81967f1b7ec5ccc9e3282db03d8ff344d1e052087b67218b0",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 400,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0400.pt",
+          "sha256": "c7bc4ce304d1317f55467586cb3186cdb27584ffd59da62c720205248f9a7adb",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 450,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0450.pt",
+          "sha256": "ec8ed1f92b82880c7c97acc508ee819b0c0da60ba6593e6c0ed92745bc331d6b",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 500,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0500.pt",
+          "sha256": "3b0cee6a7a6c9d654191218c9dd42ac278add32ce1b4c19459221156ee7f8a86",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 550,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0550.pt",
+          "sha256": "d0b6b3de1ab0d2643e37958187c043a8e0a0bca45e7a7c0f6a21020e6fab8061",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 600,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0600.pt",
+          "sha256": "ecb54f217a914646719b6c2e3b9fdfb9c3d2e454941665b3a7bcd6d1f4688740",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 650,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0650.pt",
+          "sha256": "31e08acb7501a6f15e3e6eaa4735e7f50cedf2729007ce69a3a821509a0d65b6",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 700,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0700.pt",
+          "sha256": "5f7526a76f608d707c27e37c77619c621f5964ed5447daf8ccefaff67be3c717",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 750,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0750.pt",
+          "sha256": "08b33b7dd37f613c0eeb7e4a9a06701af5a83879c3cce7c061758c4f5753ae82",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 800,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0800.pt",
+          "sha256": "e16b3de05206623611a13fab7f798eee4bf4e2224e71500e6b9e63cf6c7873a0",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 850,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0850.pt",
+          "sha256": "501ac91df9d6b6961b279f9d23b36ca6459cf0ff13eeb592fbbebf4c001d1294",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 900,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0900.pt",
+          "sha256": "bd041053db986d87f7b94141dd0e0dcabca23335dab879c467a690a32c481f03",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 950,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_0950.pt",
+          "sha256": "934e1383a250fae18e5569917dc1c5b91b8106a696fb4179e148019e83ba2f90",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        },
+        {
+          "update": 1000,
+          "path": "artifacts\\stage4-role-head-full\\eval_checkpoints\\actor_update_1000.pt",
+          "sha256": "5ea3338f6bb989a4c60ff1c2fc325546b9bf5b1827f58bc5021a09c68f7cc199",
+          "size_bytes": 90463,
+          "actor_variant": "role_head",
+          "protocol_status": "legacy_protocol",
+          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+        }
+      ]
+    }
+  }
+}

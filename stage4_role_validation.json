@@ -1,0 +1,242 @@
+{
+  "stage": "Stage 4 Role ablation implementation validation",
+  "role_mapping": {
+    "K3": [
+      0,
+      1,
+      2
+    ],
+    "K4": [
+      0,
+      1,
+      1,
+      2
+    ],
+    "K5": [
+      0,
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  "parameter_report": {
+    "plain": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 26,
+      "actor_parameter_count": 20358
+    },
+    "role_info": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 29,
+      "actor_parameter_count": 20742
+    },
+    "role_head": {
+      "environment_observation_dim": 26,
+      "effective_actor_input_dim": 26,
+      "actor_parameter_count": 21132
+    }
+  },
+  "p0_regression": {
+    "checkpoint": "artifacts\\stage3-stateindependent-full\\checkpoints\\actor_final.pt",
+    "config_actor_variant": "plain",
+    "seeds": [
+      10000,
+      10019
+    ],
+    "score": [
+      0.0,
+      -0.0,
+      1.0,
+      19.0,
+      0.12916135752581973,
+      -0.7755665264627875,
+      -6.103710197871623
+    ],
+    "summary": {
+      "mean_return": 167.10437842083033,
+      "mean_e2e_rate_mbps": 6.103710197871623,
+      "rate_satisfaction_ratio": 0.7755665264627875,
+      "outage_step_ratio": 0.12916135752581973,
+      "mean_acceleration_mps2": 0.5674525025145424,
+      "action_saturation_ratio": 0.0,
+      "movement_distance_m": 1489.9727816672746,
+      "episodes": 20,
+      "total_steps": 3842,
+      "normal_completion_count": 0,
+      "collision_count": 0,
+      "boundary_count": 1,
+      "persistent_outage_count": 19,
+      "speed_accel_violations": 0,
+      "min_link_margin_db": -2.127137000855446,
+      "min_separation_m": 29.80121548231724,
+      "max_xy_speed_mps": 20.000000000000004,
+      "max_abs_z_speed_mps": 3.5061376672238125,
+      "max_xy_accel_mps2": 1.4582432649941544,
+      "max_abs_z_accel_mps2": 0.8781951665878296
+    },
+    "pass": true
+  },
+  "smokes": {
+    "role_info": {
+      "variant": "role_info",
+      "directory": "artifacts\\stage4-role-info-smoke",
+      "updates": 10,
+      "team_time_samples": 1024,
+      "total_samples": 10240,
+      "configuration_contract_pass": true,
+      "finite_logs": true,
+      "checkpoints": {
+        "latest": true,
+        "best": true,
+        "actor_final": true,
+        "periodic_actor_update_0010": true
+      },
+      "final_train": {
+        "actor_policy_loss": -0.004633682197891176,
+        "critic_loss": 55.660518169403076,
+        "entropy": -0.2267722874879837,
+        "approx_kl": 0.0060538558478583585,
+        "clip_fraction": 0.0560302734375,
+        "actor_grad_norm": 0.6692229211330414,
+        "critic_grad_norm": 96.64442710876465,
+        "raw_log_std_mean": 0.25789397954940796,
+        "clamped_log_std_mean": -1.4953614473342896,
+        "action_saturation_ratio": 0.0
+      },
+      "final_evaluation": {
+        "mean_return": 188.82024192138053,
+        "mean_e2e_rate_mbps": 6.9071230000827395,
+        "rate_satisfaction_ratio": 0.9252072327449211,
+        "outage_step_ratio": 0.04392904694412232,
+        "mean_acceleration_mps2": 0.2440110019262523,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 651.1914017533866,
+        "episodes": 5,
+        "total_steps": 902,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 4,
+        "persistent_outage_count": 1,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.2089536868187807,
+        "min_separation_m": 55.14879089699475,
+        "max_xy_speed_mps": 13.648203618945363,
+        "max_abs_z_speed_mps": 5.0,
+        "max_xy_accel_mps2": 0.4141808161779277,
+        "max_abs_z_accel_mps2": 0.2011420726776123
+      },
+      "actor_final_reload_evaluation": {
+        "mean_return": 188.82024192138053,
+        "mean_e2e_rate_mbps": 6.9071230000827395,
+        "rate_satisfaction_ratio": 0.9252072327449211,
+        "outage_step_ratio": 0.04392904694412232,
+        "mean_acceleration_mps2": 0.2440110019262523,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 651.1914017533866,
+        "episodes": 5,
+        "total_steps": 902,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 4,
+        "persistent_outage_count": 1,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.2089536868187807,
+        "min_separation_m": 55.14879089699475,
+        "max_xy_speed_mps": 13.648203618945363,
+        "max_abs_z_speed_mps": 5.0,
+        "max_xy_accel_mps2": 0.4141808161779277,
+        "max_abs_z_accel_mps2": 0.2011420726776123
+      },
+      "actor_final_reload_matches_logged_evaluation": true,
+      "pass": true
+    },
+    "role_head": {
+      "variant": "role_head",
+      "directory": "artifacts\\stage4-role-head-smoke",
+      "updates": 10,
+      "team_time_samples": 1024,
+      "total_samples": 10240,
+      "configuration_contract_pass": true,
+      "finite_logs": true,
+      "checkpoints": {
+        "latest": true,
+        "best": true,
+        "actor_final": true,
+        "periodic_actor_update_0010": true
+      },
+      "final_train": {
+        "actor_policy_loss": -0.006759242073167115,
+        "critic_loss": 76.54227275848389,
+        "entropy": -0.22774363532662392,
+        "approx_kl": 0.0042198433613521045,
+        "clip_fraction": 0.05126953125,
+        "actor_grad_norm": 0.5700768582522869,
+        "critic_grad_norm": 95.74258575439453,
+        "raw_log_std_mean": 0.25789427757263184,
+        "clamped_log_std_mean": -1.4953436851501465,
+        "action_saturation_ratio": 0.0
+      },
+      "final_evaluation": {
+        "mean_return": 138.96446783177294,
+        "mean_e2e_rate_mbps": 7.162623363536296,
+        "rate_satisfaction_ratio": 0.974496644295302,
+        "outage_step_ratio": 0.02550335570469799,
+        "mean_acceleration_mps2": 0.30417439366366333,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 357.63471977992424,
+        "episodes": 5,
+        "total_steps": 620,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 5,
+        "persistent_outage_count": 0,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.3551764840106921,
+        "min_separation_m": 86.20922872027514,
+        "max_xy_speed_mps": 12.400916499365694,
+        "max_abs_z_speed_mps": 6.0,
+        "max_xy_accel_mps2": 0.5404746752377317,
+        "max_abs_z_accel_mps2": 0.41481694579124456
+      },
+      "actor_final_reload_evaluation": {
+        "mean_return": 138.96446783177294,
+        "mean_e2e_rate_mbps": 7.162623363536296,
+        "rate_satisfaction_ratio": 0.974496644295302,
+        "outage_step_ratio": 0.02550335570469799,
+        "mean_acceleration_mps2": 0.30417439366366333,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 357.63471977992424,
+        "episodes": 5,
+        "total_steps": 620,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 5,
+        "persistent_outage_count": 0,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.3551764840106921,
+        "min_separation_m": 86.20922872027514,
+        "max_xy_speed_mps": 12.400916499365694,
+        "max_abs_z_speed_mps": 6.0,
+        "max_xy_accel_mps2": 0.5404746752377317,
+        "max_abs_z_accel_mps2": 0.41481694579124456
+      },
+      "actor_final_reload_matches_logged_evaluation": true,
+      "pass": true
+    }
+  },
+  "automated_tests": {
+    "command": "C:\\Python314\\python.exe -m unittest discover -s selfcheck -p test_mappo*.py",
+    "return_code": 0,
+    "tests_run": 38,
+    "pass": true,
+    "output_tail": [
+      "......................................",
+      "----------------------------------------------------------------------",
+      "Ran 38 tests in 2.768s",
+      "",
+      "OK"
+    ]
+  },
+  "overall_pass": true
+}

@@ -1,0 +1,42 @@
+{
+  "num_relays": 4,
+  "local_obs_dim": 26,
+  "action_dim": 3,
+  "actor_hidden_sizes": [
+    128,
+    128
+  ],
+  "critic_hidden_sizes": [
+    128,
+    128
+  ],
+  "actor_variant": "role_head",
+  "actor_log_std_mode": "state_independent_tanh",
+  "log_std_min": -4.0,
+  "log_std_max": 0.0,
+  "state_independent_log_std_init": -1.5,
+  "num_envs": 8,
+  "rollout_length": 128,
+  "mini_batch_size": 256,
+  "ppo_epochs": 10,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip_epsilon": 0.2,
+  "actor_lr": 0.0001,
+  "critic_lr": 0.0003,
+  "entropy_coef": 0.0,
+  "value_loss_coef": 0.5,
+  "max_grad_norm": 0.5,
+  "normalizer_clip": 10.0,
+  "normalizer_epsilon": 0.0001,
+  "base_seed": 2026,
+  "eval_interval_updates": 50,
+  "periodic_eval_episodes": 5,
+  "acceptance_eval_episodes": 20,
+  "smoke_updates": 10,
+  "full_updates": 1000,
+  "device": "cpu",
+  "output_dir": "artifacts/stage4-role-head-full",
+  "global_state_dim": 47,
+  "team_time_samples": 1024
+}
