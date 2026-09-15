@@ -128,12 +128,39 @@ class MappoConfig:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "MappoConfig":
+        """Deserialize a checkpoint config without laundering protocol tampering.
+
+        ``__post_init__`` deliberately derives new-protocol fields for direct
+        construction and ``dataclasses.replace``.  Serialized checkpoint data
+        needs the opposite order: validate its *raw* values first, then allow
+        normal construction to derive the same values again.
+        """
+        raw = dict(data)
+        protocol_version = raw.get("protocol_version")
+        if protocol_version is not None and protocol_version != LEGACY_PROTOCOL_VERSION:
+            if protocol_version != PROTOCOL_VERSION:
+                raise ValueError("unsupported experiment protocol version")
+            if "run_seed" not in raw:
+                raise ValueError("Stage-4.1 checkpoint config is missing run_seed")
+            expected = protocol_fields(int(raw["run_seed"]))
+            for name, expected_value in expected.items():
+                if name not in raw or raw[name] != expected_value:
+                    raise ValueError(f"serialized {name} does not match the frozen protocol derivation")
         accepted = {name for name in cls.__dataclass_fields__}
-        values = {name: value for name, value in data.items() if name in accepted}
-        if "protocol_version" not in data:
+        values = {name: value for name, value in raw.items() if name in accepted}
+        if protocol_version is None:
             # Do not pretend a pre-Stage-4.1 artifact used independent streams.
             values["protocol_version"] = LEGACY_PROTOCOL_VERSION
-            values.setdefault("run_seed", int(data.get("base_seed", 2026)))
+        if values.get("protocol_version") == LEGACY_PROTOCOL_VERSION:
+            # Legacy artifacts did not have independently seeded streams.
+            # Normalize any stray fields away so a later save cannot create a
+            # config/metadata/RNG hybrid that falsely claims Stage 4.1.
+            values["run_seed"] = int(raw.get("base_seed", raw.get("run_seed", 2026)))
+            for name in ("actor_init_seed", "critic_init_seed", "action_noise_seed", "minibatch_seed",
+                         "train_env_seed_base"):
+                values[name] = None
+            values["validation_seed_manifest"] = ""
+            values["final_test_seed_manifest"] = ""
         for name in ("actor_hidden_sizes", "critic_hidden_sizes"):
             if name in values:
                 values[name] = tuple(values[name])

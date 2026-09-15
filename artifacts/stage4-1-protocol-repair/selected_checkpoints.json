@@ -42,8 +42,9 @@
       ],
       "selection_rule": "safety_priority_key; exact tie selects earlier update",
       "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
-      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
-      "selected_at_utc": "2026-09-15T09:52:45.636069+00:00"
+      "validation_seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+      "selected_at_utc": "2026-09-15T09:52:45.636069+00:00",
+      "validation_seed_manifest_hash_scheme": "canonical-json-v1"
     },
     "P1": {
       "variant": "role_info",
@@ -63,8 +64,9 @@
       ],
       "selection_rule": "safety_priority_key; exact tie selects earlier update",
       "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
-      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
-      "selected_at_utc": "2026-09-15T09:52:45.636162+00:00"
+      "validation_seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+      "selected_at_utc": "2026-09-15T09:52:45.636162+00:00",
+      "validation_seed_manifest_hash_scheme": "canonical-json-v1"
     },
     "P2": {
       "variant": "role_head",
@@ -84,8 +86,10 @@
       ],
       "selection_rule": "safety_priority_key; exact tie selects earlier update",
       "validation_seed_manifest": "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
-      "validation_seed_manifest_sha256": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
-      "selected_at_utc": "2026-09-15T09:52:45.636229+00:00"
+      "validation_seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+      "selected_at_utc": "2026-09-15T09:52:45.636229+00:00",
+      "validation_seed_manifest_hash_scheme": "canonical-json-v1"
     }
-  }
+  },
+  "manifest_hash_scheme": "canonical-json-v1"
 }

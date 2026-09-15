@@ -19,9 +19,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from plain_mappo.experiment_protocol import (FINAL_TEST_SEEDS, LEGACY_PROTOCOL_VERSION,
-                                              PROTOCOL_VERSION, VALIDATION_SEEDS, checkpoint_update,
-                                              load_seed_manifest, provenance_snapshot, sha256_file,
+from plain_mappo.experiment_protocol import (CANONICAL_JSON_HASH_SCHEME, FINAL_TEST_SEEDS,
+                                              LEGACY_PROTOCOL_VERSION, PROTOCOL_VERSION, VALIDATION_SEEDS,
+                                              checkpoint_update, load_seed_manifest, provenance_snapshot,
+                                              sha256_file, sha256_json_file, sha256_json_payload,
                                               split_seeds, write_locked_seed_manifest)
 from reevaluate_checkpoint_grid import assert_episode_completeness, select_checkpoint_from_validation
 
@@ -84,11 +85,12 @@ def _checkpoint_manifest() -> dict[str, Any]:
                             "sha256": sha256_file(path), "size_bytes": path.stat().st_size,
                             "actor_variant": config.get("actor_variant", "plain"),
                             "protocol_status": config.get("protocol_version", LEGACY_PROTOCOL_VERSION),
-                            "config_sha256": __import__("hashlib").sha256(
-                                json.dumps(config, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()})
+                            "config_sha256": sha256_json_payload(config),
+                            "config_hash_scheme": CANONICAL_JSON_HASH_SCHEME})
         runs[name] = {"variant": specification["variant"], "historical_run_seed": specification["run_seed"],
                       "directory": str(directory.relative_to(ROOT)), "checkpoints": records}
-    return {"protocol_version": PROTOCOL_VERSION, "generated_at_utc": datetime.now(timezone.utc).isoformat(),
+    return {"protocol_version": PROTOCOL_VERSION, "manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+            "generated_at_utc": datetime.now(timezone.utc).isoformat(),
             "runs": runs}
 
 
@@ -100,12 +102,15 @@ def prepare() -> dict[str, Any]:
     audit = {
         "protocol_version": PROTOCOL_VERSION,
         "stage": "prepared",
+        "manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
         "started_at_utc": datetime.now(timezone.utc).isoformat(),
         "seed_manifest": str(SEED_MANIFEST.relative_to(ROOT)),
         "seed_manifest_sha256": manifest_hash,
+        "seed_manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
         "seed_manifest_created_this_invocation": created,
         "checkpoint_manifest": str(CHECKPOINT_MANIFEST.relative_to(ROOT)),
-        "checkpoint_manifest_sha256": sha256_file(CHECKPOINT_MANIFEST),
+        "checkpoint_manifest_sha256": sha256_json_file(CHECKPOINT_MANIFEST),
+        "checkpoint_manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
         "provenance": {**provenance_snapshot("cpu"), "git": _git_provenance()},
         "source_document_conflicts": {"missing_required_documents": list(MISSING_REQUIRED_DOCUMENTS),
                                       "resolution": "current source code and extant artifacts take precedence"},
@@ -161,7 +166,8 @@ def select() -> dict[str, Any]:
             raise ValueError(f"{label} does not have exactly 20 validation checkpoints")
         if {int(row["update"]) for row in rows} != set(REQUIRED_UPDATES):
             raise ValueError(f"{label} validation updates are incomplete")
-        if any(row["seed_manifest_sha256"] != manifest_hash for row in rows):
+        if any(row["seed_manifest_sha256"] != manifest_hash
+               or row.get("seed_manifest_hash_scheme") != CANONICAL_JSON_HASH_SCHEME for row in rows):
             raise ValueError(f"{label} validation rows use a different seed manifest")
         winner = select_checkpoint_from_validation([{**row, "split": "validation"} for row in rows])
         selected[label] = {
@@ -169,9 +175,12 @@ def select() -> dict[str, Any]:
             "checkpoint_path": winner["checkpoint_path"], "checkpoint_sha256": winner["checkpoint_sha256"],
             "checkpoint_size_bytes": winner["checkpoint_size_bytes"], "validation_score": winner["score"],
             "selection_rule": "safety_priority_key; exact tie selects earlier update", "validation_seed_manifest": str(SEED_MANIFEST.relative_to(ROOT)),
-            "validation_seed_manifest_sha256": manifest_hash, "selected_at_utc": datetime.now(timezone.utc).isoformat(),
+            "validation_seed_manifest_sha256": manifest_hash,
+            "validation_seed_manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+            "selected_at_utc": datetime.now(timezone.utc).isoformat(),
         }
-    payload = {"protocol_version": PROTOCOL_VERSION, "split_used_for_selection": "validation",
+    payload = {"protocol_version": PROTOCOL_VERSION, "manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+               "split_used_for_selection": "validation",
                "validation_seeds": list(split_seeds(manifest, "validation")), "selected": selected}
     _write_json(SELECTED, payload)
     return payload
@@ -258,7 +267,8 @@ def finalize() -> dict[str, Any]:
         row = final_by_variant.get(entry["variant"])
         if row is None or row["checkpoint_sha256"] != entry["checkpoint_sha256"]:
             raise ValueError("final test contains an unselected checkpoint")
-        if row["seed_manifest_sha256"] != manifest_hash:
+        if (row["seed_manifest_sha256"] != manifest_hash
+                or row.get("seed_manifest_hash_scheme") != CANONICAL_JSON_HASH_SCHEME):
             raise ValueError("final test used the wrong seed manifest")
     expected_hashes = {entry["checkpoint_sha256"] for entry in selected.values()}
     assert_episode_completeness(final_episodes, expected_hashes, FINAL_TEST_SEEDS)
@@ -268,9 +278,14 @@ def finalize() -> dict[str, Any]:
     invocation_path = OUTPUT / "evaluation_invocations.jsonl"
     invocations = _read_jsonl(invocation_path) if invocation_path.exists() else []
     audit = {
-        "protocol_version": PROTOCOL_VERSION, "stage": "finalized", "started_at_utc": _json(AUDIT_JSON).get("started_at_utc"),
+        "protocol_version": PROTOCOL_VERSION, "manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+        "stage": "finalized", "started_at_utc": _json(AUDIT_JSON).get("started_at_utc"),
         "completed_at_utc": datetime.now(timezone.utc).isoformat(), "seed_manifest_sha256": manifest_hash,
-        "checkpoint_manifest_sha256": sha256_file(CHECKPOINT_MANIFEST), "selected_checkpoints_sha256": sha256_file(SELECTED),
+        "seed_manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+        "checkpoint_manifest_sha256": sha256_json_file(CHECKPOINT_MANIFEST),
+        "checkpoint_manifest_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
+        "selected_checkpoints_sha256": sha256_json_file(SELECTED),
+        "selected_checkpoints_hash_scheme": CANONICAL_JSON_HASH_SCHEME,
         "validation_rows": len(_read_csv_rows(VALIDATION_GRID)), "validation_episode_rows": len(_read_jsonl(VALIDATION_EPISODES)),
         "final_rows": len(final_rows), "final_episode_rows": len(final_episodes), "provenance": {**provenance_snapshot("cpu"), "git": _git_provenance()},
         "source_document_conflicts": {"missing_required_documents": list(MISSING_REQUIRED_DOCUMENTS),
@@ -296,7 +311,7 @@ def _markdown(audit: dict[str, Any], selected: dict[str, Any], final_rows: list[
     lines = ["# Stage 4.1 训练与评估协议修复验证", "",
              "本报告记录 Stage 4.1 的真实协议修复、旧 checkpoint 独立重评和最终 test。没有执行任何新的 1000-update 正式训练。", "",
              "## Seed 与选择协议", "",
-             f"- protocol: `{audit['protocol_version']}`；validation/test manifest SHA-256: `{audit['seed_manifest_sha256']}`。",
+             f"- protocol: `{audit['protocol_version']}`；manifest hash scheme: `{audit['manifest_hash_scheme']}`；validation/test manifest SHA-256: `{audit['seed_manifest_sha256']}`。",
              f"- validation: 20 seeds `{VALIDATION_SEEDS[0]}..{VALIDATION_SEEDS[-1]}`；final test: 50 seeds `{FINAL_TEST_SEEDS[0]}..{FINAL_TEST_SEEDS[-1]}`；两者严格分离。",
              "- checkpoint 只按 validation 的 frozen safety-priority key 选择；完全同分选择较早 update；test 未参与选择。", "",
              "## Selected checkpoints", "", "| Variant | update | validation score | SHA-256 |", "|---|---:|---|---|"]

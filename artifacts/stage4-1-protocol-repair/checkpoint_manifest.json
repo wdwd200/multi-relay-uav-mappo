@@ -14,7 +14,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 100,
@@ -23,7 +24,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 150,
@@ -32,7 +34,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 200,
@@ -41,7 +44,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 250,
@@ -50,7 +54,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 300,
@@ -59,7 +64,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 350,
@@ -68,7 +74,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 400,
@@ -77,7 +84,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 450,
@@ -86,7 +94,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 500,
@@ -95,7 +104,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 550,
@@ -104,7 +114,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 600,
@@ -113,7 +124,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 650,
@@ -122,7 +134,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 700,
@@ -131,7 +144,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 750,
@@ -140,7 +154,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 800,
@@ -149,7 +164,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 850,
@@ -158,7 +174,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 900,
@@ -167,7 +184,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 950,
@@ -176,7 +194,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 1000,
@@ -185,7 +204,8 @@
           "size_bytes": 86138,
           "actor_variant": "plain",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "bdca4768f12561715868194d33382255c61ed49991ce96fd85f3cddf8d6a56ae"
+          "config_sha256": "bcebb2fb1e677419b770911913d47c7d1318295bc8b60adf15146b281ec41115",
+          "config_hash_scheme": "canonical-json-v1"
         }
       ]
     },
@@ -201,7 +221,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 100,
@@ -210,7 +231,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 150,
@@ -219,7 +241,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 200,
@@ -228,7 +251,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 250,
@@ -237,7 +261,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 300,
@@ -246,7 +271,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 350,
@@ -255,7 +281,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 400,
@@ -264,7 +291,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 450,
@@ -273,7 +301,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 500,
@@ -282,7 +311,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 550,
@@ -291,7 +321,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 600,
@@ -300,7 +331,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 650,
@@ -309,7 +341,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 700,
@@ -318,7 +351,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 750,
@@ -327,7 +361,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 800,
@@ -336,7 +371,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 850,
@@ -345,7 +381,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 900,
@@ -354,7 +391,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 950,
@@ -363,7 +401,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 1000,
@@ -372,7 +411,8 @@
           "size_bytes": 87674,
           "actor_variant": "role_info",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "fbff10c6a12594a1d1916a5ea9e082766eb412ac6b5ab3e72ecb3d3287a24167"
+          "config_sha256": "73cde3019624082c39502c2f12a3090ee501e764ad6752b6b40068b838a1d865",
+          "config_hash_scheme": "canonical-json-v1"
         }
       ]
     },
@@ -388,7 +428,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 100,
@@ -397,7 +438,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 150,
@@ -406,7 +448,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 200,
@@ -415,7 +458,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 250,
@@ -424,7 +468,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 300,
@@ -433,7 +478,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 350,
@@ -442,7 +488,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 400,
@@ -451,7 +498,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 450,
@@ -460,7 +508,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 500,
@@ -469,7 +518,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 550,
@@ -478,7 +528,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 600,
@@ -487,7 +538,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 650,
@@ -496,7 +548,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 700,
@@ -505,7 +558,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 750,
@@ -514,7 +568,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 800,
@@ -523,7 +578,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 850,
@@ -532,7 +588,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 900,
@@ -541,7 +598,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 950,
@@ -550,7 +608,8 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         },
         {
           "update": 1000,
@@ -559,9 +618,11 @@
           "size_bytes": 90463,
           "actor_variant": "role_head",
           "protocol_status": "legacy_protocol",
-          "config_sha256": "c1c2a3de2b37a6825921851f7ed802589ed74e5a4a97f72bc851177454737c56"
+          "config_sha256": "e738dec19a4ac3b1dbf87eed97c6b6ddbad7120a010106e62b379fb2db5cc60a",
+          "config_hash_scheme": "canonical-json-v1"
         }
       ]
     }
-  }
+  },
+  "manifest_hash_scheme": "canonical-json-v1"
 }

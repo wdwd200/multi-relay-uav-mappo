@@ -1,0 +1,14 @@
+# Text checkout normalization helps review diffs; semantic JSON hashes are
+# independently canonicalized and never rely on these line-ending rules.
+.gitattributes text eol=lf
+requirements.txt text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.csv text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.pt binary
+*.pth binary
+*.zip binary

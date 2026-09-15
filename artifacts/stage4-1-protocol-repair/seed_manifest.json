@@ -112,5 +112,6 @@
       "start": 18000000,
       "stop_exclusive": 20000000
     }
-  ]
+  ],
+  "manifest_hash_scheme": "canonical-json-v1"
 }

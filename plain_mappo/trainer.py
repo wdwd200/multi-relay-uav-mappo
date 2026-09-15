@@ -19,7 +19,7 @@ from .checkpoint import atomic_torch_save, capture_rng_state, load_checkpoint, r
 from .config import MappoConfig
 from .evaluation import evaluate_actor
 from .experiment_protocol import (LEGACY_PROTOCOL_VERSION, load_seed_manifest,
-                                  protocol_fields)
+                                  protocol_fields, resolve_repository_path)
 from .metrics import EpisodeMetrics
 from .networks import CentralizedCritic, SharedActor
 from .normalization import RunningMeanStd
@@ -145,7 +145,9 @@ class MappoTrainer:
         if self.protocol_is_legacy:
             return
         assert self.config.action_noise_seed is not None and self.config.minibatch_seed is not None
-        self.action_noise_generator = torch.Generator(device=self.device.type)
+        # Preserve a full CUDA device index (for example ``cuda:1``), rather
+        # than silently constructing the generator on the default CUDA device.
+        self.action_noise_generator = torch.Generator(device=self.device)
         self.action_noise_generator.manual_seed(int(self.config.action_noise_seed))
         self.minibatch_rng = np.random.Generator(np.random.PCG64(int(self.config.minibatch_seed)))
 
@@ -194,12 +196,19 @@ class MappoTrainer:
         Legacy artifacts preserve their historical five-seed monitoring path;
         their selection is repaired later by the independent Stage-4.1 grid.
         """
-        if not self.protocol_is_legacy and self.config.validation_seed_manifest:
-            manifest_path = Path(self.config.validation_seed_manifest)
-            if manifest_path.exists():
-                manifest, _ = load_seed_manifest(manifest_path)
-                return [int(seed) for seed in manifest["splits"]["validation"]["seeds"]]
-        return list(range(10_000, 10_000 + self.config.periodic_eval_episodes))
+        if self.protocol_is_legacy:
+            return list(range(10_000, 10_000 + self.config.periodic_eval_episodes))
+        if not self.config.validation_seed_manifest:
+            raise RuntimeError("Stage-4.1 periodic evaluation requires a locked validation seed manifest")
+        manifest_path = resolve_repository_path(self.config.validation_seed_manifest)
+        if not manifest_path.is_file():
+            raise FileNotFoundError(
+                f"Stage-4.1 validation seed manifest is missing: {manifest_path}; refusing legacy 5-seed fallback")
+        manifest, _ = load_seed_manifest(manifest_path)
+        split = manifest["splits"]["validation"]
+        if split.get("selection_allowed") is not True or len(split.get("seeds", [])) != 20:
+            raise ValueError("Stage-4.1 validation split must be the locked 20-seed, selection-allowed split")
+        return [int(seed) for seed in split["seeds"]]
 
     def collect_rollout(self) -> tuple[RolloutBuffer, list[dict[str, float]]]:
         """Collect exactly 128 steps per environment, preserving terminal next values."""
@@ -419,9 +428,14 @@ class MappoTrainer:
             # Historic payloads have no independent streams.  They remain
             # deployable/resumable under their documented legacy semantics.
             self.protocol_is_legacy = True
+            self.config = saved_config
             self.action_noise_generator = None
             self.minibatch_rng = None
             self.loaded_checkpoint_protocol = LEGACY_PROTOCOL_VERSION
+            # Keep an on-disk resumed configuration aligned with the legacy
+            # checkpoint rather than leaving a misleading new-protocol file.
+            (self.output_dir / "config.json").write_text(
+                json.dumps(self.config.to_dict(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         self._restore_protocol_rng_state(payload.get("protocol_rng_state"))
         # Stage 3 deliberately does not checkpoint environment internals or a
         # partial rollout.  Recreate eight fresh seeded environments only

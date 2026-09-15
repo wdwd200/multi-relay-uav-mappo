@@ -6,15 +6,19 @@ import argparse
 import json
 from dataclasses import replace
 from pathlib import Path
+from typing import Any
 
 from plain_mappo import MappoConfig
+from plain_mappo.presets import STAGE4_FORMAL_PRESET, stage4_formal_overrides
 from plain_mappo.trainer import MappoTrainer
 
 
-def main() -> None:
+def make_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Train the K=4 Plain MAPPO baseline.")
     parser.add_argument("--updates", type=int, default=None, help="Additional PPO updates (default: 10-update smoke run).")
     parser.add_argument("--full", action="store_true", help="Run the configured 1000-update initial training.")
+    parser.add_argument("--preset", choices=(STAGE4_FORMAL_PRESET,),
+                        help="Frozen configuration required for an authorized --full formal run.")
     parser.add_argument("--resume", type=Path, help="Complete latest.pt/best.pt checkpoint to resume from.")
     parser.add_argument("--output-dir", type=str, default="artifacts/plain_mappo")
     parser.add_argument("--run-seed", type=int,
@@ -33,29 +37,50 @@ def main() -> None:
                         help="Override the upper Actor log_std bound for an explicit distribution experiment.")
     parser.add_argument("--state-independent-log-std-init", type=float, default=None,
                         help="Initial effective log_std for state_independent_tanh.")
+    return parser
+
+
+def build_config_from_args(args: argparse.Namespace) -> MappoConfig:
+    """Build and validate CLI configuration without constructing a Trainer."""
+    if args.full and args.preset != STAGE4_FORMAL_PRESET:
+        raise ValueError("--full requires the explicit --preset stage4-formal frozen configuration")
+    experimental_overrides: dict[str, Any] = {
+        "entropy_coef": args.entropy_coef, "actor_lr": args.actor_lr,
+        "actor_log_std_mode": args.actor_log_std_mode, "log_std_min": args.log_std_min,
+        "log_std_max": args.log_std_max,
+        "state_independent_log_std_init": args.state_independent_log_std_init,
+    }
+    if args.preset == STAGE4_FORMAL_PRESET:
+        changed = [name for name, value in experimental_overrides.items() if value is not None]
+        if changed:
+            raise ValueError(f"{STAGE4_FORMAL_PRESET} is atomic; do not override {', '.join(changed)}")
+        config = MappoConfig(**stage4_formal_overrides(
+            actor_variant=args.actor_variant or "plain", run_seed=args.run_seed or 2026, output_dir=args.output_dir))
+    else:
+        overrides: dict[str, Any] = {"output_dir": args.output_dir}
+        if args.actor_variant is not None:
+            overrides["actor_variant"] = args.actor_variant
+        for name, value in experimental_overrides.items():
+            if value is not None:
+                overrides[name] = value
+        if args.run_seed is not None:
+            overrides.update({"run_seed": args.run_seed, "actor_init_seed": None, "critic_init_seed": None,
+                              "action_noise_seed": None, "minibatch_seed": None, "train_env_seed_base": None,
+                              "validation_seed_manifest": "", "final_test_seed_manifest": ""})
+        config = replace(MappoConfig(), **overrides)
+    config.validate()
+    return config
+
+
+def main() -> None:
+    parser = make_parser()
     args = parser.parse_args()
     if args.full and args.updates is not None:
         parser.error("--full and --updates are mutually exclusive")
-    overrides = {"output_dir": args.output_dir}
-    if args.entropy_coef is not None:
-        overrides["entropy_coef"] = args.entropy_coef
-    if args.actor_variant is not None:
-        overrides["actor_variant"] = args.actor_variant
-    if args.actor_lr is not None:
-        overrides["actor_lr"] = args.actor_lr
-    if args.actor_log_std_mode is not None:
-        overrides["actor_log_std_mode"] = args.actor_log_std_mode
-    if args.log_std_min is not None:
-        overrides["log_std_min"] = args.log_std_min
-    if args.log_std_max is not None:
-        overrides["log_std_max"] = args.log_std_max
-    if args.state_independent_log_std_init is not None:
-        overrides["state_independent_log_std_init"] = args.state_independent_log_std_init
-    if args.run_seed is not None:
-        overrides.update({"run_seed": args.run_seed, "actor_init_seed": None, "critic_init_seed": None,
-                          "action_noise_seed": None, "minibatch_seed": None, "train_env_seed_base": None,
-                          "validation_seed_manifest": "", "final_test_seed_manifest": ""})
-    config = replace(MappoConfig(), **overrides)
+    try:
+        config = build_config_from_args(args)
+    except ValueError as exc:
+        parser.error(str(exc))
     updates = config.full_updates if args.full else (args.updates or config.smoke_updates)
     if updates < 1:
         parser.error("updates must be positive")

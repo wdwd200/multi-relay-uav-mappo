@@ -1,0 +1,4 @@
+# Runtime dependencies. The source uses Python 3.10+ syntax; CI validates the
+# install without claiming an untested exact NumPy/PyTorch compatibility matrix.
+numpy
+torch

@@ -4,7 +4,7 @@
 
 ## Seed 与选择协议
 
-- protocol: `stage4.1-v1`；validation/test manifest SHA-256: `d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb`。
+- protocol: `stage4.1-v1`；validation/test manifest SHA-256: `99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f`。
 - validation: 20 seeds `50000000..50000019`；final test: 50 seeds `60000000..60000049`；两者严格分离。
 - checkpoint 只按 validation 的 frozen safety-priority key 选择；完全同分选择较早 update；test 未参与选择。
 
@@ -72,3 +72,8 @@ P4 formal training = NOT STARTED
 Multi-seed P0-P4 training = NOT AUTHORIZED
 
 Role+Graph = NOT STARTED
+
+
+## Stage 4.1.1 hash migration
+
+Manifest references use `canonical-json-v1`; binary checkpoint hashes remain raw SHA-256. Episode numeric payloads were not changed.

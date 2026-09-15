@@ -19,14 +19,14 @@ import torch
 
 from plain_mappo.config import MappoConfig
 from plain_mappo.evaluation import evaluate_actor
-from plain_mappo.experiment_protocol import (checkpoint_update, load_seed_manifest,
-                                              sha256_file, split_seeds)
+from plain_mappo.experiment_protocol import (CANONICAL_JSON_HASH_SCHEME, checkpoint_update,
+                                              load_seed_manifest, sha256_file, split_seeds)
 from plain_mappo.metrics import safety_priority_key
 from plain_mappo.networks import SharedActor
 
 
 GRID_FIELDS = ("variant", "run_seed", "protocol_status", "update", "checkpoint_path", "checkpoint_sha256",
-               "checkpoint_size_bytes", "validation_seed_set", "seed_manifest_sha256", "episodes", "score",
+               "checkpoint_size_bytes", "validation_seed_set", "seed_manifest_sha256", "seed_manifest_hash_scheme", "episodes", "score",
                "normal_completion_count", "collision_count", "boundary_count", "persistent_outage_count",
                "speed_accel_violations", "outage_step_ratio", "rate_satisfaction_ratio", "mean_e2e_rate_mbps",
                "mean_return", "config_summary", "deterministic_action")
@@ -63,7 +63,8 @@ def config_summary(config: MappoConfig) -> dict[str, Any]:
 
 
 def evaluate_checkpoint(path: Path, seeds: Iterable[int], *, split: str, device: str,
-                        seed_manifest_sha256: str, run_seed_override: int | None = None) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+                        seed_manifest_sha256: str, run_seed_override: int | None = None,
+                        seed_manifest_hash_scheme: str = CANONICAL_JSON_HASH_SCHEME) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     actor, config, payload = load_actor_checkpoint(path, device)
     seed_list = [int(seed) for seed in seeds]
     summary, score, episodes = evaluate_actor(actor, config, seed_list)
@@ -79,6 +80,7 @@ def evaluate_checkpoint(path: Path, seeds: Iterable[int], *, split: str, device:
         "checkpoint_sha256": digest,
         "checkpoint_size_bytes": path.stat().st_size,
         "seed_manifest_sha256": seed_manifest_sha256,
+        "seed_manifest_hash_scheme": seed_manifest_hash_scheme,
         "episodes": len(episodes),
         "score": list(score),
         "config_summary": config_summary(config),
@@ -156,7 +158,8 @@ def run_grid(*, run_dir: Path, checkpoint_glob: str, seed_manifest: Path, split:
     rows: list[dict[str, Any]] = []
     for path in paths:
         row, episodes = evaluate_checkpoint(path, seeds, split=split, device=device,
-                                            seed_manifest_sha256=manifest_hash, run_seed_override=run_seed)
+                                            seed_manifest_sha256=manifest_hash, run_seed_override=run_seed,
+                                            seed_manifest_hash_scheme=manifest["manifest_hash_scheme"])
         row["split"] = split
         row["validation_seed_set" if split == "validation" else "final_test_seed_set"] = list(seeds)
         _append_csv(grid_path, GRID_FIELDS if split == "validation" else FINAL_FIELDS, row)
@@ -164,6 +167,7 @@ def run_grid(*, run_dir: Path, checkpoint_glob: str, seed_manifest: Path, split:
         rows.append(row)
     result = {"split": split, "rows": len(rows), "episodes": sum(int(row["episodes"]) for row in rows),
             "grid_path": str(grid_path), "episode_path": str(episode_path), "seed_manifest_sha256": manifest_hash,
+            "seed_manifest_hash_scheme": manifest["manifest_hash_scheme"],
             "run_dir": str(run_dir), "checkpoint_glob": checkpoint_glob, "device": device,
             "started_at_utc": started_at, "completed_at_utc": datetime.now(timezone.utc).isoformat()}
     _append_jsonl(output_dir / "evaluation_invocations.jsonl", [result])

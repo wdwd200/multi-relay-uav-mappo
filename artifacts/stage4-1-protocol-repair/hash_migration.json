@@ -1,0 +1,52 @@
+{
+  "migration": "stage4.1.1-json-hash-hardening",
+  "migration_timestamp_utc": "2026-09-15T10:43:29.058379+00:00",
+  "old_hash_scheme": "raw-file-sha256 (Windows CRLF file bytes)",
+  "new_hash_scheme": "canonical-json-v1",
+  "old_raw_file_sha256": {
+    "seed_manifest": "d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb",
+    "checkpoint_manifest": "c7dcbb98493230c890758dbcb76295ce0b34f99a0d651e2b06aa0601f787a435",
+    "selected_checkpoints": "ff21a6534bbe646fa356a9d255695b8c2742faa290c9dad31f6dfaf37cd1df31"
+  },
+  "new_canonical_json_sha256": {
+    "seed_manifest": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+    "checkpoint_manifest": "1d81f58bffaad385bb759bc95147ee79401b837581866b29fa907b5eb8532939",
+    "selected_checkpoints": "3fa29ec23fc36979d6c6d00ade4ea4b89887dab65341be563f737cbc723ad614"
+  },
+  "modified_files": [
+    "artifacts\\stage4-1-protocol-repair\\seed_manifest.json",
+    "artifacts\\stage4-1-protocol-repair\\checkpoint_manifest.json",
+    "artifacts\\stage4-1-protocol-repair\\selected_checkpoints.json",
+    "artifacts\\stage4-1-protocol-repair\\validation_grid.csv",
+    "artifacts\\stage4-1-protocol-repair\\validation_episodes.jsonl",
+    "artifacts\\stage4-1-protocol-repair\\final_test_summary.csv",
+    "artifacts\\stage4-1-protocol-repair\\final_test_episodes.jsonl",
+    "artifacts\\stage4-1-protocol-repair\\protocol_audit.json",
+    "artifacts\\stage4-1-protocol-repair\\protocol_audit.md",
+    "stage4_1_protocol_validation.json",
+    "stage4_1_protocol_validation.md",
+    "22_阶段4.1_训练与评估协议修复交接.md",
+    "artifacts\\stage4-1-protocol-repair\\evaluation_invocations.jsonl"
+  ],
+  "episode_numeric_payload_changed": false,
+  "episode_immutable_payload_sha256": {
+    "validation_pre_post": "ba0bc38bdb68d96b91b68f8b4898f92b22f8e2bd9e425cb6fdadfec6af87d1ae",
+    "final_pre_post": "191bfe6ee65f1cf1c12bbb89d5d8e6322e822c44f36bc800ed61f57fc95daf8e"
+  },
+  "checkpoint_binary_hashes_unchanged": true,
+  "checkpoint_binary_hash_count": 60,
+  "validation_records": {
+    "summaries": 60,
+    "episodes": 1200
+  },
+  "final_test_records": {
+    "summaries": 3,
+    "episodes": 150
+  },
+  "selected_updates": {
+    "P0": 1000,
+    "P1": 800,
+    "P2": 650
+  },
+  "raw_episode_summary_recompute_matches": true
+}

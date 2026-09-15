@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s selfcheck -p "test_*.py" -v
+      - run: python -m compileall -q .
+      # Release-only .pt assets are intentionally not committed. This checks
+      # committed manifests/records without downloading or writing artifacts.
+      - run: python verify_stage4_1_artifacts.py --metadata-only
