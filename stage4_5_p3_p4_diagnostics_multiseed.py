@@ -556,6 +556,20 @@ def _finite_row(row: dict[str, str]) -> bool:
     return True
 
 
+def _same_summary(left: dict[str, Any], right: dict[str, Any]) -> bool:
+    """Compare JSON-reloaded metric summaries without binary-float noise."""
+    if left.keys() != right.keys():
+        return False
+    for key in left:
+        first, second = left[key], right[key]
+        if isinstance(first, (int, float)) and isinstance(second, (int, float)):
+            if not math.isclose(float(first), float(second), rel_tol=0.0, abs_tol=1e-12):
+                return False
+        elif first != second:
+            return False
+    return True
+
+
 def _select(rows: list[dict[str, Any]]) -> dict[str, Any]:
     if not rows:
         raise ValueError("cannot select from empty validation summaries")
@@ -594,7 +608,7 @@ def _validate_new_run(label: str, actor_variant: str, run_seed: int, protocol_ha
         raw = [{key: value for key, value in item.items() if key not in METADATA_FIELDS}
                for item in rows if int(item["update"]) == update]
         recomputed = summarize_episodes(raw)
-        if recomputed != expected_summary:
+        if not _same_summary(recomputed, expected_summary):
             raise ValueError(f"{label} seed-{run_seed} summary at update {update} does not recompute")
         score = tuple(float(value) for value in json.loads(row["score"]))
         if tuple(float(value) for value in safety_priority_key(recomputed)) != score:

@@ -53,6 +53,10 @@ class Stage45DiagnosticTests(unittest.TestCase):
         self.assertEqual(tuple(blocked.shape), tuple(direct.shape))
         self.assertTrue(torch.isfinite(actions).all())
 
+    def test_summary_recompute_comparison_allows_only_round_trip_float_noise(self) -> None:
+        self.assertTrue(stage45._same_summary({"a": 1.0, "b": 2}, {"a": 1.0 + 5e-13, "b": 2}))
+        self.assertFalse(stage45._same_summary({"a": 1.0}, {"a": 1.0 + 2e-12}))
+
 
 if __name__ == "__main__":
     unittest.main()
