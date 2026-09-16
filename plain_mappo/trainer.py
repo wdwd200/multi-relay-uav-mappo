@@ -18,11 +18,12 @@ from relay_env import RelayEnv
 from .checkpoint import atomic_torch_save, capture_rng_state, load_checkpoint, restore_rng_state
 from .config import MappoConfig
 from .evaluation import evaluate_actor
-from .experiment_protocol import (LEGACY_PROTOCOL_VERSION, load_seed_manifest,
+from .experiment_protocol import (LEGACY_PROTOCOL_VERSION, PREEXPERIMENT_PROTOCOL_VERSION,
+                                  load_seed_manifest, preexperiment_protocol_fields,
                                   protocol_fields, resolve_repository_path)
 from .metrics import EpisodeMetrics
 from .networks import CentralizedCritic, SharedActor
-from .normalization import RunningMeanStd
+from .normalization import RunningMeanStd, RunningScalarMeanStd
 from .rollout_buffer import RolloutBuffer
 from .state import flatten_global_state
 from .topology import build_topology_features
@@ -67,6 +68,8 @@ class MappoTrainer:
                     "value_target_mean", "value_target_std", "value_prediction_mean_pre", "value_prediction_std_pre",
                     "explained_variance_pre", "actor_grad_norm_max", "critic_grad_norm_max",
                     "actor_grad_clip_fraction", "critic_grad_clip_fraction",
+                    "value_normalizer_mean", "value_normalizer_std", "value_normalizer_count",
+                    "hard_speed_accel_violations",
                     "action_mean", "action_std", "action_saturation_ratio", "raw_log_std_min", "raw_log_std_mean",
                     "raw_log_std_max", "clamped_log_std_min", "clamped_log_std_mean", "clamped_log_std_max",
                     "raw_log_std_gt_max_ratio", "finite")
@@ -89,6 +92,7 @@ class MappoTrainer:
         self.actor_optimizer = torch.optim.Adam(self.actor.parameters(), lr=config.actor_lr)
         self.critic_optimizer = torch.optim.Adam(self.critic.parameters(), lr=config.critic_lr)
         self.normalizer = RunningMeanStd((config.global_state_dim,), config.normalizer_epsilon, config.normalizer_clip)
+        self.value_normalizer = RunningScalarMeanStd() if config.value_normalization else None
         self.output_dir = Path(config.output_dir)
         self.checkpoint_dir = self.output_dir / "checkpoints"
         self.eval_checkpoint_dir = self.output_dir / "eval_checkpoints"
@@ -107,6 +111,7 @@ class MappoTrainer:
         self.total_env_steps, self.update_count = 0, 0
         self.best_score: tuple[float, ...] | None = None
         self.best_summary: dict[str, Any] | None = None
+        self._last_rollout_speed_accel_violations = 0
         self.loaded_checkpoint_protocol = config.protocol_version
         self._reset_training_envs()
 
@@ -190,6 +195,13 @@ class MappoTrainer:
         return RolloutBuffer(c.rollout_length, c.num_envs, c.num_relays, c.local_obs_dim, c.global_state_dim,
                              c.action_dim, *topology_dimensions)
 
+    def _value_predictions_to_raw(self, values: torch.Tensor, *, state: dict[str, Any] | None = None) -> torch.Tensor:
+        """Convert optional normalized Critic outputs to raw-return units."""
+        if self.value_normalizer is None:
+            return values
+        raw = self.value_normalizer.denormalize(values.detach().cpu().numpy(), state=state)
+        return torch.as_tensor(raw, dtype=values.dtype, device=values.device)
+
     def _periodic_validation_seeds(self) -> list[int]:
         """Use the locked validation split for new formal-protocol runs.
 
@@ -214,6 +226,7 @@ class MappoTrainer:
         """Collect exactly 128 steps per environment, preserving terminal next values."""
         c, buffer = self.config, self._new_buffer()
         completed: list[dict[str, float]] = []
+        self._last_rollout_speed_accel_violations = 0
         for _ in range(c.rollout_length):
             local_obs = np.stack(self.current_obs).astype(np.float32)
             current_states = [env.get_global_state() for env in self.envs]
@@ -232,7 +245,7 @@ class MappoTrainer:
                 tensor_edges = None if topology_edges is None else torch.as_tensor(topology_edges, device=self.device)
                 latent_z, action_u, old_log_prob, _ = self.actor.sample_actions(
                     tensor_obs, tensor_nodes, tensor_edges, generator=self.action_noise_generator)
-                values = self.critic(tensor_state)
+                values = self._value_predictions_to_raw(self.critic(tensor_state))
             z_np, action_np = latent_z.cpu().numpy(), action_u.cpu().numpy()
             log_prob_np, value_np = old_log_prob.cpu().numpy(), values.cpu().numpy()
             next_obs: list[np.ndarray] = []
@@ -243,9 +256,22 @@ class MappoTrainer:
             for env_id, env in enumerate(self.envs):
                 before_state = env.get_global_state()
                 observation, reward_tuple, did_terminate, did_truncate, info = env.step(action_np[env_id].tolist())
-                terminal_state = flatten_global_state(env.get_global_state(), c.num_relays)
+                after_state = env.get_global_state()
+                terminal_state = flatten_global_state(after_state, c.num_relays)
+                for before, after in zip(before_state["relays"], after_state["relays"]):
+                    velocity = after["velocity"]
+                    xy_speed, abs_z_speed = math.hypot(velocity[0], velocity[1]), abs(velocity[2])
+                    acceleration = tuple((velocity[axis] - before["velocity"][axis]) / env.config.dt_s for axis in range(3))
+                    xy_accel, abs_z_accel = math.hypot(acceleration[0], acceleration[1]), abs(acceleration[2])
+                    self._last_rollout_speed_accel_violations += int(
+                        xy_speed > env.config.relay_max_xy_speed_mps + 1e-7
+                        or not (env.config.relay_min_z_speed_mps - 1e-7 <= velocity[2] <= env.config.relay_max_z_speed_mps + 1e-7)
+                        or xy_accel > env.config.relay_max_xy_accel_mps2 + 1e-7
+                        or abs_z_accel > env.config.relay_max_z_accel_mps2 + 1e-7)
                 with torch.no_grad():
-                    next_value[env_id] = self.critic(torch.as_tensor(self.normalizer.normalize(terminal_state[None, :]), device=self.device)).item()
+                    next_prediction = self.critic(torch.as_tensor(
+                        self.normalizer.normalize(terminal_state[None, :]), device=self.device))
+                    next_value[env_id] = self._value_predictions_to_raw(next_prediction).item()
                 reward = float(reward_tuple[0])
                 if not all(math.isclose(reward, float(value), rel_tol=0.0, abs_tol=0.0) for value in reward_tuple):
                     raise RuntimeError("RelayEnv must return one shared team reward")
@@ -273,10 +299,14 @@ class MappoTrainer:
     def update(self, buffer: RolloutBuffer) -> dict[str, float]:
         c = self.config
         advantage_raw_mean, advantage_raw_std = buffer.normalize_advantages() if buffer.compute_gae(c.gamma, c.gae_lambda) is not None else (0.0, 0.0)
+        value_normalizer_before = (None if self.value_normalizer is None else self.value_normalizer.state_dict())
         with torch.no_grad():
             full_global_state = torch.as_tensor(buffer.flatten("global_state"), dtype=torch.float32, device=self.device)
-            pre_value_prediction = self.critic(full_global_state).cpu().numpy()
+            pre_value_prediction = self._value_predictions_to_raw(
+                self.critic(full_global_state), state=value_normalizer_before).cpu().numpy()
         full_return_target = buffer.flatten("return_target")
+        if self.value_normalizer is not None:
+            self.value_normalizer.update(full_return_target)
         diagnostics: dict[str, float | None] = {
             "value_target_mean": float(np.mean(full_return_target)),
             "value_target_std": float(np.std(full_return_target)),
@@ -296,7 +326,10 @@ class MappoTrainer:
                 latent_z = torch.as_tensor(batch["latent_z"], dtype=torch.float32, device=self.device)
                 old_log_prob = torch.as_tensor(batch["old_log_prob"], dtype=torch.float32, device=self.device)
                 advantage = torch.as_tensor(batch["advantage"], dtype=torch.float32, device=self.device).unsqueeze(-1)
-                return_target = torch.as_tensor(batch["return_target"], dtype=torch.float32, device=self.device)
+                raw_return_target = batch["return_target"]
+                normalized_target = (raw_return_target if self.value_normalizer is None
+                                     else self.value_normalizer.normalize(raw_return_target))
+                return_target = torch.as_tensor(normalized_target, dtype=torch.float32, device=self.device)
                 topology_nodes = None if "topology_nodes" not in batch else torch.as_tensor(batch["topology_nodes"], dtype=torch.float32, device=self.device)
                 topology_edges = None if "topology_edges" not in batch else torch.as_tensor(batch["topology_edges"], dtype=torch.float32, device=self.device)
                 new_log_prob, entropy = self.actor.log_prob_entropy(local_obs, latent_z, topology_nodes, topology_edges)  # reuses buffer's old z; never resamples.
@@ -336,12 +369,18 @@ class MappoTrainer:
         if not (torch.isfinite(raw_log_std).all() and torch.isfinite(clamped_log_std).all()):
             raise FloatingPointError("non-finite actor log_std diagnostic")
         raw_exceeds_hard_max = (raw_log_std > c.log_std_max).float().mean() if self.actor.log_std_mode == "state_dependent_clamp" else torch.zeros((), device=self.device)
+        normalizer_mean = 0.0 if self.value_normalizer is None else self.value_normalizer.mean
+        normalizer_std = 1.0 if self.value_normalizer is None else math.sqrt(self.value_normalizer.var)
+        normalizer_count = 0.0 if self.value_normalizer is None else self.value_normalizer.count
         result: dict[str, float | None] = {"actor_policy_loss": float(np.mean(policy_losses)), "critic_loss": float(np.mean(critic_losses)),
                 "entropy": float(np.mean(entropies)), "approx_kl": float(np.mean(approx_kls)), "clip_fraction": float(np.mean(clip_fractions)),
                 "actor_grad_norm": float(np.mean(actor_norms)), "critic_grad_norm": float(np.mean(critic_norms)),
                 "actor_grad_norm_max": float(np.max(actor_norms)), "critic_grad_norm_max": float(np.max(critic_norms)),
                 "actor_grad_clip_fraction": gradient_clip_fraction(actor_norms, c.max_grad_norm),
                 "critic_grad_clip_fraction": gradient_clip_fraction(critic_norms, c.max_grad_norm),
+                "value_normalizer_mean": float(normalizer_mean), "value_normalizer_std": float(normalizer_std),
+                "value_normalizer_count": float(normalizer_count),
+                "hard_speed_accel_violations": float(self._last_rollout_speed_accel_violations),
                 "advantage_raw_mean": advantage_raw_mean, "advantage_raw_std": advantage_raw_std,
                 "action_mean": float(buffer.action_u.mean()), "action_std": float(buffer.action_u.std()),
                 "action_saturation_ratio": float(np.mean(np.abs(buffer.action_u) > 0.95)),
@@ -357,11 +396,14 @@ class MappoTrainer:
         return result
 
     def _checkpoint_payload(self) -> dict[str, Any]:
-        protocol_metadata = (protocol_fields(self.config.run_seed) if not self.protocol_is_legacy else {
+        protocol_metadata = ((protocol_fields(self.config.run_seed) if self.config.protocol_version != PREEXPERIMENT_PROTOCOL_VERSION
+                              else preexperiment_protocol_fields(self.config.run_seed)) if not self.protocol_is_legacy else {
             "protocol_version": LEGACY_PROTOCOL_VERSION, "run_seed": self.config.run_seed})
         return {"actor_state": self.actor.state_dict(), "critic_state": self.critic.state_dict(),
                 "actor_optimizer_state": self.actor_optimizer.state_dict(), "critic_optimizer_state": self.critic_optimizer.state_dict(),
-                "normalizer_state": self.normalizer.state_dict(), "update": self.update_count, "total_env_steps": self.total_env_steps,
+                "normalizer_state": self.normalizer.state_dict(),
+                "value_normalizer_state": (None if self.value_normalizer is None else self.value_normalizer.state_dict()),
+                "update": self.update_count, "total_env_steps": self.total_env_steps,
                 "config": self.config.to_dict(), "rng_state": capture_rng_state(),
                 "protocol_rng_state": self._protocol_rng_state(), "protocol_metadata": {
                     **protocol_metadata,
@@ -418,6 +460,14 @@ class MappoTrainer:
         self.actor.load_state_dict(payload["actor_state"]); self.critic.load_state_dict(payload["critic_state"])
         self.actor_optimizer.load_state_dict(payload["actor_optimizer_state"]); self.critic_optimizer.load_state_dict(payload["critic_optimizer_state"])
         self.normalizer.load_state_dict(payload["normalizer_state"])
+        value_normalizer_state = payload.get("value_normalizer_state")
+        if self.value_normalizer is None:
+            if value_normalizer_state is not None:
+                raise ValueError("checkpoint value-normalizer state conflicts with V0 configuration")
+        elif value_normalizer_state is None:
+            raise ValueError("V1 checkpoint is missing value-normalizer state")
+        else:
+            self.value_normalizer.load_state_dict(value_normalizer_state)
         self.update_count, self.total_env_steps = int(payload["update"]), int(payload["total_env_steps"])
         self.best_score = tuple(payload["best_score"]) if payload.get("best_score") is not None else None
         self.best_summary = payload.get("best_summary")
@@ -471,7 +521,21 @@ class MappoTrainer:
         self._append_csv("train.csv", self.train_fields, row)
 
     def run_evaluation(self, seeds: list[int]) -> tuple[dict[str, Any], tuple[float, ...], bool]:
-        summary, score, _ = evaluate_actor(self.actor, self.config, seeds)
+        if self.config.protocol_version == PREEXPERIMENT_PROTOCOL_VERSION:
+            if tuple(int(seed) for seed in seeds) != tuple(self._periodic_validation_seeds()):
+                raise ValueError("Stage-4.2 pre-experiment permits only the locked validation split; final test is forbidden")
+        summary, score, episodes = evaluate_actor(self.actor, self.config, seeds)
+        if self.config.evaluation_episode_log_path:
+            path = Path(self.config.evaluation_episode_log_path)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            with path.open("a", encoding="utf-8") as handle:
+                for seed, episode in zip(seeds, episodes):
+                    row = {"protocol_version": self.config.protocol_version,
+                           "candidate": self.config.preexperiment_candidate,
+                           "run_seed": self.config.run_seed, "update": self.update_count,
+                           "split": "validation", "seed": int(seed),
+                           "protocol_sha256": self.config.preexperiment_protocol_sha256, **episode}
+                    handle.write(json.dumps(row, ensure_ascii=False, allow_nan=False, separators=(",", ":")) + "\n")
         self.save_evaluation_actor(seeds)
         is_best = self.maybe_save_best(summary, score)
         row = {"update": self.update_count, "seeds": ",".join(map(str, seeds)), "score": json.dumps(score),
