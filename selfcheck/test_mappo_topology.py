@@ -96,6 +96,10 @@ class MappoTopologyTests(unittest.TestCase):
         self.assertEqual(actor.effective_input_dim, 97)
         self.assertEqual(tuple(effective.shape), (1, 4, 97))
         torch.testing.assert_close(effective[..., :26], local)
+        # The K=4 contract is byte-for-byte the reviewed flattened chain;
+        # the Stage-4.3 K=3/5 adapter is therefore an identity at K=4.
+        expected_topology = torch.cat((torch.as_tensor(nodes).reshape(-1), torch.as_tensor(edges).reshape(-1)))
+        torch.testing.assert_close(effective[0, 0, 26:], expected_topology)
         torch.testing.assert_close(effective[:, 0, 26:], effective[:, 1, 26:])
         torch.testing.assert_close(effective[:, 1, 26:], effective[:, 2, 26:])
         torch.testing.assert_close(effective[:, 2, 26:], effective[:, 3, 26:])

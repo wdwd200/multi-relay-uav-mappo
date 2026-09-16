@@ -1,0 +1,11 @@
+{
+  "protocol_version": "stage4.3-p3-p4-engineering-gate-v1",
+  "p3_actor_variant": "topology_info",
+  "p4_actor_variant": "graph",
+  "p3_actor_parameters": 29446,
+  "p4_actor_parameters": 29094,
+  "absolute_difference": 352,
+  "relative_difference_of_larger": 0.011954085444542552,
+  "maximum_allowed_relative_difference": 0.1,
+  "passes": true
+}

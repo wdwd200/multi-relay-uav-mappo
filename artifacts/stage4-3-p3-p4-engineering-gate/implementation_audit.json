@@ -1,0 +1,53 @@
+{
+  "protocol_version": "stage4.3-p3-p4-engineering-gate-v1",
+  "scope": "engineering gate and 10-update smoke only",
+  "frozen_scientific_contract_changed": false,
+  "formal_training_executed": false,
+  "final_test_executed": false,
+  "common_v0h0": {
+    "value_normalization": false,
+    "gamma": 0.99,
+    "gae_lambda": 0.95
+  },
+  "shared_training_contract": {
+    "local_observation_dim": 26,
+    "centralized_critic_input_dim_k4": 47,
+    "actor_lr": 0.0001,
+    "critic_lr": 0.0003,
+    "entropy_coef": 0.0,
+    "rollout_length": 128,
+    "num_envs": 8,
+    "mini_batch_size": 256,
+    "ppo_epochs": 10,
+    "state_independent_log_std": true
+  },
+  "P3": {
+    "actor_variant": "topology_info",
+    "actor_input_dim_k4": 97,
+    "topology_node_dim": 6,
+    "topology_edge_dim": 7,
+    "topology_structure": "ordered logical chain H-R1-...-RK-L; shared block repeated for each relay action",
+    "environment_observation_changed": false,
+    "critic_privileged_information_added": false
+  },
+  "P4": {
+    "actor_variant": "graph",
+    "actor_input_dim_k4": 58,
+    "topology_node_dim": 6,
+    "topology_edge_dim": 7,
+    "graph_hidden_dim": 32,
+    "topology_structure": "ordered chain with K shared bidirectional message-passing rounds",
+    "parameters_shared_across_nodes_edges_and_rounds": true,
+    "uses_relay_own_node_embedding": true,
+    "environment_observation_changed": false,
+    "critic_privileged_information_added": false
+  },
+  "parameter_fairness": {
+    "p3_actor_parameters": 29446,
+    "p4_actor_parameters": 29094,
+    "absolute_difference": 352,
+    "relative_difference_of_larger": 0.011954085444542552,
+    "maximum_allowed_relative_difference": 0.1,
+    "passes": true
+  }
+}
