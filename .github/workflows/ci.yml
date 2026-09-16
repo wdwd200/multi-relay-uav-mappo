@@ -33,3 +33,7 @@ jobs:
       # protocol and training records must remain independently reproducible.
       - run: python stage4_4_p3_p4_seed2026.py --verify
       - run: git diff --exit-code -- artifacts/stage4-4-p3-p4-seed2026
+      # Stage 4.5 commits diagnostics and validation-only multi-seed records;
+      # its checkpoint binaries remain local and are checked when available.
+      - run: python stage4_5_p3_p4_diagnostics_multiseed.py --verify
+      - run: git diff --exit-code -- artifacts/stage4-5-p3-p4-diagnostics-multiseed

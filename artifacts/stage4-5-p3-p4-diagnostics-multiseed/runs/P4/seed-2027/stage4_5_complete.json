@@ -1,0 +1,21 @@
+{
+  "protocol_sha256": "8f513685c2860b04dd539a27932a4e0c4ec640c69fc2835afdff08dc3e618808",
+  "label": "P4",
+  "run_seed": 2027,
+  "updates": 1000,
+  "training_samples": 1024000,
+  "checkpoint_reload": {
+    "latest_exists": true,
+    "update": true,
+    "total_env_steps": true,
+    "actor": true,
+    "critic": true,
+    "actor_optimizer": true,
+    "critic_optimizer": true,
+    "normalizer": true,
+    "value_normalizer_v0": true,
+    "protocol_rng": true,
+    "fresh_boundary_resume": true
+  },
+  "final_test_executed": false
+}

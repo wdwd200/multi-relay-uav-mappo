@@ -1,0 +1,172 @@
+{
+  "diagnostic_protocol_sha256": "3b1b1d031a4eb469461b96e113a65cd840c66bd5352c171e5e93f54b9f388878",
+  "diagnostic_verdict": "GRAPH_INFO_CONFIRMED",
+  "dirty_worktree_at_lock": false,
+  "final_test": {
+    "executed": false,
+    "permitted": false
+  },
+  "generated_at_utc": "2026-09-16T11:47:02.540661+00:00",
+  "git_commit": "59d508a3054224fa5ad0f25cbf6a6245d6892858",
+  "independent_rng_seeds": {
+    "2027": {
+      "P3": {
+        "action_noise_seed": 8904235492141279092,
+        "actor_init_seed": 1973969303112273162,
+        "critic_init_seed": 4241457257098150665,
+        "minibatch_seed": 8965350991862126053,
+        "train_env_seed_base": 12000000
+      },
+      "P4": {
+        "action_noise_seed": 8904235492141279092,
+        "actor_init_seed": 1973969303112273162,
+        "critic_init_seed": 4241457257098150665,
+        "minibatch_seed": 8965350991862126053,
+        "train_env_seed_base": 12000000
+      }
+    },
+    "2028": {
+      "P3": {
+        "action_noise_seed": 54197931261158596,
+        "actor_init_seed": 1984483918342790729,
+        "critic_init_seed": 7553483305251461426,
+        "minibatch_seed": 8006775498533877446,
+        "train_env_seed_base": 14000000
+      },
+      "P4": {
+        "action_noise_seed": 54197931261158596,
+        "actor_init_seed": 1984483918342790729,
+        "critic_init_seed": 7553483305251461426,
+        "minibatch_seed": 8006775498533877446,
+        "train_env_seed_base": 14000000
+      }
+    }
+  },
+  "new_training_seeds": [
+    2027,
+    2028
+  ],
+  "paired_seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "protocol_version": "stage4.5-p3-p4-multiseed-v1",
+  "selection_rule": "safety_priority_key: hard violations, normal completion, collision+boundary, persistent outage, outage ratio, rate satisfaction, mean e2e; earlier update only on exact tie",
+  "stage4_formal_common_config": {
+    "acceptance_eval_episodes": 20,
+    "action_dim": 3,
+    "actor_hidden_sizes": [
+      128,
+      128
+    ],
+    "actor_log_std_mode": "state_independent_tanh",
+    "actor_lr": 0.0001,
+    "base_seed": 2026,
+    "clip_epsilon": 0.2,
+    "critic_hidden_sizes": [
+      128,
+      128
+    ],
+    "critic_lr": 0.0003,
+    "device": "cpu",
+    "entropy_coef": 0.0,
+    "eval_interval_updates": 50,
+    "evaluation_episode_log_path": "",
+    "exact_environment_resume": false,
+    "final_test_seed_manifest": "artifacts/stage4-1-protocol-repair/seed_manifest.json",
+    "full_updates": 1000,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "global_state_dim": 47,
+    "graph_hidden_dim": 32,
+    "local_obs_dim": 26,
+    "log_std_max": 0.0,
+    "log_std_min": -4.0,
+    "max_grad_norm": 0.5,
+    "mini_batch_size": 256,
+    "normalizer_clip": 10.0,
+    "normalizer_epsilon": 0.0001,
+    "num_envs": 8,
+    "num_relays": 4,
+    "periodic_eval_episodes": 5,
+    "ppo_epochs": 10,
+    "preexperiment_candidate": "",
+    "preexperiment_protocol_sha256": "",
+    "protocol_version": "stage4.1-v1",
+    "resume_mode": "fresh_episode_at_update_boundary",
+    "rollout_length": 128,
+    "smoke_updates": 10,
+    "state_independent_log_std_init": -1.5,
+    "team_time_samples": 1024,
+    "topology_edge_dim": 7,
+    "topology_node_dim": 6,
+    "validation_seed_manifest": "artifacts/stage4-1-protocol-repair/seed_manifest.json",
+    "value_loss_coef": 0.5,
+    "value_normalization": false
+  },
+  "training_budget": {
+    "new_runs": 4,
+    "new_total_samples": 4096000,
+    "samples_per_run": 1024000,
+    "updates_per_run": 1000
+  },
+  "validation": {
+    "episodes_per_run": 400,
+    "seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+    "seeds": [
+      50000000,
+      50000001,
+      50000002,
+      50000003,
+      50000004,
+      50000005,
+      50000006,
+      50000007,
+      50000008,
+      50000009,
+      50000010,
+      50000011,
+      50000012,
+      50000013,
+      50000014,
+      50000015,
+      50000016,
+      50000017,
+      50000018,
+      50000019
+    ],
+    "updates": [
+      50,
+      100,
+      150,
+      200,
+      250,
+      300,
+      350,
+      400,
+      450,
+      500,
+      550,
+      600,
+      650,
+      700,
+      750,
+      800,
+      850,
+      900,
+      950,
+      1000
+    ]
+  },
+  "variants": [
+    {
+      "actor_variant": "topology_info",
+      "label": "P3"
+    },
+    {
+      "actor_variant": "graph",
+      "label": "P4"
+    }
+  ]
+}
