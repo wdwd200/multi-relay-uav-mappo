@@ -298,12 +298,20 @@ def _select_validation_summary(summaries: list[dict[str, Any]]) -> dict[str, Any
     return min(summaries, key=lambda item: (tuple(item["score"]), int(item["update"])))
 
 
-def _validate_run(label: str, actor_variant: str, protocol_hash: str, all_episodes: list[dict[str, Any]]) -> dict[str, Any]:
+def _validate_run(label: str, actor_variant: str, protocol_hash: str, all_episodes: list[dict[str, Any]],
+                  *, verify_binaries: bool) -> dict[str, Any]:
     run_dir = _run_directory(label)
     from plain_mappo.config import MappoConfig
     config = MappoConfig.from_dict(_read_json(run_dir / "config.json")).to_dict()
     expected_config = _config_for(label, actor_variant).to_dict()
-    if config != expected_config:
+    # output_dir is intentionally saved as the producing worktree's absolute
+    # path.  It cannot equal a verifier's path in a clean checkout, so compare
+    # the complete frozen training contract independently and bind the saved
+    # location to this run's required relative artifact directory.
+    saved_output_dir = str(config.pop("output_dir")).replace("\\", "/")
+    expected_config.pop("output_dir")
+    required_suffix = str(run_dir.relative_to(ROOT)).replace("\\", "/")
+    if not saved_output_dir.endswith(required_suffix) or config != expected_config:
         raise ValueError(f"{label} saved config differs from stage4-formal contract")
     train_rows = _load_csv(run_dir / "train.csv")
     if len(train_rows) != UPDATES or [int(row["update"]) for row in train_rows] != list(range(1, UPDATES + 1)):
@@ -337,7 +345,7 @@ def _validate_run(label: str, actor_variant: str, protocol_hash: str, all_episod
             raise ValueError(f"{label} validation score at update {update} is not the frozen safety key")
         summaries.append({"update": update, "summary": recomputed, "score": expected_score})
     periodic_paths = [run_dir / "eval_checkpoints" / f"actor_update_{update:04d}.pt" for update in EVAL_UPDATES]
-    if not all(path.is_file() for path in periodic_paths):
+    if verify_binaries and not all(path.is_file() for path in periodic_paths):
         raise FileNotFoundError(f"{label} periodic Actor checkpoint is missing")
     winner = _select_validation_summary(summaries)
     last = train_rows[-1]
@@ -352,22 +360,38 @@ def _validate_run(label: str, actor_variant: str, protocol_hash: str, all_episod
                 "action_saturation_ratio", "clamped_log_std_min", "clamped_log_std_max")}}
 
 
-def _write_final_artifacts(protocol_hash: str, *, write: bool = True) -> dict[str, Any]:
+def _write_final_artifacts(protocol_hash: str, *, write: bool = True, verify_binaries: bool = True) -> dict[str, Any]:
     episodes = _episode_rows()
     if len(episodes) != 800:
         raise ValueError("Stage-4.4 requires exactly 800 raw validation Episodes")
-    reports = [_validate_run(label, variant, protocol_hash, episodes) for label, variant in VARIANTS]
+    reports = [_validate_run(label, variant, protocol_hash, episodes, verify_binaries=verify_binaries)
+               for label, variant in VARIANTS]
     entries: list[dict[str, Any]] = []
+    expected_entries: list[tuple[str, str, Path]] = []
     for label, _ in VARIANTS:
         run_dir = _run_directory(label)
-        for category, paths in (("periodic_validation_actor", sorted((run_dir / "eval_checkpoints").glob("actor_update_*.pt"))),
-                                ("training_checkpoint", [run_dir / "checkpoints" / name for name in ("latest.pt", "best.pt", "actor_final.pt")])):
+        periodic = [run_dir / "eval_checkpoints" / f"actor_update_{update:04d}.pt" for update in EVAL_UPDATES]
+        training = [run_dir / "checkpoints" / name for name in ("latest.pt", "best.pt", "actor_final.pt")]
+        for category, paths in (("periodic_validation_actor", periodic), ("training_checkpoint", training)):
             for path in paths:
-                if not path.is_file():
-                    raise FileNotFoundError(f"missing {category}: {path}")
-                entries.append({"variant": label, "category": category,
-                                "relative_path": str(path.relative_to(ROOT)).replace("\\", "/"),
-                                "sha256": sha256_file(path)})
+                expected_entries.append((label, category, path))
+                if verify_binaries:
+                    if not path.is_file():
+                        raise FileNotFoundError(f"missing {category}: {path}")
+                    entries.append({"variant": label, "category": category,
+                                    "relative_path": str(path.relative_to(ROOT)).replace("\\", "/"),
+                                    "sha256": sha256_file(path)})
+    if not verify_binaries:
+        existing = _read_json(CHECKPOINT_MANIFEST)
+        entries = list(existing.get("entries", []))
+        expected_by_path = {str(path.relative_to(ROOT)).replace("\\", "/"): (label, category)
+                            for label, category, path in expected_entries}
+        if (len(entries) != len(expected_entries)
+                or {entry.get("relative_path") for entry in entries} != set(expected_by_path)
+                or any(expected_by_path[entry["relative_path"]] != (entry.get("variant"), entry.get("category"))
+                       or not isinstance(entry.get("sha256"), str) or len(entry["sha256"]) != 64
+                       for entry in entries)):
+            raise ValueError("Stage-4.4 checkpoint hash manifest metadata is incomplete")
     checkpoint_manifest = {"protocol_version": PROTOCOL_VERSION, "protocol_sha256": protocol_hash,
                            "hash_scheme": "sha256-file-v1", "entries": entries,
                            "final_test_executed": False}
@@ -460,9 +484,18 @@ def verify() -> dict[str, Any]:
         raise ValueError("Stage-4.4 run manifest is incomplete")
     if any(manifest["runs"][label].get("status") != "complete" for label, _ in VARIANTS):
         raise ValueError("Stage-4.4 run did not complete")
-    audit = _write_final_artifacts(protocol_hash, write=False)
+    binary_paths = [path for label, _ in VARIANTS for path in (
+        *[_run_directory(label) / "eval_checkpoints" / f"actor_update_{update:04d}.pt" for update in EVAL_UPDATES],
+        *[_run_directory(label) / "checkpoints" / name for name in ("latest.pt", "best.pt", "actor_final.pt")],
+    )]
+    present = [path for path in binary_paths if path.is_file()]
+    if present and len(present) != len(binary_paths):
+        raise FileNotFoundError("Stage-4.4 checkpoint set is partially present; refusing ambiguous verification")
+    verify_binaries = len(present) == len(binary_paths)
+    audit = _write_final_artifacts(protocol_hash, write=False, verify_binaries=verify_binaries)
     return {"protocol_sha256": protocol_hash, "p3": "COMPLETE", "p4": "COMPLETE",
-            "validation_episodes": audit["validation_episodes"], "final_test_executed": False}
+            "validation_episodes": audit["validation_episodes"], "final_test_executed": False,
+            "checkpoint_binary_verification": "PASS" if verify_binaries else "SKIPPED_MISSING_LOCAL_CHECKPOINTS"}
 
 
 def main() -> None:

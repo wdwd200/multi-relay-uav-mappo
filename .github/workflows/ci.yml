@@ -29,3 +29,7 @@ jobs:
       # Stage 4.3 engineering-gate reports are also committed, locked input.
       - run: python stage4_3_p3_p4_engineering_gate.py --verify
       - run: git diff --exit-code -- artifacts/stage4-3-p3-p4-engineering-gate
+      # Stage 4.4 retains checkpoint binaries locally, while its committed
+      # protocol and training records must remain independently reproducible.
+      - run: python stage4_4_p3_p4_seed2026.py --verify
+      - run: git diff --exit-code -- artifacts/stage4-4-p3-p4-seed2026
