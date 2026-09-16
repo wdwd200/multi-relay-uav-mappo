@@ -1,0 +1,51 @@
+{
+  "protocol_version": "stage4.4-p3-p4-seed2026-v1",
+  "protocol_sha256": "cd0f4db154cffa3bc5044ae5523bd990f305c36188a653338c31edc78f80f64a",
+  "runs": {
+    "P3": {
+      "status": "complete",
+      "actor_variant": "topology_info",
+      "run_seed": 2026,
+      "updates": 1000,
+      "training_samples": 1024000,
+      "checkpoint_reload": {
+        "latest_exists": true,
+        "update": true,
+        "total_env_steps": true,
+        "actor": true,
+        "critic": true,
+        "actor_optimizer": true,
+        "critic_optimizer": true,
+        "normalizer": true,
+        "value_normalizer_v0": true,
+        "protocol_rng": true,
+        "fresh_boundary_resume": true
+      },
+      "final_test_executed": false
+    },
+    "P4": {
+      "status": "complete",
+      "actor_variant": "graph",
+      "run_seed": 2026,
+      "updates": 1000,
+      "training_samples": 1024000,
+      "checkpoint_reload": {
+        "latest_exists": true,
+        "update": true,
+        "total_env_steps": true,
+        "actor": true,
+        "critic": true,
+        "actor_optimizer": true,
+        "critic_optimizer": true,
+        "normalizer": true,
+        "value_normalizer_v0": true,
+        "protocol_rng": true,
+        "fresh_boundary_resume": true
+      },
+      "final_test_executed": false
+    }
+  },
+  "interrupted_attempts": [],
+  "final_test_executed": false,
+  "formal_training_executed": true
+}

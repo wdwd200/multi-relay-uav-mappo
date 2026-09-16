@@ -1,0 +1,92 @@
+{
+  "protocol_version": "stage4.4-p3-p4-seed2026-v1",
+  "protocol_sha256": "cd0f4db154cffa3bc5044ae5523bd990f305c36188a653338c31edc78f80f64a",
+  "result_status": "SINGLE-SEED PILOT",
+  "selected": [
+    {
+      "variant": "P3",
+      "actor_variant": "topology_info",
+      "run_seed": 2026,
+      "selected_update": 350,
+      "checkpoint_relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0350.pt",
+      "checkpoint_sha256": "9dedb3ffee0d8433e2a2b46353ba1187e0bd04b79bde626b8d3c29ba75573a50",
+      "validation_score": [
+        0.0,
+        -1.0,
+        2.0,
+        17.0,
+        0.09793895245262332,
+        -0.8328773026666946,
+        -6.503413661489313
+      ],
+      "validation_summary": {
+        "mean_return": 224.6442994136672,
+        "mean_e2e_rate_mbps": 6.503413661489313,
+        "rate_satisfaction_ratio": 0.8328773026666946,
+        "outage_step_ratio": 0.09793895245262332,
+        "mean_acceleration_mps2": 0.3134729653551336,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1280.832839631198,
+        "episodes": 20,
+        "total_steps": 4656,
+        "normal_completion_count": 1,
+        "collision_count": 2,
+        "boundary_count": 0,
+        "persistent_outage_count": 17,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.6998321700878938,
+        "min_separation_m": 17.57665915728685,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.9301362970378224,
+        "max_xy_accel_mps2": 0.930023539075453,
+        "max_abs_z_accel_mps2": 0.6431157588958741
+      },
+      "validation_seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+      "selection_rule": "safety_priority_key: hard violations, normal completion, collision+boundary, persistent outage, outage ratio, rate satisfaction, mean e2e; earlier update only on exact tie",
+      "final_test_used": false
+    },
+    {
+      "variant": "P4",
+      "actor_variant": "graph",
+      "run_seed": 2026,
+      "selected_update": 350,
+      "checkpoint_relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0350.pt",
+      "checkpoint_sha256": "37680791a7c0b1e9294f9ece2bd6cebe4d1fb8e2f259dea2e899716f5d3f0cab",
+      "validation_score": [
+        0.0,
+        -0.0,
+        0.0,
+        20.0,
+        0.12398969178493331,
+        -0.787939967919541,
+        -6.289006070575779
+      ],
+      "validation_summary": {
+        "mean_return": 205.08341716426548,
+        "mean_e2e_rate_mbps": 6.289006070575779,
+        "rate_satisfaction_ratio": 0.787939967919541,
+        "outage_step_ratio": 0.12398969178493331,
+        "mean_acceleration_mps2": 0.3374480207579516,
+        "action_saturation_ratio": 0.0,
+        "movement_distance_m": 1129.3510887729929,
+        "episodes": 20,
+        "total_steps": 4463,
+        "normal_completion_count": 0,
+        "collision_count": 0,
+        "boundary_count": 0,
+        "persistent_outage_count": 20,
+        "speed_accel_violations": 0,
+        "min_link_margin_db": -1.9195992837611087,
+        "min_separation_m": 21.60262484847432,
+        "max_xy_speed_mps": 20.000000000000004,
+        "max_abs_z_speed_mps": 2.084219108556863,
+        "max_xy_accel_mps2": 1.0240860757868544,
+        "max_abs_z_accel_mps2": 0.448953241109848
+      },
+      "validation_seed_manifest_sha256": "99b1cbd618444af64c3ae14eb82f356c44584afa4693c1862a82687d1268ab1f",
+      "selection_rule": "safety_priority_key: hard violations, normal completion, collision+boundary, persistent outage, outage ratio, rate satisfaction, mean e2e; earlier update only on exact tie",
+      "final_test_used": false
+    }
+  ],
+  "final_test_executed": false
+}

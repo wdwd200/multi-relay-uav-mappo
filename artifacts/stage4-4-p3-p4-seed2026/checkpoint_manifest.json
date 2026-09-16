@@ -1,0 +1,284 @@
+{
+  "protocol_version": "stage4.4-p3-p4-seed2026-v1",
+  "protocol_sha256": "cd0f4db154cffa3bc5044ae5523bd990f305c36188a653338c31edc78f80f64a",
+  "hash_scheme": "sha256-file-v1",
+  "entries": [
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0050.pt",
+      "sha256": "f1a7adc929aaa82021b09efd6a37e2c190a9c9831b5ffdd685af4b7185960756"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0100.pt",
+      "sha256": "6ef2202edd58ced2b8eb880753f01cd4d0f1412eb40513b1bc16e66ace8301fe"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0150.pt",
+      "sha256": "253dac93867a25c22a1f10fb79a75d336c46e54ce9030102d771be3392cb4d9f"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0200.pt",
+      "sha256": "279cc750601b264b6eb0b0e0fbcdb74afe5a2a5e1fbbbc6cf6644eec5f36db26"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0250.pt",
+      "sha256": "d4b78373b430fd45ac6e84b4cbb96c902efe01fef7ee318ffd6236bfb2bd1090"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0300.pt",
+      "sha256": "013ba255bfacf81c4178fd51d704e8dae26b6d4d82162a7993cf263e25d7229f"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0350.pt",
+      "sha256": "9dedb3ffee0d8433e2a2b46353ba1187e0bd04b79bde626b8d3c29ba75573a50"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0400.pt",
+      "sha256": "5de97548bd06faab447272b1d1f74085e25da0f472425beaceddee206fc51bd5"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0450.pt",
+      "sha256": "a17fc71e462e65e08d733d25c348237f6120224b02fd95b6ad43e3c4151ddbe9"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0500.pt",
+      "sha256": "53e32f02e6dca21a7b4e56ac0d0db7c666393d841ee1e430744cdeed4ff16b3c"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0550.pt",
+      "sha256": "cfdae632c9eafcaed41adc489ed565ae521c9d73a3bd613cb8e96c105cd70a1e"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0600.pt",
+      "sha256": "9096e0271e098fabcd3b6355af83e7197b6ebc6267bd388dc8621b95265e33d8"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0650.pt",
+      "sha256": "a6b5c09e617bced074a398b66533dcd04fb1eee4d03e055db6216d4baa53d985"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0700.pt",
+      "sha256": "f45a86a4cf797f877329a70fb09ad5aa548f3ff385a4d38265fc63dcc6714866"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0750.pt",
+      "sha256": "82299bf55590c5a6886df678f6b8cad00429ecf7e68eddd6bbcf5a5c224079da"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0800.pt",
+      "sha256": "70c898769cfd8c551e8235e342fae0a8ad1d74120991cf5af8715b01cf1c9e8f"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0850.pt",
+      "sha256": "385113d7e07bd2aa285d650146755578c75222171be7d2d9dcfb2135bcea5725"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0900.pt",
+      "sha256": "022a8426bca3884f74da46edf5620a9a1426e0d59dcf91745d87c2b1f70b0713"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_0950.pt",
+      "sha256": "cac20fedd3d664118e4b93f90cace55d5244e16849a9a52a07ebcdc90487904e"
+    },
+    {
+      "variant": "P3",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/eval_checkpoints/actor_update_1000.pt",
+      "sha256": "561ce875ec7fa04f233dced12e3456ddeb46c15748546f09cf12d6307c3151c8"
+    },
+    {
+      "variant": "P3",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/checkpoints/latest.pt",
+      "sha256": "c7a322448b217f101e09a9d3839ab6986854225c4c8f507b61aad2f41283d752"
+    },
+    {
+      "variant": "P3",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/checkpoints/best.pt",
+      "sha256": "10b4c4418ac6078f88fc668e6aab743887b9f1875c5bb614b2159104a4070e40"
+    },
+    {
+      "variant": "P3",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P3/seed-2026/checkpoints/actor_final.pt",
+      "sha256": "6768496dae616b6929e580a4a247415e99d6a4b89ddc621c62246dc6c8614811"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0050.pt",
+      "sha256": "c48cb59934b0ea4ac8b04f56377f82fa2a03dd9f75c307decbb7ee9513125606"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0100.pt",
+      "sha256": "b609af377237d238f64d32f902fbb63e079ff86e929e26d8d3d100fb21f9cca8"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0150.pt",
+      "sha256": "fef527d9e9aa204665162b01e4419abf648dce5ea90c2946ee2e6ee409568647"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0200.pt",
+      "sha256": "1ba155fd6fa8981a721370779d6f36d743500208fc149b3fc5330c904e607b4d"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0250.pt",
+      "sha256": "6a61a99a9953f7b61e38a688905ae547796dd30ff6a719d874e6deb29fa257e4"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0300.pt",
+      "sha256": "033ddc560876ef13237d8c0bc2b099d83eb82c57a61c5019c9df353201e0bc99"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0350.pt",
+      "sha256": "37680791a7c0b1e9294f9ece2bd6cebe4d1fb8e2f259dea2e899716f5d3f0cab"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0400.pt",
+      "sha256": "3a598dcc0787fb7435ec0ef80706942bf71995313dbc92f4b9a0c630c5f53b13"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0450.pt",
+      "sha256": "c91b57ea4eb78860df7409c109ee3d8120a633271e234e281ad4b38ac3b8f93c"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0500.pt",
+      "sha256": "1ba2e8dc33047f799e97df413ecfd963ea1b4cbc5baa2be781b98a354e0e334d"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0550.pt",
+      "sha256": "d9849d4f0284e3b26baae0ad1362365111028d56b34012955260e9f21c257dbf"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0600.pt",
+      "sha256": "964b27cd0d9793e33300189049f6369a847ce2c527a9696ec236dd9cb30f70a5"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0650.pt",
+      "sha256": "5ca841935892acf1ec247ecb62cfe5147c33df7b3c226a37e5efdce330d1c9a7"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0700.pt",
+      "sha256": "bc89b7fc55034307a5a1f7bd2a1578c519dc35a282a54f929f40c36a61d6d64c"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0750.pt",
+      "sha256": "6f21370670eb54aff2747a96d361f1644da194610d94ef382eef7a0d89553321"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0800.pt",
+      "sha256": "efbb501221c96b81772e9a8a00613a87474d7f8032bfa45ae79d925598bd2683"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0850.pt",
+      "sha256": "a816f002801211de0d5dc4b05860d44709730d221050749fad43beb298d31214"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0900.pt",
+      "sha256": "566efc079aff181c6cf999d79a1d5f57113cd9eb1a02dfbc381bfdcc7cb1c49b"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_0950.pt",
+      "sha256": "8b20cf23a37ea49e7a44b270ebb12a7d50bf66c31a49d92d3f8e769965b69146"
+    },
+    {
+      "variant": "P4",
+      "category": "periodic_validation_actor",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/eval_checkpoints/actor_update_1000.pt",
+      "sha256": "1fe93efc76725181c41935c3148d3d0f131ed69fb0af111868510d50ea9763f4"
+    },
+    {
+      "variant": "P4",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/checkpoints/latest.pt",
+      "sha256": "c84b5ddd73697793cefda429e1209f842b5f6c8454178c01f00a43461c36d9e8"
+    },
+    {
+      "variant": "P4",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/checkpoints/best.pt",
+      "sha256": "c64fafb7006d6e0c5246e1dcf91eae975222ec3eea2c80dc36033ec8f73771af"
+    },
+    {
+      "variant": "P4",
+      "category": "training_checkpoint",
+      "relative_path": "artifacts/stage4-4-p3-p4-seed2026/runs/P4/seed-2026/checkpoints/actor_final.pt",
+      "sha256": "64fa6d739da3be8b1eb023ca9689e58255695962e9585a87e61690fd18793349"
+    }
+  ],
+  "final_test_executed": false
+}
