@@ -26,3 +26,6 @@ jobs:
       # read-only so both supported Python versions catch artifact drift.
       - run: python stage4_2_preexperiment.py --verify
       - run: git diff --exit-code -- artifacts/stage4-2-preexperiment
+      # Stage 4.3 engineering-gate reports are also committed, locked input.
+      - run: python stage4_3_p3_p4_engineering_gate.py --verify
+      - run: git diff --exit-code -- artifacts/stage4-3-p3-p4-engineering-gate
