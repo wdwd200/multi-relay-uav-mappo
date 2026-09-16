@@ -360,7 +360,8 @@ def recover_invalidated_attempt() -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--verify-only", action="store_true", help="Validate existing complete artifacts without training.")
+    parser.add_argument("--verify", "--verify-only", dest="verify_only", action="store_true",
+                        help="Validate existing complete artifacts without training.")
     parser.add_argument("--recover-invalidated-attempt", action="store_true",
                         help="Explicitly clear isolated, invalid completion status after a host interruption.")
     args = parser.parse_args()
