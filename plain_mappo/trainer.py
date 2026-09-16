@@ -543,7 +543,8 @@ class MappoTrainer:
         self._append_csv("eval.csv", self.eval_fields, row)
         return summary, score, is_best
 
-    def train(self, updates: int, *, final_evaluation: bool = True) -> list[dict[str, Any]]:
+    def train(self, updates: int, *, final_evaluation: bool = True,
+              export_final_actor: bool = True) -> list[dict[str, Any]]:
         if updates < 1:
             raise ValueError("updates must be positive")
         records: list[dict[str, Any]] = []
@@ -563,5 +564,9 @@ class MappoTrainer:
             summary, score, is_best = self.run_evaluation(self._periodic_validation_seeds())
             records[-1].update({"evaluation": summary, "score": score, "best": is_best})
             self.save_latest()
-        self.export_actor_final()
+        # A Stage-4.3 engineering smoke has no checkpoint-selection purpose.
+        # Keep the established default for every existing training workflow,
+        # while allowing that smoke to verify only ``latest.pt`` reload.
+        if export_final_actor:
+            self.export_actor_final()
         return records

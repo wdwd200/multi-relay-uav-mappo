@@ -115,6 +115,30 @@ class SharedActor(nn.Module):
             raise ValueError(f"expected topology_edges shape {expected_edges}, got {tuple(topology_edges.shape)}")
         return topology_nodes.to(device=local_obs.device, dtype=local_obs.dtype), topology_edges.to(device=local_obs.device, dtype=local_obs.dtype)
 
+    @staticmethod
+    def _resample_chain_features(features: Tensor, target_items: int) -> Tensor:
+        """Map a variable-length ordered chain to a fixed, parameter-free width.
+
+        P3's reviewed K=4 MLP contract is 26 + (6 * 6) + (5 * 7) = 97.
+        K=3/5 inference must not instantiate a differently shaped MLP, because
+        that would change its reviewed parameter count and invalidate K=4
+        checkpoints.  Linear resampling is deterministic, preserves the two
+        chain endpoints exactly, uses no IDs or privileged state, and is an
+        identity when the source already has the frozen K=4 length.
+        """
+        source_items = int(features.shape[-2])
+        if source_items == target_items:
+            return features
+        positions = torch.linspace(0, source_items - 1, target_items,
+                                   device=features.device, dtype=features.dtype)
+        lower = positions.floor().to(dtype=torch.long)
+        upper = positions.ceil().to(dtype=torch.long)
+        fraction = positions - lower.to(dtype=features.dtype)
+        view_shape = (1,) * (features.ndim - 2) + (target_items, 1)
+        lower_values = features.index_select(-2, lower)
+        upper_values = features.index_select(-2, upper)
+        return lower_values * (1.0 - fraction.view(view_shape)) + upper_values * fraction.view(view_shape)
+
     def graph_embeddings(self, local_obs: Tensor, topology_nodes: Tensor | None = None,
                          topology_edges: Tensor | None = None) -> Tensor:
         """Run exactly K shared mean-aggregation message-passing rounds."""
@@ -156,6 +180,11 @@ class SharedActor(nn.Module):
             return torch.cat((local_obs, one_hot.view(view_shape).expand(*local_obs.shape[:-2], *one_hot.shape)), dim=-1)
         if self.actor_variant == "topology_info":
             nodes, edges = self._topology_tensors(local_obs, topology_nodes, topology_edges)
+            # The reviewed P3 backbone has a fixed 97-input K=4 contract.
+            # Resampling only makes K=3/5 inference representable at that
+            # same width; K=4 remains exactly the original flattened input.
+            nodes = self._resample_chain_features(nodes, 6)
+            edges = self._resample_chain_features(edges, 5)
             topology_block = torch.cat((nodes.reshape(*nodes.shape[:-2], -1), edges.reshape(*edges.shape[:-2], -1)), dim=-1)
             repeated_block = topology_block.unsqueeze(-2).expand(*local_obs.shape[:-1], topology_block.shape[-1])
             return torch.cat((local_obs, repeated_block), dim=-1)
