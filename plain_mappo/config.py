@@ -5,7 +5,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Any
 
-from .experiment_protocol import (LEGACY_PROTOCOL_VERSION, PROTOCOL_VERSION,
+from .experiment_protocol import (LEGACY_PROTOCOL_VERSION, PREEXPERIMENT_PROTOCOL_VERSION,
+                                  PROTOCOL_VERSION, preexperiment_protocol_fields,
                                   protocol_fields)
 
 
@@ -48,6 +49,9 @@ class MappoConfig:
     max_grad_norm: float = 0.5
     normalizer_clip: float = 10.0
     normalizer_epsilon: float = 1e-4
+    # V0 retains the historical raw-value Critic loss.  The Stage-4.2 pilot
+    # may explicitly enable V1; old checkpoints therefore remain V0.
+    value_normalization: bool = False
     base_seed: int = 2026
     # Stage 4.1 separates all process random domains.  ``from_dict`` marks
     # checkpoints that predate these fields as ``legacy_protocol``.
@@ -60,6 +64,10 @@ class MappoConfig:
     train_env_seed_base: int | None = None
     validation_seed_manifest: str = ""
     final_test_seed_manifest: str = ""
+    # Stage-4.2-only provenance; empty strings preserve all existing runs.
+    preexperiment_candidate: str = ""
+    preexperiment_protocol_sha256: str = ""
+    evaluation_episode_log_path: str = ""
     resume_mode: str = "fresh_episode_at_update_boundary"
     exact_environment_resume: bool = False
     eval_interval_updates: int = 50
@@ -72,7 +80,8 @@ class MappoConfig:
 
     def __post_init__(self) -> None:
         if self.protocol_version != LEGACY_PROTOCOL_VERSION:
-            fields = protocol_fields(self.run_seed)
+            fields = (protocol_fields(self.run_seed) if self.protocol_version == PROTOCOL_VERSION
+                      else preexperiment_protocol_fields(self.run_seed))
             for name, value in fields.items():
                 # All Stage-4.1 domain seeds are derived, never user-tuned.
                 # This also makes ``dataclasses.replace(config, run_seed=...)``
@@ -113,9 +122,16 @@ class MappoConfig:
             raise ValueError("only fresh_episode_at_update_boundary / exact_environment_resume=false is supported")
         if self.protocol_version == LEGACY_PROTOCOL_VERSION:
             return
-        if self.protocol_version != PROTOCOL_VERSION:
+        if self.protocol_version == PROTOCOL_VERSION:
+            expected = protocol_fields(self.run_seed)
+        elif self.protocol_version == PREEXPERIMENT_PROTOCOL_VERSION:
+            expected = preexperiment_protocol_fields(self.run_seed)
+            if not self.preexperiment_candidate or not self.preexperiment_protocol_sha256:
+                raise ValueError("Stage-4.2 pre-experiment config requires candidate and protocol hash")
+            if not self.evaluation_episode_log_path:
+                raise ValueError("Stage-4.2 pre-experiment config requires a validation episode log path")
+        else:
             raise ValueError("unsupported experiment protocol version")
-        expected = protocol_fields(self.run_seed)
         for name, expected_value in expected.items():
             if getattr(self, name) != expected_value:
                 raise ValueError(f"{name} must match the frozen protocol derivation")
@@ -138,11 +154,12 @@ class MappoConfig:
         raw = dict(data)
         protocol_version = raw.get("protocol_version")
         if protocol_version is not None and protocol_version != LEGACY_PROTOCOL_VERSION:
-            if protocol_version != PROTOCOL_VERSION:
+            if protocol_version not in {PROTOCOL_VERSION, PREEXPERIMENT_PROTOCOL_VERSION}:
                 raise ValueError("unsupported experiment protocol version")
             if "run_seed" not in raw:
                 raise ValueError("Stage-4.1 checkpoint config is missing run_seed")
-            expected = protocol_fields(int(raw["run_seed"]))
+            expected = (protocol_fields(int(raw["run_seed"])) if protocol_version == PROTOCOL_VERSION
+                        else preexperiment_protocol_fields(int(raw["run_seed"])))
             for name, expected_value in expected.items():
                 if name not in raw or raw[name] != expected_value:
                     raise ValueError(f"serialized {name} does not match the frozen protocol derivation")

@@ -22,10 +22,12 @@ import torch
 
 PROTOCOL_VERSION = "stage4.1-v1"
 LEGACY_PROTOCOL_VERSION = "legacy_protocol"
+PREEXPERIMENT_PROTOCOL_VERSION = "stage4.2-preexperiment-v1"
 CANONICAL_JSON_HASH_SCHEME = "canonical-json-v1"
 VALIDATION_SEEDS = tuple(range(50_000_000, 50_000_020))
 FINAL_TEST_SEEDS = tuple(range(60_000_000, 60_000_050))
 FORMAL_RUN_SEEDS = (2026, 2027, 2028, 2029, 2030)
+PREEXPERIMENT_RUN_SEEDS = (2026, 2027, 2028)
 SEED_MANIFEST_PATH = "artifacts/stage4-1-protocol-repair/seed_manifest.json"
 
 
@@ -40,10 +42,15 @@ def resolve_repository_path(path: str | Path) -> Path:
     return candidate if candidate.is_absolute() else repository_root() / candidate
 
 
-def derive_seed(run_seed: int, domain: str) -> int:
+def _derive_protocol_seed(protocol_version: str, run_seed: int, domain: str) -> int:
     """Derive a stable 63-bit seed without consuming any process RNG state."""
-    payload = f"{PROTOCOL_VERSION}|{int(run_seed)}|{domain}".encode("utf-8")
+    payload = f"{protocol_version}|{int(run_seed)}|{domain}".encode("utf-8")
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "big") % (2**63 - 1)
+
+
+def derive_seed(run_seed: int, domain: str) -> int:
+    """Derive a Stage-4.1 formal-run seed."""
+    return _derive_protocol_seed(PROTOCOL_VERSION, run_seed, domain)
 
 
 def train_env_seed_base_for(run_seed: int) -> int:
@@ -68,6 +75,33 @@ def protocol_fields(run_seed: int) -> dict[str, Any]:
         "train_env_seed_base": train_env_seed_base_for(run_seed),
         "validation_seed_manifest": SEED_MANIFEST_PATH,
         "final_test_seed_manifest": SEED_MANIFEST_PATH,
+    }
+
+
+def preexperiment_train_env_seed_base_for(run_seed: int) -> int:
+    """Return the Stage-4.2 pre-experiment-only two-million seed reservation."""
+    try:
+        index = PREEXPERIMENT_RUN_SEEDS.index(int(run_seed))
+    except ValueError as exc:
+        raise ValueError(f"pre-experiment run_seed must be one of {PREEXPERIMENT_RUN_SEEDS}") from exc
+    return 30_000_000 + 2_000_000 * index
+
+
+def preexperiment_protocol_fields(run_seed: int) -> dict[str, Any]:
+    """Return isolated RNG metadata for the fixed Stage-4.2 pilot matrix."""
+    run_seed = int(run_seed)
+    return {
+        "protocol_version": PREEXPERIMENT_PROTOCOL_VERSION,
+        "run_seed": run_seed,
+        "actor_init_seed": _derive_protocol_seed(PREEXPERIMENT_PROTOCOL_VERSION, run_seed, "actor_initialization"),
+        "critic_init_seed": _derive_protocol_seed(PREEXPERIMENT_PROTOCOL_VERSION, run_seed, "critic_initialization"),
+        "action_noise_seed": _derive_protocol_seed(PREEXPERIMENT_PROTOCOL_VERSION, run_seed, "rollout_action_noise"),
+        "minibatch_seed": _derive_protocol_seed(PREEXPERIMENT_PROTOCOL_VERSION, run_seed, "minibatch_permutation"),
+        "train_env_seed_base": preexperiment_train_env_seed_base_for(run_seed),
+        # The Stage-4.1 locked validation split is read-only input.  The
+        # final-test path is intentionally absent from this pre-experiment.
+        "validation_seed_manifest": SEED_MANIFEST_PATH,
+        "final_test_seed_manifest": "",
     }
 
 

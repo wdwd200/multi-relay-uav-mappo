@@ -1,0 +1,90 @@
+{
+  "protocol_version": "stage4.2-preexperiment-v1",
+  "protocol_sha256": "a385466ab67698514468f31d24230755fc1f683f855663e20938591aae8614db",
+  "recommendation": "INCONCLUSIVE",
+  "recommended_candidate": null,
+  "selection_rule": "safety/finite first; Critic health second; throughput only after safety parity; final test unused",
+  "rationale": "No non-baseline candidate showed a seed-consistent safety improvement under the pre-registered rule.",
+  "candidate_diagnostics": [
+    {
+      "candidate": "V0H0",
+      "seedwise_safety_comparison_vs_V0H0": [
+        0,
+        0,
+        0
+      ],
+      "healthy": true,
+      "critic_clip_improved": false,
+      "explained_variance_improved": true,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    },
+    {
+      "candidate": "V0H1",
+      "seedwise_safety_comparison_vs_V0H0": [
+        -1,
+        -1,
+        1
+      ],
+      "healthy": true,
+      "critic_clip_improved": false,
+      "explained_variance_improved": false,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    },
+    {
+      "candidate": "V0H2",
+      "seedwise_safety_comparison_vs_V0H0": [
+        -1,
+        -1,
+        1
+      ],
+      "healthy": true,
+      "critic_clip_improved": false,
+      "explained_variance_improved": false,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    },
+    {
+      "candidate": "V1H0",
+      "seedwise_safety_comparison_vs_V0H0": [
+        1,
+        1,
+        -1
+      ],
+      "healthy": true,
+      "critic_clip_improved": true,
+      "explained_variance_improved": true,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    },
+    {
+      "candidate": "V1H1",
+      "seedwise_safety_comparison_vs_V0H0": [
+        -1,
+        -1,
+        1
+      ],
+      "healthy": true,
+      "critic_clip_improved": true,
+      "explained_variance_improved": false,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    },
+    {
+      "candidate": "V1H2",
+      "seedwise_safety_comparison_vs_V0H0": [
+        -1,
+        1,
+        1
+      ],
+      "healthy": true,
+      "critic_clip_improved": true,
+      "explained_variance_improved": false,
+      "throughput_within_5pct": true,
+      "seed_consistent": false
+    }
+  ],
+  "final_test_executed": false,
+  "fairness_notice": "Any later formal change must retrain P0-P4 under one shared configuration; it must not compare new P3/P4 runs against old P0/P1/P2 results."
+}

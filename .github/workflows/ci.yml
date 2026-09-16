@@ -22,3 +22,7 @@ jobs:
       # Release-only .pt assets are intentionally not committed. This checks
       # committed manifests/records without downloading or writing artifacts.
       - run: python verify_stage4_1_artifacts.py --metadata-only
+      # Stage 4.2 is a locked, committed pre-experiment. Verification must be
+      # read-only so both supported Python versions catch artifact drift.
+      - run: python stage4_2_preexperiment.py --verify
+      - run: git diff --exit-code -- artifacts/stage4-2-preexperiment

@@ -1,0 +1,341 @@
+{
+  "protocol_version": "stage4.2-preexperiment-v1",
+  "protocol_sha256": "a385466ab67698514468f31d24230755fc1f683f855663e20938591aae8614db",
+  "matrix": [
+    {
+      "candidate": "V0H0",
+      "value_normalization": false,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H0",
+      "value_normalization": false,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H0",
+      "value_normalization": false,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H1",
+      "value_normalization": false,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H1",
+      "value_normalization": false,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H1",
+      "value_normalization": false,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H2",
+      "value_normalization": false,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H2",
+      "value_normalization": false,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V0H2",
+      "value_normalization": false,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H0",
+      "value_normalization": true,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H0",
+      "value_normalization": true,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H0",
+      "value_normalization": true,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H1",
+      "value_normalization": true,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H1",
+      "value_normalization": true,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H1",
+      "value_normalization": true,
+      "gamma": 0.995,
+      "gae_lambda": 0.97,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H2",
+      "value_normalization": true,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2026,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H2",
+      "value_normalization": true,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2027,
+      "updates": 200,
+      "samples_per_update": 1024
+    },
+    {
+      "candidate": "V1H2",
+      "value_normalization": true,
+      "gamma": 0.998,
+      "gae_lambda": 0.98,
+      "run_seed": 2028,
+      "updates": 200,
+      "samples_per_update": 1024
+    }
+  ],
+  "validation_updates": [
+    50,
+    100,
+    150,
+    200
+  ],
+  "final_test_executed": false,
+  "total_runs": 18,
+  "training_samples_per_run": 204800,
+  "training_samples_total": 3686400,
+  "completed_runs": [
+    {
+      "candidate": "V0H0",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H0",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H0",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H1",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H1",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H1",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H2",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H2",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V0H2",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H0",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H0",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H0",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H1",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H1",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H1",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H2",
+      "run_seed": 2026,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H2",
+      "run_seed": 2027,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    },
+    {
+      "candidate": "V1H2",
+      "run_seed": 2028,
+      "status": "complete",
+      "updates": 200,
+      "training_samples": 204800,
+      "checkpoint_reload_smoke": "PASS"
+    }
+  ],
+  "interrupted_attempts": [
+    {
+      "reason": "execution host interruption produced duplicate diagnostics before completion verification",
+      "invalidated_completion_records": [
+        {
+          "candidate": "V0H0",
+          "run_seed": 2026,
+          "status": "complete",
+          "updates": 200,
+          "training_samples": 204800,
+          "checkpoint_reload_smoke": "PASS"
+        }
+      ],
+      "protocol_sha256": "a385466ab67698514468f31d24230755fc1f683f855663e20938591aae8614db",
+      "final_test_executed": false
+    }
+  ]
+}
