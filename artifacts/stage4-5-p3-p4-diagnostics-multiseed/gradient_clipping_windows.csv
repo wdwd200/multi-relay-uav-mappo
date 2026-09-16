@@ -1,0 +1,13 @@
+variant,run_seed,window,gradient,updates,mean,std,median,minimum,maximum,near_one_fraction
+P3,2026,last_50_updates,actor,50,0.9965,0.010012492197250401,1.0,0.95,1.0,0.88
+P3,2026,last_50_updates,critic,50,1.0,0.0,1.0,1.0,1.0,1.0
+P3,2026,last_100_updates,actor,100,0.99375,0.014737282653189503,1.0,0.925,1.0,0.82
+P3,2026,last_100_updates,critic,100,1.0,0.0,1.0,1.0,1.0,1.0
+P3,2026,all_updates,actor,1000,0.827725,0.1652254501431302,0.875,0.325,1.0,0.166
+P3,2026,all_updates,critic,1000,1.0,0.0,1.0,1.0,1.0,1.0
+P4,2026,last_50_updates,actor,50,0.9915,0.014671400751121224,1.0,0.95,1.0,0.72
+P4,2026,last_50_updates,critic,50,1.0,0.0,1.0,1.0,1.0,1.0
+P4,2026,last_100_updates,actor,100,0.9925,0.015206906325745558,1.0,0.925,1.0,0.77
+P4,2026,last_100_updates,critic,100,1.0,0.0,1.0,1.0,1.0,1.0
+P4,2026,all_updates,actor,1000,0.80965,0.2144338534373712,0.925,0.15,1.0,0.199
+P4,2026,all_updates,critic,1000,1.0,0.0,1.0,1.0,1.0,1.0
