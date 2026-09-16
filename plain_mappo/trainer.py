@@ -112,6 +112,10 @@ class MappoTrainer:
         self.best_score: tuple[float, ...] | None = None
         self.best_summary: dict[str, Any] | None = None
         self._last_rollout_speed_accel_violations = 0
+        # Optional experiment-side recorder.  It observes deterministic
+        # evaluation episodes after they complete and never changes the
+        # Environment, Actor, Critic, buffer, PPO update, or checkpoint.
+        self.evaluation_episode_recorder: Any | None = None
         self.loaded_checkpoint_protocol = config.protocol_version
         self._reset_training_envs()
 
@@ -525,6 +529,8 @@ class MappoTrainer:
             if tuple(int(seed) for seed in seeds) != tuple(self._periodic_validation_seeds()):
                 raise ValueError("Stage-4.2 pre-experiment permits only the locked validation split; final test is forbidden")
         summary, score, episodes = evaluate_actor(self.actor, self.config, seeds)
+        if self.evaluation_episode_recorder is not None:
+            self.evaluation_episode_recorder(self.update_count, list(seeds), summary, score, episodes)
         if self.config.evaluation_episode_log_path:
             path = Path(self.config.evaluation_episode_log_path)
             path.parent.mkdir(parents=True, exist_ok=True)
