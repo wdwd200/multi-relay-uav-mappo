@@ -12,6 +12,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - When reading/writing files with Chinese characters, be aware of encoding conversions
 - All source code files are UTF-8 encoded
 
+**Context Management**:
+- At the end of each conversation, indicate whether starting a new conversation (Ctrl+C) is appropriate
+- ✅ Safe to start new conversation: Task completed, code verified, no open issues
+- ❌ Keep current conversation: Multi-step task in progress, debugging not finished, pending verification
+- Format: Single line at conversation end: "**New conversation**: ✅ Safe" or "**New conversation**: ❌ Keep (reason)"
+
 ## Project Overview
 
 This is a **multi-relay UAV MAPPO research pipeline** implementing Stage 3 and Stage 4 policy variants for a frozen Environment v1.1. The current engineering state is **Stage 4.1.1 protocol hardening**, which strengthens reproducibility metadata without introducing new policy experiments.
