@@ -2,6 +2,16 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Environment Context
+
+**Operating System**: Chinese Windows (GBK locale)
+- Terminal output encoding: GBK
+- File system encoding: UTF-8
+- Python `sys.stdout.encoding`: gbk
+- Git Bash is used as the shell
+- When reading/writing files with Chinese characters, be aware of encoding conversions
+- All source code files are UTF-8 encoded
+
 ## Project Overview
 
 This is a **multi-relay UAV MAPPO research pipeline** implementing Stage 3 and Stage 4 policy variants for a frozen Environment v1.1. The current engineering state is **Stage 4.1.1 protocol hardening**, which strengthens reproducibility metadata without introducing new policy experiments.
