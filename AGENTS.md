@@ -1,761 +1,376 @@
-# Stage 4.1 训练与评估协议修复任务书
+# Stage 4.1.1 协议收口修复与 GitHub 交付任务书
 
-日期：2026-09-15  
-执行对象：Codex  
-任务性质：正式训练前的协议修复、旧检查点重评估与门禁验收
+> 执行对象：Codex
+>
+> 项目仓库：`https://github.com/wdwd200/multi-relay-uav-mappo`
+>
+> 本地项目目录：以当前 Codex 工作目录为准，预期为 `D:\转移\桌面\work\multi-agent`
+>
+> 审查基线提交：`d96ef73aa290459849190e384053d1c89430fe71`
 
----
+## 0. 总目标
 
-# 0. 当前状态
+完成 **Stage 4.1.1 工程收口修复**，解决 Stage 4.1 GitHub 审查发现的协议可复现性问题，并由 Codex 自行完成 Git 分支、提交、推送和 PR 创建。
 
-当前项目状态必须按以下口径理解：
+本轮只允许修复：
 
-| 项目                 | 状态                           | 准确含义                                          |
-| -------------------- | ------------------------------ | ------------------------------------------------- |
-| Stage 1 / 2 / 2.5    | PASS                           | Environment v1.1、通信与天线模型已冻结            |
-| P0 Plain MAPPO       | COMPLETE / VALID WEAK BASELINE | 工程正确，但当前单次训练未通过任务性能参考线      |
-| P1 Role-info         | 第一轮训练完成                 | 只能视为单训练种子的探索结果                      |
-| P2 Role-head         | 第一轮训练完成                 | 只能视为单训练种子的探索结果                      |
-| P3 Topology-info MLP | 工程实现完成                   | 自动测试和 10-update smoke 已完成；正式训练未开始 |
-| P4 Graph MAPPO       | 工程实现完成                   | 自动测试和 10-update smoke 已完成；正式训练未开始 |
-| P5 / P6 / Role+Graph | NOT STARTED                    | 本任务不得实现或训练                              |
+- JSON manifest 跨平台哈希；
+- 正式训练冻结配置入口；
+- validation manifest 缺失时的错误退回；
+- legacy checkpoint 连续恢复语义；
+- checkpoint 配置反序列化校验；
+- README、依赖、CI 与复现说明；
+- 历史评估 checkpoint 的 GitHub Release 打包与上传。
 
-P3/P4 已有工程交接表明：
+本轮不是新实验，不允许启动任何新的正式训练或重新评估。
 
-```text
-Stage 4 topology/graph implementation = COMPLETE
-Engineering validation = PASS
-P3 formal training = NOT STARTED
-P4 formal training = NOT STARTED
-Role+Graph = NOT STARTED
-```
+## 1. 已确认事实
 
-因此，本任务不是继续开发 P3/P4，也不是直接启动正式训练，而是先修复会影响论文结论可信度的实验协议。
+以下结果已经过外部审查，本轮必须保留：
 
----
+- validation-grid：60 checkpoints × 20 seeds = 1,200 条 Episode；
+- final test：3 checkpoints × 50 seeds = 150 条 Episode；
+- selected updates：P0=1000、P1=800、P2=650；
+- P0 final：normal=0、persistent outage=44、collision=1、boundary=5、mean e2e=6.338344332983057 Mbps；
+- P1 final：normal=0、persistent outage=14、collision=0、boundary=36、mean e2e=6.8470624105779105 Mbps；
+- P2 final：normal=0、persistent outage=34、collision=0、boundary=16、mean e2e=6.235161143435673 Mbps；
+- 60 个历史 evaluation Actor checkpoint 的文件哈希与 `checkpoint_manifest.json` 对应；
+- P0/P1/P2 仍然只是 single-seed retrospective pilot；
+- P3/P4 正式训练仍为 NOT STARTED；
+- multi-seed P0–P4 training 仍为 NOT AUTHORIZED。
 
-# 1. 开始前必须读取
+## 2. 绝对禁止项
 
-Codex 必须先读取并对齐：
+1. 不运行 P0–P4 的任何 1000-update 正式训练。
+2. 不重跑现有 1,200 条 validation 或 150 条 final-test Episode。
+3. 不修改 Environment v1.1、通信、天线、Reward、outage、safety 或终止条件。
+4. 不修改 P0–P4 Actor 结构、47 维 Critic 输入或 PPO/GAE 数学。
+5. 不调整 gamma、lambda、Actor/Critic LR、entropy、value normalization、value clipping 等实验变量。
+6. 不改写 Episode 的数值字段、终止类型、selected update 或 checkpoint 文件哈希。
+7. 不把 `.pt` 文件或 ZIP 强行提交到普通 Git 历史。
+8. 不使用 `git reset --hard`、强制推送或覆盖用户未提交修改。
+9. 不合并 PR 到 `main`；等待下一轮 GitHub 审查。
 
-1. `20_Stage4_Role收口与Graph启动交接.md`
-2. `19_阶段4_Graph消融代码与自检交接.md`
-3. `18_阶段4_Role第一轮正式训练结果.md`
-4. `00_论文当前总体方案与决策记录_阶段3收口版.md`
-5. `16_阶段3_Plain_MAPPO结构能力诊断与最终收口.md`
-6. 当前源码中的 `AGENTS.md`
-7. `plain_mappo/config.py`
-8. `plain_mappo/trainer.py`
-9. `plain_mappo/evaluation.py`
-10. `plain_mappo/metrics.py`
-11. `plain_mappo/checkpoint.py`
-12. `train_plain_mappo.py`
-13. `evaluate_plain_mappo.py`
+## 3. 开始前检查
 
-若文档与实际源码或训练产物冲突，以可复核的源码和产物为准，并在最终交接中列出冲突，不得静默沿用过时描述。
-
----
-
-# 2. 本任务的唯一目标
-
-建立一套可用于 P0–P4 公平比较的正式实验协议，并完成以下工作：
-
-1. 修复验证集与最终测试集重叠的问题；
-2. 使用全新、独立的验证种子重评 P0/P1/P2 的全部周期检查点；
-3. 仅用验证集重新选择检查点，再用从未参与选择的测试集评估；
-4. 保存逐 Episode 原始结果，而不只保存汇总值；
-5. 为未来多训练种子实验拆分并冻结随机数流；
-6. 补强 Critic、梯度裁剪和价值学习诊断；
-7. 明确当前 checkpoint resume 的真实语义；
-8. 生成 P0–P4 正式训练的命令矩阵和验收门槛，但不执行正式训练。
-
-本任务完成后，才能决定是否授权 P0–P4 的多训练种子正式实验。
-
----
-
-# 3. 为什么必须先修复协议
-
-## 3.1 单训练种子不足
-
-P0 第五轮、P1 和 P2 当前都只有一次独立训练轨迹。`20` 个 evaluation environment seeds 只能衡量一个已训练策略在不同场景下的表现，不能替代多个独立的训练随机种子。
-
-因此，当前结果只能支持：
-
-> 某一次训练运行产生了这些结果。
-
-不得支持：
-
-> 某种 Actor 结构稳定优于另一种结构。
-
-## 3.2 验证集与测试集发生重叠
-
-当前训练每 50 updates 都使用固定 seeds `10000–10004` 选择 `best.pt`，最终 20-seed 评估使用 `10000–10019`。前 5 个场景同时参与模型选择和最终报告，最终测试不再完全独立。
-
-对现有结果拆分后可见明显敏感性：
-
-| 方法          | 参与选择的 5 seeds              | 其余 15 seeds                    |
-| ------------- | ------------------------------- | -------------------------------- |
-| P1 update 550 | boundary 3，persistent outage 2 | boundary 14，persistent outage 1 |
-| P2 update 600 | boundary 2，persistent outage 3 | boundary 2，persistent outage 13 |
-
-P2 的失败类型在两个子集上差异很大，说明当前 `best.pt` 选择对少量固定场景敏感。
-
-## 3.3 Critic 长期处于强裁剪区
-
-现有训练日志中：
-
-| 项目                             |     P1 |     P2 |
-| -------------------------------- | -----: | -----: |
-| Critic pre-clip grad norm 均值   | 31.312 | 34.609 |
-| Critic pre-clip grad norm 最小值 |  8.742 | 12.762 |
-| `max_grad_norm`                  |    0.5 |    0.5 |
-
-现有代码只归一化 Critic 输入，没有记录 explained variance，也未归一化 value target。当前现象不证明 Critic 错误，但必须在正式训练前可观测、可解释。
-
-## 3.4 折扣范围与任务时长可能不匹配
-
-当前 `dt=0.2 s`、每 Episode 最长 `500` steps，即 `100 s`；`gamma=0.99` 的回报半衰期约为 `13.8 s`，第 500 step 的权重约为 `0.00657`。同时 `(gamma × lambda)=0.9405`，GAE 的直接影响衰减更快。
-
-这不是已确认的代码错误，也不授权本任务修改 gamma 或 Reward；但必须形成正式诊断和后续决策门槛。
-
-## 3.5 Resume 不是逐状态精确续训
-
-当前 checkpoint 未保存正在运行的环境内部状态、`current_obs`、当前 Episode return 和 length。恢复时会从尚未使用的新环境 seed 开始新 Episode。
-
-因此当前语义只能写成：
-
-> 在 PPO update 边界恢复模型、优化器、normalizer、部分 RNG 和 seed progress，并以新 Episode 继续。
-
-不得写成：
-
-> 与不中断运行逐步一致的 bitwise-exact continuation。
-
-P1 的已报告最佳检查点位于 update 550，早于 update 740 后发生的恢复，因此该最佳检查点本身不受恢复事件影响；但未来正式实验仍需冻结统一规则。
-
----
-
-# 4. 全程冻结项
-
-本任务不得修改：
-
-- Environment v1.1 的动力学；
-- 通信、天线与 capacity 公式；
-- Reward 组成及权重；
-- outage / persistent-outage 定义；
-- collision、boundary、速度和加速度约束；
-- terminated / truncated 语义；
-- 26 维 local observation；
-- 47 维 centralized Critic 输入定义；
-- P0–P4 Actor 已冻结的结构；
-- P3/P4 topology node、edge 和 message passing 定义；
-- PPO old latent `z` 复用原则；
-- shared team reward；
-- 当前 safety-priority checkpoint 排序规则。
-
-允许修改的范围仅包括：
-
-- 实验 seed 管理；
-- 评估、检查点选择和结果落盘协议；
-- 训练诊断日志；
-- checkpoint 元数据与 resume 语义标记；
-- 自动测试；
-- Stage 4.1 专用评估脚本、报告和 manifest。
-
----
-
-# 5. 子任务 A：冻结三分离数据协议
-
-必须明确区分：
-
-| 数据域                  | 用途                   | 是否可参与 checkpoint 选择 |
-| ----------------------- | ---------------------- | -------------------------- |
-| Training environments   | PPO rollout 和参数更新 | 否                         |
-| Validation environments | 周期检查点排序与选择   | 是                         |
-| Final test environments | 最终一次独立报告       | 否                         |
-
-## 5.1 Stage 4.1 旧检查点重评种子
-
-本轮直接冻结：
+先执行并记录：
 
 ```text
-validation seeds = 50_000_000 ... 50_000_019  （20 episodes）
-final test seeds = 60_000_000 ... 60_000_049  （50 episodes）
+git status --short
+git remote -v
+git branch --show-current
+git rev-parse HEAD
 ```
 
 要求：
 
-1. 两组种子严格不重叠；
-2. 两组种子不得与现有训练实际使用的环境种子重叠；
-3. P0、P1、P2 必须使用完全相同的 validation seeds；
-4. P0、P1、P2 必须使用完全相同的 final test seeds；
-5. 不得查看 test 结果后重选 checkpoint；
-6. seed 列表必须在首次 test 前写入只读 manifest；
-7. manifest 必须记录协议版本和生成时间。
+- 确认远端是 `wdwd200/multi-relay-uav-mappo`；
+- 确认基线包含提交 `d96ef73aa290459849190e384053d1c89430fe71`；
+- 如存在用户未提交修改，必须保留并判断是否与任务冲突，不得直接清理；
+- 从当前基线创建分支：`fix/stage4-1-1-protocol-hardening`。
 
-## 5.2 未来正式训练的随机数域
+## 4. 工作包 A：改为跨平台稳定的 JSON 哈希
 
-为未来 P0–P4 多训练种子实验预留 5 个 paired run：
+### A1. 问题
 
-```text
-run_seed = 2026, 2027, 2028, 2029, 2030
-```
+当前 `sha256_file()` 对 JSON 文件原始字节求哈希。Stage 4.1 在 Windows 生成 CRLF 文件后，GitHub 保存为 LF，导致 fresh clone 的哈希不同。
 
-每个 `run_seed` 必须确定性派生并保存以下独立随机数域：
+三组旧值是 Windows CRLF 原始文件哈希：
 
-- Actor initialization seed；
-- Critic initialization seed；
-- rollout action-noise seed；
-- training-environment seed base；
-- mini-batch permutation seed。
+- seed manifest：`d2622a91c144aa7d32ccd5bbf0353694ba281a2044b7985a0290d4c9e7227acb`
+- checkpoint manifest：`c7dcbb98493230c890758dbcb76295ce0b34f99a0d651e2b06aa0601f787a435`
+- selected checkpoints：`ff21a6534bbe646fa356a9d255695b8c2742faa290c9dad31f6dfaf37cd1df31`
 
-同一 `run_seed` 下，P0–P4 必须使用相同的 Critic 初始化、action-noise 流、training environment seeds 和 mini-batch permutation 流。不同 Actor 结构不得通过额外消耗全局 RNG，间接改变 Critic 初始化或 rollout 噪声。
+### A2. 实现要求
 
-建议预留 training-environment seed base：
+- 保留 `sha256_file()`，只用于 `.pt`、ZIP 等二进制文件。
+- 新增语义明确的 JSON 哈希函数，例如：
 
 ```text
-run 0 → 10_000_000
-run 1 → 12_000_000
-run 2 → 14_000_000
-run 3 → 16_000_000
-run 4 → 18_000_000
+sha256_json_payload(payload)
+sha256_json_file(path)
 ```
 
-以当前 1000 updates、128 steps/update、8 environments 计算，即使每一步都结束一个 Episode，每个 run 的 seed 范围仍不会进入下一个保留区间。
+- JSON 哈希必须基于已有 `canonical_json_bytes(payload)`：UTF-8、键排序、紧凑分隔符，不依赖缩进、CRLF/LF 或操作系统。
+- seed manifest、checkpoint manifest、selected checkpoints 及其引用字段统一使用 `canonical-json-v1`。
+- 在产物中显式记录 `manifest_hash_scheme = canonical-json-v1`，避免以后再次混用文件字节哈希与 JSON 内容哈希。
+- `.pt` checkpoint 的 SHA-256 继续按原始二进制文件计算，禁止更改。
+- 增加 `.gitattributes`，至少固定源码、Markdown、JSON、JSONL、CSV 为 LF；但不得把行尾规则当成 JSON 语义哈希的替代品。
 
-具体字段名可由实现决定，但以下内容必须序列化到 config 和 checkpoint：
+### A3. 历史元数据迁移
+
+编写一次性、可重复执行的迁移脚本，不允许手工搜索替换。迁移以下文件中的 manifest 引用：
+
+- `artifacts/stage4-1-protocol-repair/validation_grid.csv`
+- `artifacts/stage4-1-protocol-repair/validation_episodes.jsonl`
+- `artifacts/stage4-1-protocol-repair/selected_checkpoints.json`
+- `artifacts/stage4-1-protocol-repair/final_test_summary.csv`
+- `artifacts/stage4-1-protocol-repair/final_test_episodes.jsonl`
+- `artifacts/stage4-1-protocol-repair/protocol_audit.json`
+- `artifacts/stage4-1-protocol-repair/protocol_audit.md`
+- 根目录 `stage4_1_protocol_validation.json`
+- 根目录 `stage4_1_protocol_validation.md`
+- `22_阶段4.1_训练与评估协议修复交接.md`
+
+`evaluation_invocations.jsonl` 属于历史执行轨迹：不得把旧调用伪装成新调用。可以保留原始字段，并增加明确的旧哈希方案标记或追加 metadata migration 事件。
+
+新增 `artifacts/stage4-1-protocol-repair/hash_migration.json`，至少记录：
+
+- 旧 raw-file/CRLF 哈希；
+- 新 canonical JSON 哈希；
+- 迁移时间；
+- 修改文件清单；
+- `episode_numeric_payload_changed=false`；
+- checkpoint binary hashes unchanged 的验证结果。
+
+迁移前后必须证明：
+
+- validation 仍为 60 汇总行、1,200 Episode；
+- final 仍为 3 汇总行、150 Episode；
+- 所有 Episode 数值、seed、checkpoint hash、终止类型逐条不变；
+- selected updates 仍为 1000/800/650；
+- 从 raw Episode 重算的汇总结果仍完全一致。
+
+## 5. 工作包 B：增加唯一的正式训练冻结配置入口
+
+### B1. 问题
+
+当前交接文档中的 P1–P4 命令会因 `state_dependent_clamp` 默认值而校验失败；P0 虽能启动，却会使用旧默认 `actor_lr=3e-4`、`entropy=0.01`、`log_std=[-5,2]`，不是冻结的 Round-E 公平对照配置。
+
+### B2. 实现要求
+
+- 增加一个原子化 preset，名称统一为 `stage4-formal`。
+- 推荐命令形式：
 
 ```text
-protocol_version
-run_seed
-actor_init_seed
-critic_init_seed
-action_noise_seed
-minibatch_seed
-train_env_seed_base
-validation_seed_manifest
-final_test_seed_manifest
+python train_plain_mappo.py --preset stage4-formal --full --actor-variant plain --run-seed 2026 --output-dir ...
 ```
 
-旧 checkpoint 缺少这些字段时必须保持兼容，并明确标记为 `legacy_protocol`；不得伪造它们曾使用新协议。
-
----
-
-# 6. 子任务 B：实现独立 checkpoint-grid 评估
-
-新增一个单独脚本，建议命名：
+- `--full` 必须要求显式提供 `--preset stage4-formal`；缺失时立即报错，不得按旧默认值启动 1000 updates。
+- preset 必须一次性冻结所有共同实验字段，不能依靠用户逐项输入。
+- 至少包含：
 
 ```text
-reevaluate_checkpoint_grid.py
+actor_log_std_mode = state_independent_tanh
+log_std_min = -4.0
+log_std_max = 0.0
+state_independent_log_std_init = -1.5
+actor_lr = 1e-4
+critic_lr = 3e-4
+entropy_coef = 0.0
+gamma = 0.99
+gae_lambda = 0.95
+clip_epsilon = 0.2
+value_loss_coef = 0.5
+max_grad_norm = 0.5
+num_envs = 8
+rollout_length = 128
+mini_batch_size = 256
+ppo_epochs = 10
+eval_interval_updates = 50
+full_updates = 1000
+topology_node_dim = 6
+topology_edge_dim = 7
+graph_hidden_dim = 32
 ```
 
-脚本至少支持：
+- 以实际 Stage 3 state-independent、P1、P2 的历史 config 为依据，逐字段核对共同冻结项；如发现任务书遗漏字段，应纳入 preset 并在交接报告说明。
+- P0–P4 在相同 run seed 下，除 `actor_variant`、结构必然产生的参数量和 `output_dir` 外，所有共同训练字段及 Critic/RNG seeds 必须一致。
+- CLI 配置构建逻辑应拆成可单测函数，测试配置时不得真正创建 Trainer 或启动训练。
+- 更新交接文档中的未来命令矩阵，全部使用该 preset；本轮只验证配置，禁止执行这些 `--full` 命令。
 
-```text
---run-dir
---checkpoint-glob
---seed-manifest
---split validation|test
---output-dir
---device
-```
-
-## 6.1 Validation 阶段
+## 6. 工作包 C：正式协议必须 fail closed
 
-对以下三个现有运行分别评估其全部 20 个周期 Actor checkpoint：
+修改 `_periodic_validation_seeds()`：
 
-```text
-P0 Stage 3 第五轮 state-independent run
-P1 artifacts/stage4-role-info-full/
-P2 artifacts/stage4-role-head-full/
-```
+- 对 `stage4.1-v1` 新协议，manifest 缺失、路径错误、内容错误、hash scheme 错误、validation split 数量不是 20、`selection_allowed` 不是 true 时必须抛出清晰异常；
+- 禁止退回 `10000..10004`；
+- 旧 5-seed 路径只能由明确的 `legacy_protocol` 使用；
+- manifest 路径必须相对仓库/配置基准稳定解析，不得依赖启动命令所在的当前工作目录；
+- test split 必须继续保持 `selection_allowed=false`。
 
-检查点范围固定为：
-
-```text
-actor_update_0050.pt
-actor_update_0100.pt
-...
-actor_update_1000.pt
-```
-
-每个 checkpoint 都使用同一组 20 个 validation seeds，并保存：
-
-- 每个 Episode 的完整原始指标；
-- checkpoint update；
-- Actor variant；
-- checkpoint SHA-256；
-- config 摘要；
-- seed split 名称和 seed；
-- `tanh(mean)` deterministic action 声明；
-- safety-priority score tuple；
-- 汇总指标。
-
-## 6.2 检查点选择
-
-继续使用当前冻结的 `safety_priority_key`：
-
-```text
-1. speed/acceleration hard violations 越少越好
-2. normal completion 越多越好
-3. collision + boundary 越少越好
-4. persistent outage 越少越好
-5. outage ratio 越低越好
-6. rate satisfaction 越高越好
-7. mean e2e rate 越高越好
-```
-
-若 score 完全相同，选择更早的 update，避免引入事后偏好。
-
-选定后必须先生成：
-
-```text
-selected_checkpoints.json
-```
-
-其中记录 P0/P1/P2 的：
-
-- selected update；
-- checkpoint path；
-- checkpoint hash；
-- validation score；
-- selection rule；
-- validation seed manifest hash；
-- 选择时间。
-
-不得覆盖或删除原有 `best.pt`、`actor_final.pt`、`eval.csv` 或周期 checkpoint。
-
-## 6.3 Final test 阶段
-
-只有 `selected_checkpoints.json` 写入完成后，才允许对每种方法唯一选中的 checkpoint 运行 50-episode final test。
-
-禁止：
-
-- 在 test split 上评估全部 20 个 checkpoint；
-- 根据 test 结果更换 selected update；
-- test 后修改 safety-priority key；
-- 丢弃不利 Episode；
-- 只保存 summary 而不保存原始 Episode 数据。
-
----
-
-# 7. 子任务 C：结果文件格式
-
-新增目录：
-
-```text
-artifacts/stage4-1-protocol-repair/
-```
-
-至少生成：
-
-```text
-seed_manifest.json
-checkpoint_manifest.json
-validation_grid.csv
-validation_episodes.jsonl
-selected_checkpoints.json
-final_test_summary.csv
-final_test_episodes.jsonl
-protocol_audit.json
-protocol_audit.md
-```
-
-## 7.1 `validation_grid.csv`
-
-每行对应一个 checkpoint，至少包含：
-
-```text
-variant
-run_seed
-update
-checkpoint_path
-checkpoint_sha256
-validation_seed_set
-episodes
-score
-normal_completion_count
-collision_count
-boundary_count
-persistent_outage_count
-speed_accel_violations
-outage_step_ratio
-rate_satisfaction_ratio
-mean_e2e_rate_mbps
-mean_return
-```
-
-## 7.2 `validation_episodes.jsonl`
-
-每行对应一个真实 Episode，至少包含：
-
-```text
-variant
-update
-checkpoint_sha256
-split
-seed
-return
-length
-terminated
-truncated
-termination_reason
-mean_e2e_rate_mbps
-rate_satisfaction_ratio
-outage_step_ratio
-min_node_distance_m
-max_xy_speed_mps
-max_xy_accel_mps2
-action_saturation_ratio
-movement_distance_m
-```
-
-字段名应复用现有 `EpisodeMetrics` 的真实输出；若实际名称不同，以源码为准并在 schema 中说明，不得静默编造缺失字段。
-
-## 7.3 可追溯性
-
-所有 Stage 4.1 输出必须记录：
-
-- Python、PyTorch、NumPy 版本；
-- device；
-- git commit（若仓库存在）；
-- dirty worktree 状态；
-- Environment/Actor/Critic config；
-- 输入 checkpoint 路径、大小和 SHA-256；
-- seed manifest SHA-256；
-- 执行命令；
-- 开始和结束时间。
-
----
-
-# 8. 子任务 D：补强 Critic 与梯度诊断
-
-只增加诊断，不改变 PPO 优化目标。
-
-`train.csv` 至少新增：
-
-```text
-value_target_mean
-value_target_std
-value_prediction_mean_pre
-value_prediction_std_pre
-explained_variance_pre
-actor_grad_norm_max
-critic_grad_norm_max
-actor_grad_clip_fraction
-critic_grad_clip_fraction
-```
-
-其中：
-
-```text
-explained_variance = 1 - Var(return_target - value_prediction) / Var(return_target)
-```
-
-若 `Var(return_target)` 接近 0，应输出明确的空值或约定值，并记录原因，不得产生 NaN 后继续训练。
+## 7. 工作包 D：修复 checkpoint 协议一致性
 
-梯度裁剪比例定义为：
+### D1. legacy load → save → load
 
-```text
-本 update 内，pre-clip grad norm > max_grad_norm 的 mini-batch 比例
-```
-
-要求：
-
-1. 保留现有 mean grad norm 字段；
-2. 新增 max 和 clip fraction；
-3. 所有诊断不参与 loss；
-4. 所有诊断为 finite，或按 schema 明确标记无定义；
-5. 先运行 10-update 诊断 smoke；
-6. smoke 只验工程，不评价任务性能。
-
-本任务不得直接启用 value normalization、value clipping 或修改 critic LR。Codex 只需在最终报告中根据现有日志和新增 smoke 提出以下二选一建议：
-
-```text
-KEEP：正式 P0–P4 继续使用当前 value loss
-或
-PRE-EXPERIMENT REQUIRED：在 P0 上先做对称、独立的 value 处理前置实验
-```
-
-未经新任务书授权，不执行该前置训练。
-
----
-
-# 9. 子任务 E：gamma / horizon 诊断
-
-新增纯分析输出，不启动训练。
-
-报告至少列出 `gamma=0.99、0.995、0.997、0.999` 在 `dt=0.2 s` 下的：
-
-- step 半衰期；
-- 秒级半衰期；
-- 100 s 末端奖励权重；
-- 与当前 `lambda=0.95` 组合后的 GAE trace 半衰期。
-
-同时结合现有 P0/P1/P2：
-
-- Episode length 分布；
-- persistent outage 首次出现 step；
-- boundary termination step；
-- terminal penalty 位置；
-
-说明 `gamma=0.99` 是否存在明显的长时域信用分配风险。
-
-本任务不得：
-
-- 修改 gamma；
-- 修改 lambda；
-- 添加 boundary shaping；
-- 修改 terminal penalty；
-- 启动任何 gamma sweep。
-
-最终只输出：
-
-```text
-KEEP gamma=0.99
-或
-PRE-EXPERIMENT REQUIRED
-```
-
-并给出证据。任何训练性验证必须等待新授权。
-
----
-
-# 10. 子任务 F：修正 checkpoint / resume 语义
-
-必须在 config、checkpoint metadata 和交接文档中加入明确字段：
-
-```text
-resume_mode = fresh_episode_at_update_boundary
-exact_environment_resume = false
-```
-
-旧 checkpoint 继续可加载。
-
-若不保存完整环境内部状态，不得新增测试声称：
-
-```text
-interrupted run == uninterrupted run
-```
-
-允许验证：
-
-- Actor/Critic 权重可恢复；
-- optimizer 可恢复；
-- normalizer 可恢复；
-- 保存的 RNG 可恢复；
-- never-used training environment seeds 不重复；
-- update 和 total steps 单调继续。
-
-未来正式 P0–P4 实验默认要求单次运行不中断完成。若中断，在未实现 exact environment resume 前，应从同一 run seed 重新完整训练，而不是把 fresh-Episode resume 当作完全等价轨迹。
-
----
-
-# 11. 自动测试要求
-
-新增测试至少覆盖：
-
-1. validation 与 test seed 无交集；
-2. 新协议的 training seed 保留区间互不重叠；
-3. 同一 run seed 下，不同 Actor variant 的 Critic 初始权重完全一致；
-4. 不同 Actor variant 的构造不改变 rollout action-noise 随机流；
-5. mini-batch permutation 使用独立且可恢复的 RNG；
-6. 新 RNG states 正确保存和加载；
-7. legacy checkpoint 可加载并标记为 legacy；
-8. deterministic evaluation 重复运行结果逐 Episode 一致；
-9. checkpoint grid 按 update 数字顺序加载；
-10. validation selection 只读取 validation split；
-11. score 相同时选择较早 update；
-12. test split 不允许调用 checkpoint-grid selection；
-13. 原始 Episode 行数等于 checkpoint 数 × seed 数；
-14. checkpoint 和 seed manifest hash 正确写入；
-15. explained variance 与人工小样本计算一致；
-16. grad clip fraction 与人工小样本计算一致；
-17. undefined explained variance 被安全处理；
-18. P0/P1/P2/P3/P4 旧 checkpoint 兼容；
-19. P3/P4 topology buffer 与 old latent `z` 既有测试继续 PASS；
-20. 全部输出无 NaN/Inf，或按 schema 明确标记为 null。
-
-必须真实运行：
+当前历史 checkpoint 首次加载后，再保存可能形成以下混合状态：
+
+- config 声称 `stage4.1-v1`；
+- protocol metadata 声称 `legacy_protocol`；
+- `protocol_rng_state=None`。
+
+修复后必须保证：
+
+- legacy checkpoint 加载后仍明确为 legacy；
+- 再次保存的 config、metadata、RNG state 三者语义一致；
+- 新保存的 legacy checkpoint 可以再次加载；
+- 不得把历史 checkpoint 伪装成使用 Stage 4.1 独立 RNG；
+- resume 仍明确是 `fresh_episode_at_update_boundary`、`exact_environment_resume=false`。
+
+### D2. `MappoConfig.from_dict()`
+
+- 反序列化新协议 checkpoint 时，必须先检查原始字典中的 protocol seed/path 字段；
+- 如果保存值与 `run_seed` 推导值不一致，必须报错；
+- 禁止由 `__post_init__()` 静默覆盖错误值后再假装校验通过；
+- 历史配置缺少协议字段时，仍显式识别为 `legacy_protocol`。
+
+### D3. CUDA 小修复
+
+若不扩大范围，顺手把 action-noise Generator 的设备从 `self.device.type` 改为完整设备语义，避免 `cuda:1` 等非默认 GPU 与 Generator 设备不一致。增加可静态验证或条件跳过的测试，不要求本轮具备 CUDA。
+
+## 8. 工作包 E：新增协议回归测试
+
+至少新增以下测试：
+
+1. 同一 JSON 内容使用 LF、CRLF、不同缩进和不同键顺序时 canonical hash 相同。
+2. JSON 内容真实变化时 canonical hash 变化。
+3. `.pt` checkpoint 仍使用二进制文件哈希。
+4. P0–P4 的 `stage4-formal` config 均可通过 validate。
+5. P0–P4 相同 run seed 的共同字段、Critic seed、action seed、minibatch seed、env seed 完全一致。
+6. `--full` 未提供 formal preset 时被拒绝，且没有创建 Trainer/输出目录。
+7. 新协议 manifest 缺失时明确失败，不得返回旧 5 seeds。
+8. legacy 协议仍可使用明确记录的旧监控 seeds。
+9. legacy checkpoint 完成 load → save → load round-trip。
+10. stage4.1 checkpoint 的原始 seed 字段被篡改时 `from_dict()` 拒绝加载。
+11. migrated artifacts 仍满足 60/1,200、3/150、无重复、无非有限值。
+12. raw Episode 重算结果及 selected updates 与本任务书第 1 节完全一致。
+
+运行：
 
 ```text
 python -m unittest discover -s selfcheck -p "test_*.py" -v
+python -m compileall -q .
 ```
 
-现有交接记录声称旧环境中 `56/56 PASS`，但 Stage 4.1 必须在具备 PyTorch 的实际执行环境重新验证，不得直接复制旧数字。
+不得只报告“新增测试通过”；必须报告完整测试总数和总结果。
 
----
+## 9. 工作包 F：README、依赖与 CI
 
-# 12. 执行顺序
+### F1. README
 
-严格按以下顺序执行：
+重写过时的 Stage 1 README，至少说明：
+
+- 当前完成到 Stage 4.1.1；
+- Environment、Plain/Role/Topology/Graph MAPPO 模块状态；
+- P0/P1/P2 只是 single-seed retrospective pilot；
+- P3/P4 只有 smoke，正式训练未开始；
+- 66/66 是修复前测试记录，本轮应写新的实际测试总数；
+- 安装依赖、运行测试、运行只读 artifact verification 的命令；
+- 将来正式训练命令仅作为未授权示例，并使用 `--preset stage4-formal`；
+- checkpoint Release 的下载与完整性验证方法；
+- 不把 evaluation Episodes 当作独立训练重复。
+
+### F2. 依赖
+
+- 增加适合当前项目的 `requirements.txt` 或 `pyproject.toml`；
+- 根据实际 import 固定最低必要依赖，至少明确 Python、NumPy、PyTorch 的支持范围；
+- 不虚构未实际验证的精确版本兼容性。
+
+### F3. CI
+
+增加 GitHub Actions：
+
+- 在受支持的 Python 版本上安装依赖；
+- 执行完整 unittest；
+- 执行 compileall；
+- 执行只读 Stage 4.1 artifact integrity verification；
+- 不运行训练，不写回 artifacts，不依赖 GPU。
+
+## 10. 工作包 G：checkpoint Release
+
+如果本地 60 个历史 periodic Actor checkpoints 都存在：
+
+1. 根据 `checkpoint_manifest.json` 再次验证数量、路径和 SHA-256。
+2. 只打包以下内容：
+   - P0/P1/P2 共 60 个 `actor_update_*.pt`；
+   - `checkpoint_manifest.json`；
+   - 简短的 `README_CHECKPOINTS.md`。
+3. ZIP 内保留 P0/P1/P2 的清晰目录结构。
+4. 计算并报告 ZIP SHA-256。
+5. 不把 ZIP 或 `.pt` 加入 Git commit。
+6. 使用已经配置好的 GitHub 凭据，由 Codex 自行创建并上传 Release：
+   - tag：`stage4.1-retrospective-pilot-checkpoints`
+   - title：`Stage 4.1 retrospective pilot checkpoints`
+   - Release notes 必须明确写明：single-seed pilot、仅用于复核 60-checkpoint validation-grid、不是正式 multi-seed 结果。
+
+如果 checkpoint 不全或 GitHub 身份验证失败：
+
+- 不得伪造或跳过校验；
+- 代码分支仍应正常提交和推送；
+- 最终报告准确列出缺失文件或认证错误。
+
+## 11. 最终只读验收
+
+完成修改后必须检查：
 
 ```text
-1. 读取文档与源码
-2. 盘点 P0/P1/P2 周期 checkpoints，并生成 hash manifest
-3. 实现 seed protocol 与独立 RNG streams
-4. 实现 checkpoint-grid evaluation 和逐 Episode 落盘
-5. 实现 Critic / grad diagnostics
-6. 新增自动测试
-7. 运行全部自动测试
-8. 运行 10-update diagnostics smoke
-9. 写入并锁定 validation/test seed manifest
-10. 对 P0/P1/P2 全部周期 checkpoints 运行 validation
-11. 生成 selected_checkpoints.json
-12. 仅对三个 selected checkpoints 运行 final test
-13. 生成 gamma/horizon 分析
-14. 生成 Stage 4.1 validation 报告与交接文档
-15. STOP
+git diff --check
+git status --short
+git diff --stat
 ```
 
-若任一自动测试失败，停止进入旧检查点评估；不得带着失败测试继续生成正式结论。
+并验证：
 
----
+- 没有 Environment/Reward/PPO 数学的意外改动；
+- 没有新增正式训练产物；
+- 没有 `.pt` 被提交；
+- validation/final 数值结果未变化；
+- 所有 manifest 引用使用同一 hash scheme；
+- README 命令与实际 CLI 一致。
 
-# 13. 明确禁止
+## 12. GitHub 交付授权与要求
 
-本任务禁止：
+本任务明确授权 Codex 自行完成 Git 操作，不要让用户手动复制 Git 命令。
 
-- P0/P1/P2 新的 1000-update 训练；
-- P3/P4 的 1000-update 正式训练；
-- P5、P6、Role+Graph 实现或训练；
-- 修改 Environment、Reward 或 observation；
-- 修改 P0–P4 Actor 结构；
-- 修改 PPO/GAE 数学；
-- 修改学习率、entropy、clip、网络宽度或 log_std；
-- 启用 value normalization 或 value clipping；
-- gamma / lambda sweep；
-- 根据 test 结果重新选择 checkpoint；
-- 为不同 variant 使用不同 validation/test seeds；
-- 覆盖旧训练产物；
-- 把 smoke 性能写成方法有效性证据；
-- 把单训练种子结果写成稳定方法排名；
-- 宣称 Graph 有效、Graph 优于 MLP 或论文创新成立。
+按以下流程执行：
 
----
-
-# 14. Stage 4.1 交付物
-
-代码和测试：
+1. 在 `fix/stage4-1-1-protocol-hardening` 分支完成修改。
+2. 检查最终 diff 和测试结果。
+3. 提交信息：
 
 ```text
-reevaluate_checkpoint_grid.py
-plain_mappo/experiment_protocol.py        （或等价模块）
-selfcheck/test_mappo_protocol.py          （或等价测试）
-必要的最小现有文件修改
+fix: harden stage4.1 protocol reproducibility
 ```
 
-报告：
+4. 将该分支推送到 `origin`，禁止 force push。
+5. 如果已安装并登录 GitHub CLI，创建指向 `main` 的 PR：
+   - 标题：`fix: harden Stage 4.1 protocol reproducibility`
+   - 正文包含问题、修复、测试、未运行内容、artifact 数值未变声明。
+6. 不自行合并 PR。
+7. 如 GitHub CLI 不可用，至少完成分支推送，并给出可打开的 compare/PR URL。
+8. 如上传 checkpoint Release，报告 Release URL 与 ZIP SHA-256。
+
+## 13. 最终汇报格式
+
+完成后只给一份收口报告，必须包含：
 
 ```text
-stage4_1_protocol_validation.py
-stage4_1_protocol_validation.json
-stage4_1_protocol_validation.md
-22_阶段4.1_训练与评估协议修复交接.md
-```
-
-数据：
-
-```text
-artifacts/stage4-1-protocol-repair/seed_manifest.json
-artifacts/stage4-1-protocol-repair/checkpoint_manifest.json
-artifacts/stage4-1-protocol-repair/validation_grid.csv
-artifacts/stage4-1-protocol-repair/validation_episodes.jsonl
-artifacts/stage4-1-protocol-repair/selected_checkpoints.json
-artifacts/stage4-1-protocol-repair/final_test_summary.csv
-artifacts/stage4-1-protocol-repair/final_test_episodes.jsonl
-artifacts/stage4-1-protocol-repair/protocol_audit.json
-artifacts/stage4-1-protocol-repair/protocol_audit.md
-```
-
----
-
-# 15. 最低验收标准
-
-只有同时满足以下条件，Stage 4.1 才可判定 PASS：
-
-| 验收项       | PASS 条件                                                    |
-| ------------ | ------------------------------------------------------------ |
-| 冻结边界     | Environment、Reward、observation、P0–P4 Actor 和 PPO/GAE 数学未变 |
-| Seed 分离    | training / validation / test 严格分离，manifest 完整         |
-| 旧检查点评估 | P0/P1/P2 各 20 个周期 checkpoint 均完成 20-seed validation   |
-| 模型选择     | 只基于 validation；tie 时选较早 update                       |
-| Final test   | 每种方法仅 selected checkpoint 完成 50 个独立 test Episodes  |
-| 原始数据     | 逐 Episode 数据完整，行数和汇总可反算                        |
-| 可追溯性     | checkpoint、seed manifest 和配置 hash 齐全                   |
-| RNG 公平性   | Critic、action noise、mini-batch 和 env seeds 不再被 Actor 构造顺序污染 |
-| 诊断         | explained variance、value stats、grad max/clip fraction 可用 |
-| Resume 口径  | 明确为 fresh-Episode update-boundary resume，不冒充 exact resume |
-| 自动测试     | 旧测试与新测试全部 PASS                                      |
-| Smoke        | 10-update 诊断 smoke finite 且 checkpoint reload PASS        |
-| 正式训练     | P3/P4 1000-update 均未启动                                   |
-
-任务性能好坏不是 Stage 4.1 的工程 PASS 条件。
-
----
-
-# 16. 后续正式训练门禁
-
-Stage 4.1 PASS 后，交接报告必须给出但不得执行以下正式矩阵：
-
-| Variant | 定义                                | 独立训练 seeds |
-| ------- | ----------------------------------- | -------------: |
-| P0      | Plain MAPPO，26-d local observation | 最少 3，目标 5 |
-| P1      | Role-info                           | 最少 3，目标 5 |
-| P2      | Role-head                           | 最少 3，目标 5 |
-| P3      | Topology-info MLP                   | 最少 3，目标 5 |
-| P4      | Graph MAPPO                         | 最少 3，目标 5 |
-
-后续正式训练必须满足：
-
-- P0–P4 使用相同 1000-update 预算；
-- 使用相同 paired run seeds；
-- 使用相同 validation 和 final test seed manifests；
-- 每个 run 独立选择 checkpoint；
-- 先锁定 checkpoint，再运行 final test；
-- 统计单位以独立训练 run 为主，不得把大量 evaluation Episodes 当作大量训练重复；
-- 报告每种方法的 run-level mean、standard deviation、95% CI 和 paired differences；
-- P3/P4 参数公平性继续满足既有 `≤10%` 合同；
-- 任何协议变更必须同时应用于 P0–P4，不得只帮助某个 variant。
-
-正式训练仍需新的明确授权和单独任务书。
-
----
-
-# 17. Codex 最终回复格式
-
-最终回复必须按以下顺序：
-
-```text
-1. 修改文件
-2. 协议版本与 seed manifests
-3. 自动测试结果
-4. 10-update 诊断 smoke 结果
-5. P0/P1/P2 validation-grid 结果
-6. 新 selected updates
-7. 独立 final-test 结果
-8. Critic / grad 诊断结论
-9. gamma / horizon 诊断结论
-10. resume 语义确认
-11. 未执行内容
-12. 最终状态
-```
-
-最终状态只能使用：
-
-```text
-Stage 4.1 protocol repair = COMPLETE / INCOMPLETE
-Engineering validation = PASS / FAIL
-P0/P1/P2 retrospective status = SINGLE-SEED PILOT
+Stage 4.1.1 protocol hardening = COMPLETE / BLOCKED
+Full automated tests = X/X PASS / FAIL
+Artifact integrity = PASS / FAIL
+Validation records = 60 summaries / 1,200 Episodes
+Final-test records = 3 summaries / 150 Episodes
+Selected updates = P0 1000 / P1 800 / P2 650
+Episode numeric payload changed = false / true
+Formal training executed = false
+Evaluation rerun executed = false
 P3 formal training = NOT STARTED
 P4 formal training = NOT STARTED
-Multi-seed P0–P4 training = NOT AUTHORIZED
-Role+Graph = NOT STARTED
+Multi-seed P0-P4 training = NOT AUTHORIZED
+Git branch = ...
+Git commit SHA = ...
+PR URL = ...
+Checkpoint Release URL = ... / NOT CREATED（说明原因）
+Checkpoint ZIP SHA-256 = ... / N/A
+Remaining blockers = ...
 ```
 
-不得提前宣称任何方法有效或论文创新成立。
+同时列出：
 
----
+- 修改文件；
+- 新增测试；
+- 每条测试命令的真实输出摘要；
+- 新旧 manifest hash 映射；
+- 所有未执行内容。
 
-# 18. 一句话执行边界
-
-> 本任务只修复实验协议、重评旧检查点并补强诊断；不修改环境、奖励、Actor 结构或 PPO 数学，不启动任何新的 1000-update 正式训练。
+只有代码、测试、artifact 验证、Git push 全部完成，才能将 Stage 4.1.1 标记为 COMPLETE。不得仅凭“代码已写完”宣称通过。
